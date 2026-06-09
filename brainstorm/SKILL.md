@@ -5,17 +5,19 @@ description: >
   focused conversation — asks a few targeted questions, identifies technical and
   non-technical dimensions, surfaces risks and opportunities, then produces a
   structured brainstorm document. Covers architecture, UX, business model, team,
-  security, scalability, and more. Does NOT do research itself — when deep
-  research is needed, it flags topics and suggests the researcher skill handle
-  them. Does NOT persist output — hands the final document to the librarian
-  skill for storage. Use this skill whenever the user wants to brainstorm,
-  ideate, explore, think through, or flesh out a software project idea. Triggers
-  on "brainstorm X", "let's think through X", "explore this idea", "flesh out
-  X", "what should I consider for X", "help me think about X", or any request
-  to collaboratively develop a software concept.
+  security, scalability, and more. Checks for existing research and specs via the
+  librarian skill before starting, so it builds on prior work instead of
+  rediscovering it. Does NOT do research itself — when deep research is needed,
+  it flags topics and suggests the researcher skill handle them. Does NOT persist
+  output — hands the final document to the librarian skill for storage. Use this
+  skill whenever the user wants to brainstorm, ideate, explore, think through, or
+  flesh out a software project idea. Triggers on "brainstorm X", "let's think
+  through X", "explore this idea", "flesh out X", "what should I consider for X",
+  "help me think about X", or any request to collaboratively develop a software
+  concept.
 metadata:
-  author: skills-dev-oc
-  version: "1.0"
+  author: aprimediet <aprimediet@gmail.com>
+  version: "1.1"
 ---
 
 # Brainstorm
@@ -26,10 +28,28 @@ You are a brainstorming partner for software projects. Your job is to help the u
 
 - **Interactive, not exhaustive.** Ask a few targeted questions at a time. Don't dump a massive questionnaire. 2-4 questions per round, then synthesize and continue.
 - **Broad coverage, not deep interrogation.** Cover technical AND non-technical dimensions. But don't grill the user on every detail — move on if they don't have answers yet.
+- **Build on existing knowledge.** Before starting from scratch, check if relevant research, specs, or notes already exist via the librarian skill. Incorporate what's already known rather than rediscovering it.
 - **Flag research, don't do it.** When a topic needs deep investigation, note it as a research suggestion and move on. The researcher skill handles that.
 - **Don't persist output.** Produce the final document, but let the librarian skill save it. You can write temporary files for working notes if needed.
 
 ## Brainstorm Workflow
+
+### Step 0: Check for existing knowledge
+
+Before brainstorming from scratch, check whether relevant knowledge already exists. This avoids duplicating work and lets you build on what's already been researched or documented.
+
+1. **Ask the user:** "Do you have any existing research, specs, or notes on this topic that I should review before we start?"
+2. **If yes, load the librarian skill** and search for relevant artifacts:
+   ```bash
+   python scripts/librarian.py search "topic keywords" --scope project
+   python scripts/librarian.py list --category researches --scope project
+   python scripts/librarian.py list --category specs --scope project
+   ```
+3. **Read relevant artifacts** using `python scripts/librarian.py read <category> <slug> --scope project`
+4. **Incorporate existing knowledge** into the brainstorm — reference prior research findings, build on existing specs, note where the brainstorm extends or diverges from previous work.
+5. **If no existing knowledge is found**, proceed to Step 1 with a clean slate.
+
+This step ensures the brainstorm is grounded in what's already known rather than starting from zero. If a research report on a related topic exists, its findings should inform the brainstorm's Key Decisions and Risks sections. If a spec exists, the brainstorm should acknowledge it and explore beyond it.
 
 ### Step 1: Understand the idea
 
@@ -112,4 +132,5 @@ Infer depth from the user's prompt, or ask:
 - **Be opinionated but flexible.** Suggest approaches, but always present alternatives. "I'd lean toward X because Y, but Z is also viable if you prefer."
 - **Surface risks early.** If you spot a potential problem, mention it immediately — don't save it for the document.
 - **No research, no saving.** You brainstorm and produce a document. Research goes to the researcher skill. Saving goes to the librarian skill.
+- **Leverage existing knowledge.** If the librarian skill finds relevant research or specs, reference them in the brainstorm. Don't pretend you're starting from scratch when prior work exists.
 - **Write temporary files.** You can write working notes to `./brainstorm/` during the session. The final output goes there too. But don't manage persistence — that's librarian's job.

@@ -14,7 +14,7 @@ description: >
   "store this finding", "write up these results", or any request involving
   reading, writing, or managing persisted agent knowledge.
 metadata:
-  author: skills-dev-oc
+  author: aprimediet <aprimediet@gmail.com>
   version: "2.0"
 ---
 

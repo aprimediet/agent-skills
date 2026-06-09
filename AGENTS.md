@@ -73,6 +73,7 @@ Applies to all skills:
 - Output format details live in `references/OUTPUT_FORMAT.md`, not inline in SKILL.md
 - Examples in `examples/` show real brainstorm outputs for each depth level
 - The skill is interactive — it asks questions, doesn't dump a questionnaire
+- Before brainstorming, the skill checks for existing research/specs via the librarian skill and builds on prior work instead of starting from scratch
 - When research is needed, it flags topics and suggests the researcher skill — it does NOT research itself
 - The skill does NOT persist output — it produces a document and suggests the librarian skill for saving
 - After changing SKILL.md, re-run evals to verify behavior

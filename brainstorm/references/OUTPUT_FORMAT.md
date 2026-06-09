@@ -11,6 +11,12 @@ Use this exact structure:
 
 > Brainstorm | Depth: {quick|standard|deep} | Generated: {date}
 
+## Existing Knowledge
+
+{If relevant research, specs, or notes were found via the librarian skill, list them here. If none, omit this section entirely.}
+
+- [{Artifact title}]({path}) — {1-sentence summary of what it covers and how it informs this brainstorm}
+
 ## Core Idea
 
 {1-3 sentences capturing the essence of the project idea as discussed.}

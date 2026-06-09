@@ -13,7 +13,7 @@ description: >
   "is X production-ready", "tech stack for X", or any request that requires gathering
   and synthesizing information from multiple sources to make a software decision.
 metadata:
-  author: skills-dev-oc
+  author: aprimediet <aprimediet@gmail.com>
   version: "1.0"
 ---
 
