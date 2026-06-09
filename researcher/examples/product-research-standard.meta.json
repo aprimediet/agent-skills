@@ -1,0 +1,247 @@
+{
+  "title": "Bun — Production Readiness as a Node.js Replacement for SaaS Backends",
+  "slug": "bun-production-ready-nodejs-replacement-saas-backend",
+  "research_type": "tech-evaluation",
+  "depth": "standard",
+  "generated_at": "2026-06-09T00:00:00Z",
+  "query": "Research Bun — is it production-ready for a Node.js replacement in a SaaS backend?",
+  "scope_constraints": [
+    "SaaS backend context",
+    "Production readiness focus",
+    "Node.js ecosystem compatibility",
+    "Performance and reliability requirements"
+  ],
+  "summary": "Bun v1.3.14 has matured significantly through 2025–2026 and is a viable Node.js replacement for many SaaS backend workloads, delivering 2–3× throughput improvement and significantly faster startup. Node.js API compatibility exceeds 90% for core modules but gaps remain in cluster, http2, and some advanced APIs. The Anthropic acquisition (Dec 2025) and Vercel official support (Oct 2025) provide strong industry validation. Recommended for new SaaS projects; existing migrations require audit of specific Node.js API usage.",
+  "findings": [
+    {
+      "claim": "Bun delivers 2–3× better HTTP throughput than Node.js and significantly faster startup times",
+      "confidence": "high",
+      "supporting_sources": [6, 5]
+    },
+    {
+      "claim": "Node.js API compatibility exceeds 90% for core modules but gaps remain in cluster, http2, repl, trace_events, and several advanced APIs",
+      "confidence": "high",
+      "supporting_sources": [4, 7]
+    },
+    {
+      "claim": "Built-in PostgreSQL (Bun.sql), S3 (Bun.s3), WebSocket, cron, and image processing reduce dependency footprint for SaaS backends",
+      "confidence": "high",
+      "supporting_sources": [8, 5, 6]
+    },
+    {
+      "claim": "Anthropic acquisition and Vercel support signal strong industry validation and long-term stability",
+      "confidence": "high",
+      "supporting_sources": [10, 9]
+    },
+    {
+      "claim": "Bun's package manager and test runner are feature-complete and production-ready with 25–30× faster installs",
+      "confidence": "high",
+      "supporting_sources": [11, 3]
+    }
+  ],
+  "comparison_matrix": {
+    "criteria": ["HTTP Throughput", "Startup Time", "Node.js API Compat", "Built-in Tooling", "Ecosystem Size", "Maturity", "Deployment Flexibility", "Package Manager", "Long-term Viability", "Database Integration", "Community"],
+    "options": {
+      "Bun v1.3.14": {
+        "HTTP Throughput": 5,
+        "Startup Time": 5,
+        "Node.js API Compat": 3,
+        "Built-in Tooling": 5,
+        "Ecosystem Size": 3,
+        "Maturity": 4,
+        "Deployment Flexibility": 4,
+        "Package Manager": 5,
+        "Long-term Viability": 5,
+        "Database Integration": 5,
+        "Community": 4
+      },
+      "Node.js v23.x": {
+        "HTTP Throughput": 3,
+        "Startup Time": 3,
+        "Node.js API Compat": 5,
+        "Built-in Tooling": 2,
+        "Ecosystem Size": 5,
+        "Maturity": 5,
+        "Deployment Flexibility": 5,
+        "Package Manager": 3,
+        "Long-term Viability": 5,
+        "Database Integration": 2,
+        "Community": 5
+      }
+    }
+  },
+  "sources": [
+    {
+      "id": 1,
+      "title": "Bun Official Documentation",
+      "url": "https://bun.sh/docs",
+      "type": "official-docs",
+      "published": "2026-05-15",
+      "scores": {
+        "reliability": 5,
+        "recency": 5,
+        "relevance": 5,
+        "composite": 5.0
+      },
+      "summary": "Core documentation covering Bun's runtime, features, and architecture"
+    },
+    {
+      "id": 2,
+      "title": "Bun GitHub Repository",
+      "url": "https://github.com/oven-sh/bun",
+      "type": "github",
+      "published": "2026-05-13",
+      "scores": {
+        "reliability": 5,
+        "recency": 5,
+        "relevance": 5,
+        "composite": 5.0
+      },
+      "summary": "93k+ stars, 15,680+ commits, active development with rapid release cadence"
+    },
+    {
+      "id": 3,
+      "title": "Bun Blog — Release Posts",
+      "url": "https://bun.sh/blog",
+      "type": "official-docs",
+      "published": "2026-05-13",
+      "scores": {
+        "reliability": 4,
+        "recency": 5,
+        "relevance": 5,
+        "composite": 4.6
+      },
+      "summary": "Release announcements for v1.3.x with feature highlights and performance improvements"
+    },
+    {
+      "id": 4,
+      "title": "Node.js API Compatibility",
+      "url": "https://bun.sh/docs/runtime/nodejs-compat",
+      "type": "official-docs",
+      "published": "2026-05-15",
+      "scores": {
+        "reliability": 5,
+        "recency": 5,
+        "relevance": 5,
+        "composite": 5.0
+      },
+      "summary": "Detailed compatibility matrix of Node.js modules supported, partially supported, and not supported"
+    },
+    {
+      "id": 5,
+      "title": "Bun v1.2 Release Blog",
+      "url": "https://bun.sh/blog/bun-v1.2",
+      "type": "official-docs",
+      "published": "2025-01-22",
+      "scores": {
+        "reliability": 4,
+        "recency": 4,
+        "relevance": 5,
+        "composite": 4.3
+      },
+      "summary": "Announced Bun.sql (Postgres), Bun.s3, Express 3x faster, HTTP/2 2x faster benchmarks"
+    },
+    {
+      "id": 6,
+      "title": "Bun HTTP Server Documentation",
+      "url": "https://bun.sh/docs/api/http",
+      "type": "official-docs",
+      "published": "2026-05-15",
+      "scores": {
+        "reliability": 5,
+        "recency": 5,
+        "relevance": 5,
+        "composite": 5.0
+      },
+      "summary": "HTTP server API with WebSocket, TLS, HTTP/3 (experimental), and benchmark comparison (~160k req/s Bun vs ~64k req/s Node.js)"
+    },
+    {
+      "id": 7,
+      "title": "Bun Roadmap (GitHub Issue #159)",
+      "url": "https://github.com/oven-sh/bun/issues/159",
+      "type": "github",
+      "published": "2025-06-01",
+      "scores": {
+        "reliability": 4,
+        "recency": 4,
+        "relevance": 5,
+        "composite": 4.3
+      },
+      "summary": "Roadmap goals including 90% Node.js compatibility, Redis client, MySQL/SQLite via Bun.sql"
+    },
+    {
+      "id": 8,
+      "title": "Bun.sql Documentation",
+      "url": "https://bun.sh/docs/api/sql",
+      "type": "official-docs",
+      "published": "2026-05-15",
+      "scores": {
+        "reliability": 5,
+        "recency": 5,
+        "relevance": 5,
+        "composite": 5.0
+      },
+      "summary": "Bun.sql API for PostgreSQL (default), MySQL, SQLite with connection pooling, prepared statements, transactions"
+    },
+    {
+      "id": 9,
+      "title": "Vercel Bun Runtime Support",
+      "url": "https://vercel.com/docs/runtimes",
+      "type": "vendor",
+      "published": "2025-10-28",
+      "scores": {
+        "reliability": 4,
+        "recency": 4,
+        "relevance": 4,
+        "composite": 4.0
+      },
+      "summary": "Official Vercel support for deploying Bun functions, signaling infrastructure vendor validation"
+    },
+    {
+      "id": 10,
+      "title": "Bun Joins Anthropic",
+      "url": "https://bun.sh/blog/bun-joins-anthropic",
+      "type": "official-docs",
+      "published": "2025-12-02",
+      "scores": {
+        "reliability": 4,
+        "recency": 4,
+        "relevance": 5,
+        "composite": 4.3
+      },
+      "summary": "Anthropic acquires Bun to power Claude Code; Bun remains open-source MIT; financial stability assured"
+    },
+    {
+      "id": 11,
+      "title": "Bun Install Documentation",
+      "url": "https://bun.sh/docs/cli/install",
+      "type": "official-docs",
+      "published": "2026-05-15",
+      "scores": {
+        "reliability": 5,
+        "recency": 5,
+        "relevance": 4,
+        "composite": 4.7
+      },
+      "summary": "Package manager features including CI/CD support, workspaces, production install flags, lockfile"
+    }
+  ],
+  "risks": [
+    "Incomplete Node.js compatibility: edge cases in cluster, http2, async_hooks, and native C++ addons can cause issues",
+    "Vendor lock-in via built-in APIs (Bun.sql, Bun.s3, Bun.cron, Bun.Image) ties application to Bun runtime",
+    "Younger ecosystem maturity (~3 years); long-tail npm packages may not be tested on Bun",
+    "Benchmark data primarily from official Bun sources; independent third-party audits are limited",
+    "Anthropic acquisition could shift roadmap toward AI infrastructure priorities over general-purpose backend use",
+    "JavaScriptCore engine differences (vs V8) affect JIT, GC patterns, and debugging tooling",
+    "Self-contained binary is larger than Node.js runtime; memory-constrained serverless environments may be impacted"
+  ],
+  "recommendations": [
+    "Use Bun for new SaaS projects — performance advantages and built-in tooling offer clear benefits",
+    "Audit existing Node.js backends before migration — run test suite on Bun and check for incompatible APIs",
+    "Use Bun.sql and Bun.s3 for new database/storage integrations with cross-runtime abstraction if portability is needed",
+    "Monitor Anthropic's influence on roadmap for any shift away from general-purpose backend use",
+    "Run independent workload benchmarks on both runtimes before committing at scale",
+    "Consider Bun's package manager even if keeping Node.js runtime for faster CI/CD installs",
+    "For critical production systems, consider hybrid approach: Bun in staging, Node.js in production until sufficient runtime hours accumulated"
+  ]
+}

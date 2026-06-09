@@ -1,0 +1,281 @@
+{
+  "title": "Yjs vs Automerge: Which CRDT Should You Use for Your Real-Time Collaboration App?",
+  "slug": "yjs-vs-automerge-crdts",
+  "research_type": "tech-evaluation",
+  "depth": "deep",
+  "generated_at": "2026-06-09T10:00:00.000Z",
+  "query": "I'm building a real-time collaboration app and need to choose between Yjs and Automerge for CRDTs. Which one should I use? Do a deep dive.",
+  "scope_constraints": [
+    "Real-time collaboration app context",
+    "JavaScript/TypeScript ecosystem implied (both libraries primarily target JS/TS)",
+    "No specific constraints on budget, team size, or platform"
+  ],
+  "summary": "For most real-time collaboration apps, Yjs is the recommended CRDT choice due to its superior performance (2-5x faster across benchmarks), dramatically smaller bundle size (20KB vs 604KB gzipped), vastly larger ecosystem (22k stars, 20M+ npm downloads/month), and broader editor support. Automerge 3.0 has made impressive strides in memory efficiency (10x reduction) and offers a cleaner batteries-included experience via automerge-repo with built-in version control APIs, but Yjs's performance lead, production track record (Evernote, Linear, ProtonMail, Typst, etc.), and massive community make it the safer default.",
+  "findings": [
+    {
+      "claim": "Yjs is consistently 2-5x faster than Automerge across standard collaborative editing benchmarks, with significantly smaller update messages (27 bytes vs 121 bytes per operation)",
+      "confidence": "high",
+      "supporting_sources": [1, 3, 5, 7]
+    },
+    {
+      "claim": "Yjs has vastly greater community adoption: 22k GitHub stars vs 6.3k, 20.5M monthly npm downloads vs 146k, and a much broader roster of production users (Evernote, GitBook, Linear, ProtonMail Docs, Typst, AFFiNE)",
+      "confidence": "high",
+      "supporting_sources": [1, 2, 6, 7, 12]
+    },
+    {
+      "claim": "Automerge 3.0 achieved a ~10x memory reduction, making documents with long histories practical (Moby Dick: 700MB to 1.3MB)",
+      "confidence": "high",
+      "supporting_sources": [4, 8]
+    },
+    {
+      "claim": "Yjs has broader editor integration (15+ editors) compared to Automerge (ProseMirror only via community cookbook)",
+      "confidence": "high",
+      "supporting_sources": [1, 7]
+    },
+    {
+      "claim": "Automerge's automerge-repo provides a more polished batteries-included developer experience with built-in version control APIs (diff, history, view) that Yjs lacks natively",
+      "confidence": "high",
+      "supporting_sources": [9, 10]
+    },
+    {
+      "claim": "Both libraries are MIT-licensed, network-agnostic, support offline editing, and are suitable for local-first architecture",
+      "confidence": "high",
+      "supporting_sources": [1, 2, 4, 7, 11]
+    }
+  ],
+  "comparison_matrix": {
+    "criteria": ["Performance (B1 append)", "Performance (B4 real-world)", "Bundle Size (gzipped)", "Update Size (per op)", "Memory Usage (large docs)", "Ecosystem (editor bindings)", "Community & Adoption", "Production Users", "DX / Ease of Setup", "Version Control APIs", "Language Support", "Maintenance Cadence"],
+    "options": {
+      "Yjs": {
+        "Performance (B1 append)": 5,
+        "Performance (B4 real-world)": 5,
+        "Bundle Size (gzipped)": 5,
+        "Update Size (per op)": 5,
+        "Memory Usage (large docs)": 4,
+        "Ecosystem (editor bindings)": 5,
+        "Community & Adoption": 5,
+        "Production Users": 5,
+        "DX / Ease of Setup": 3,
+        "Version Control APIs": 2,
+        "Language Support": 5,
+        "Maintenance Cadence": 5
+      },
+      "Automerge": {
+        "Performance (B1 append)": 3,
+        "Performance (B4 real-world)": 3,
+        "Bundle Size (gzipped)": 2,
+        "Update Size (per op)": 3,
+        "Memory Usage (large docs)": 4,
+        "Ecosystem (editor bindings)": 2,
+        "Community & Adoption": 2,
+        "Production Users": 2,
+        "DX / Ease of Setup": 4,
+        "Version Control APIs": 5,
+        "Language Support": 4,
+        "Maintenance Cadence": 4
+      }
+    }
+  },
+  "sources": [
+    {
+      "id": 1,
+      "title": "Yjs GitHub Repository",
+      "url": "https://github.com/yjs/yjs",
+      "type": "github",
+      "published": "Ongoing (2,222 commits)",
+      "scores": {
+        "reliability": 5,
+        "recency": 5,
+        "relevance": 5,
+        "composite": 5.0
+      },
+      "summary": "Official repository for Yjs CRDT framework with API docs, ecosystem listing, production users, and architectural overview."
+    },
+    {
+      "id": 2,
+      "title": "Automerge GitHub Repository",
+      "url": "https://github.com/automerge/automerge",
+      "type": "github",
+      "published": "Ongoing (1,542 commits)",
+      "scores": {
+        "reliability": 5,
+        "recency": 5,
+        "relevance": 5,
+        "composite": 5.0
+      },
+      "summary": "Official repository for Automerge CRDT library with status, architecture, build instructions, and release history."
+    },
+    {
+      "id": 3,
+      "title": "CRDT Benchmarks (dmonad/crdt-benchmarks)",
+      "url": "https://github.com/dmonad/crdt-benchmarks",
+      "type": "github",
+      "published": "Ongoing (benchmarks last updated ~2025)",
+      "scores": {
+        "reliability": 4,
+        "recency": 5,
+        "relevance": 5,
+        "composite": 4.6
+      },
+      "summary": "Comprehensive reproducible benchmark suite comparing Yjs, Automerge, Loro, and ywasm across 15+ benchmarks."
+    },
+    {
+      "id": 4,
+      "title": "Automerge Official Documentation",
+      "url": "https://automerge.org/docs/hello/",
+      "type": "official-docs",
+      "published": "2026 (last modified May 2026)",
+      "scores": {
+        "reliability": 5,
+        "recency": 5,
+        "relevance": 5,
+        "composite": 5.0
+      },
+      "summary": "Official Automerge documentation with design principles, tutorial, API reference, and local-first philosophy."
+    },
+    {
+      "id": 5,
+      "title": "Yjs Official Documentation",
+      "url": "https://docs.yjs.dev/",
+      "type": "official-docs",
+      "published": "2025 (last updated ~1 year ago)",
+      "scores": {
+        "reliability": 5,
+        "recency": 3,
+        "relevance": 5,
+        "composite": 4.4
+      },
+      "summary": "Official Yjs documentation covering quick start, shared types, API, and ecosystem."
+    },
+    {
+      "id": 6,
+      "title": "Automerge Repo GitHub Repository",
+      "url": "https://github.com/automerge/automerge-repo",
+      "type": "github",
+      "published": "Ongoing (2,007 commits)",
+      "scores": {
+        "reliability": 5,
+        "recency": 5,
+        "relevance": 4,
+        "composite": 4.7
+      },
+      "summary": "Batteries-included wrapper for Automerge providing document lifecycle management, pluggable networking, and storage adapters."
+    },
+    {
+      "id": 7,
+      "title": "\"CRDTs go brrr\" by Joseph Gentle",
+      "url": "https://josephg.com/blog/crdts-go-brrr/",
+      "type": "blog",
+      "published": "2021-07-31",
+      "scores": {
+        "reliability": 3,
+        "recency": 1,
+        "relevance": 5,
+        "composite": 3.0
+      },
+      "summary": "Deep-dive analysis of CRDT performance comparing Automerge, Yjs, and Diamond Types. Explains algorithmic differences. Dated but architecturally insightful."
+    },
+    {
+      "id": 8,
+      "title": "\"Automerge 3.0\" Blog Post",
+      "url": "https://automerge.org/blog/automerge-3/",
+      "type": "vendor",
+      "published": "2025-07",
+      "scores": {
+        "reliability": 3,
+        "recency": 5,
+        "relevance": 5,
+        "composite": 4.2
+      },
+      "summary": "Official announcement of Automerge 3.0 with 10x memory reduction through rearchitected columnar compression."
+    },
+    {
+      "id": 9,
+      "title": "\"Automerge Repo 1.0\" Blog Post",
+      "url": "https://automerge.org/blog/automerge-repo/",
+      "type": "vendor",
+      "published": "2023-11",
+      "scores": {
+        "reliability": 3,
+        "recency": 3,
+        "relevance": 4,
+        "composite": 3.3
+      },
+      "summary": "Description of initial automerge-repo release providing networking, storage, and React hooks."
+    },
+    {
+      "id": 10,
+      "title": "\"Automerge Repo 2.0\" Blog Post",
+      "url": "https://automerge.org/blog/automerge-repo-2/",
+      "type": "vendor",
+      "published": "2025-05",
+      "scores": {
+        "reliability": 3,
+        "recency": 5,
+        "relevance": 4,
+        "composite": 3.9
+      },
+      "summary": "Announcement of automerge-repo 2.0 with async find, DocHandle version control APIs, React Suspense, and meta-packages."
+    },
+    {
+      "id": 11,
+      "title": "About CRDTs (crdt.tech)",
+      "url": "https://crdt.tech/",
+      "type": "publication",
+      "published": "Updated March 2026",
+      "scores": {
+        "reliability": 5,
+        "recency": 5,
+        "relevance": 4,
+        "composite": 4.7
+      },
+      "summary": "Official CRDT information site providing background on CRDT concepts and principles."
+    },
+    {
+      "id": 12,
+      "title": "npm Download Statistics (npm API)",
+      "url": "https://api.npmjs.org/downloads/point/last-month/yjs",
+      "type": "official-docs",
+      "published": "2026-06 (live data)",
+      "scores": {
+        "reliability": 5,
+        "recency": 5,
+        "relevance": 5,
+        "composite": 5.0
+      },
+      "summary": "Direct npm API data: Yjs at 20,526,392 monthly downloads vs @automerge/automerge at 146,200."
+    },
+    {
+      "id": 13,
+      "title": "Automerge Repo Sync Server GitHub Repository",
+      "url": "https://github.com/automerge/automerge-repo-sync-server",
+      "type": "github",
+      "published": "Ongoing (32 commits)",
+      "scores": {
+        "reliability": 5,
+        "recency": 3,
+        "relevance": 3,
+        "composite": 3.8
+      },
+      "summary": "Reference sync server for automerge-repo demonstrating WebSocket-based sync setup."
+    }
+  ],
+  "risks": [
+    "Benchmark recency: Primary CRDT benchmarks tested Yjs 13.6.11 against Automerge 2.1.10; Automerge 3.0 was released after these benchmarks and may narrow the performance gap",
+    "Potential bias: The crdt-benchmarks repository is maintained by Kevin Jahns, the creator of Yjs. While benchmarks are open-source and reproducible, this is a potential conflict of interest",
+    "Automerge 3.0 is recent (July 2025); long-term production reliability data for this version is limited",
+    "Benchmarks primarily measure local operation processing; real-world performance under network latency and concurrent multi-user editing may differ",
+    "Yjs's B4x100 benchmark (608,908ms for 26M operations) suggests even Yjs struggles with extremely large documents",
+    "Automerge's smaller community means fewer third-party integrations and higher risk of project abandonment",
+    "Evaluation focuses on text-editing collaboration; trade-offs may differ for non-text use cases (canvas, whiteboard, structured data)",
+    "No independent third-party benchmarks were found; results rely on Yjs-author-maintained benchmarks"
+  ],
+  "recommendations": [
+    "Use Yjs if building a production collaboration app now — it offers the broadest editor support, best performance, largest ecosystem, and most battle-tested reliability",
+    "Use Automerge if prioritizing built-in version control (diff, history, branching), a cleaner batteries-included DX, or building on Rust/Swift natively",
+    "Consider hybrid approaches using Yjs with managed services like Liveblocks, Y-Sweet, or Hocuspocus for backend infrastructure",
+    "If memory or bundle size is critical, Yjs's 20KB gzipped bundle makes it the clear winner for web applications",
+    "If needing native mobile (Swift/Rust), Automerge's official Swift bindings and Rust core may be more straightforward",
+    "Prototype with both before committing — Automerge's trajectory of rapid improvement may continue to narrow the gap"
+  ]
+}

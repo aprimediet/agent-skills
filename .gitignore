@@ -1,0 +1,5 @@
+# Eval workspace — iteration artifacts, not part of the skill
+researcher-workspace/
+
+# Generated research outputs (the skill creates these at runtime)
+# Don't commit them; they're working-directory artifacts

@@ -1,0 +1,26 @@
+{
+  "skill_name": "researcher",
+  "evals": [
+    {
+      "id": 0,
+      "name": "yjs-vs-automerge",
+      "prompt": "I'm building a real-time collaboration app and need to choose between Yjs and Automerge for CRDTs. Which one should I use? Do a deep dive.",
+      "expected_output": "A comprehensive tech evaluation comparing Yjs and Automerge with comparison matrix, scored sources, risks, and a clear recommendation. Should be saved as markdown + JSON metadata in ./researcher/.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "bun-production",
+      "prompt": "Research Bun — is it production-ready for a Node.js replacement in a SaaS backend?",
+      "expected_output": "A product research report on Bun covering production readiness, API compatibility, performance benchmarks, ecosystem maturity, and risks. Saved as markdown + JSON metadata in ./researcher/.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "rsc-tradeoffs",
+      "prompt": "Quick look into React Server Components — what are the tradeoffs?",
+      "expected_output": "A quick-depth feature investigation on RSC tradeoffs with 3-5 sources, key findings, and concise analysis. Saved as markdown + JSON metadata in ./researcher/.",
+      "files": []
+    }
+  ]
+}
