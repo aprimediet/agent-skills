@@ -1,0 +1,32 @@
+{
+  "eval_id": 0,
+  "eval_name": "file-upload-architecture-quick",
+  "prompt": "Here is a capability breakdown for a file upload feature (from the solution-architect skill): users upload images and PDFs up to 10MB, the system validates them, scans for viruses, generates thumbnails for images, and stores them for retrieval (capabilities CAP-01 validation, CAP-02 upload/transfer, CAP-03 virus scan, CAP-04 thumbnail generation, CAP-05 storage/retrieval). Design the technical architecture and recommend the tech stack. Assume a small team and a typical web app.",
+  "depth": "quick",
+  "assertions": [
+    "Output contains 'Source Breakdown' section referencing the provided capabilities",
+    "Output contains 'Constraints & Assumptions' section",
+    "Output contains 'Architecture Overview' section with a named architecture style",
+    "Output contains 'Tech Stack' section",
+    "Output contains 'Capability \u2192 Tech Mapping' section",
+    "Output contains 'Key Architecture Decisions' section (ADR-style)",
+    "Output contains 'Research Suggestions' section",
+    "Output contains 'Open Questions' section",
+    "Output contains 'Next Steps' section",
+    "Depth level is marked as 'quick'",
+    "Tech stack covers at least frontend, backend, data storage, and hosting layers",
+    "Each tech stack layer gives a Recommendation, a Why/rationale, and at least one Alternative",
+    "Recommendations are opinionated (a single clear choice per layer, not an undifferentiated list)",
+    "Capability mapping covers all 5 provided capabilities (CAP-01..CAP-05)",
+    "Virus scanning (CAP-03) is addressed in the architecture (e.g., async scanning approach)",
+    "Thumbnail generation (CAP-04) is addressed (e.g., async/worker processing)",
+    "Object/blob storage is recommended for stored files",
+    "Describes HOW (technologies, architecture), NOT new features or capabilities",
+    "Does NOT invent new functional capabilities beyond the provided breakdown",
+    "Checks for the source breakdown via librarian skill, or works from the provided breakdown",
+    "Flags at least one choice for the researcher skill OR justifies that none are high-stakes",
+    "Does NOT attempt to persist/save the output \u2014 suggests librarian skill instead",
+    "Output ends with a suggestion to use the librarian skill for persistence",
+    "Document is written as a temporary draft (not persisted by the skill itself)"
+  ]
+}

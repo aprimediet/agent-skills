@@ -48,6 +48,8 @@ You build on a capability breakdown. Find it before designing anything.
    python scripts/librarian.py list --category specs --scope project
    ```
 3. **If the librarian skill is available**, read the relevant spec(s) and use the capabilities as the foundation for the architecture.
+   - For solution-architect artifacts, use: `python scripts/librarian.py read specs <slug> --artifact-type solution --scope project`
+   - For technical-architect artifacts, use: `python scripts/librarian.py read specs <slug> --artifact-type technical --scope project`
 4. **If the librarian skill is NOT available**, ask the user to paste the breakdown or give a path. Also report what an agent with librarian access should retrieve:
    - Category to search (specs), and the keywords to use
    - The capability-breakdown artifact for this feature/project
@@ -101,7 +103,7 @@ Write the output to a temporary file at `./technical-architect/{slug}.md` using 
 
 Then tell the user:
 - The technical architecture is ready
-- Hand it off to the librarian skill to save it: "Use the librarian skill to save this as a spec artifact." If the librarian skill is unavailable, tell the user what to save and where so an agent with librarian access can persist it.
+- Hand it off to the librarian skill to save it as a `technical` type spec artifact: `python scripts/librarian.py write specs {slug} --artifact-type technical --title "Title" --file ./technical-architect/{slug}.md --tags "architecture,technical" --scope project`. If the librarian skill is unavailable, tell the user what to save and where so an agent with librarian access can persist it.
 
 For real-world examples, see:
 - [examples/file-upload-architecture.md](examples/file-upload-architecture.md) — file upload service (quick)

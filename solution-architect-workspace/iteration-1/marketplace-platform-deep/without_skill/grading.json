@@ -1,0 +1,246 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains 'Problem Statement' section",
+      "passed": false,
+      "evidence": "No 'Problem Statement' section. Document opens with '## 1. Platform Overview' and never frames a business/user problem statement. The closest is a one-line marketplace description (line 3)."
+    },
+    {
+      "text": "Output contains 'Scope' section",
+      "passed": false,
+      "evidence": "No 'Scope' section. There is a 'Phasing Suggestion (MVP -> Scale)' (line 435) but no In/Out-of-scope framing as prescribed."
+    },
+    {
+      "text": "Output contains 'Capabilities' section",
+      "passed": false,
+      "evidence": "No section titled 'Capabilities'. Capabilities are spread across numbered domain sections (Identity, Catalog, Payments, etc.). A 'Capability Matrix by Actor' (line 412) exists but is a reference table, not the prescribed Capabilities section."
+    },
+    {
+      "text": "Output contains 'Dependency Map' section",
+      "passed": false,
+      "evidence": "No 'Dependency Map' section and no inter-capability dependency table. A high-level domain ASCII diagram (lines 40-51) is present but does not map capability dependencies."
+    },
+    {
+      "text": "Output contains 'Open Questions' section",
+      "passed": false,
+      "evidence": "No 'Open Questions' section anywhere in the document."
+    },
+    {
+      "text": "Output contains 'Research Suggestions' section",
+      "passed": false,
+      "evidence": "No 'Research Suggestions' section; no research topics flagged."
+    },
+    {
+      "text": "Output contains 'Next Steps' section",
+      "passed": false,
+      "evidence": "No 'Next Steps' section. 'Phasing Suggestion' (line 435) lists MVP/V2/V3 but is roadmap phasing, not actionable next steps."
+    },
+    {
+      "text": "Depth level is marked as 'deep'",
+      "passed": false,
+      "evidence": "No depth marker. No '> Solution Architect | Depth: deep' header line exists."
+    },
+    {
+      "text": "Covers 8-15 capabilities (deep depth)",
+      "passed": false,
+      "evidence": "No discrete CAP-numbered capabilities. The document enumerates dozens of bullet-point features across 15 numbered sections but never structures them as 8-15 named capabilities per the format."
+    },
+    {
+      "text": "Each capability has a Trigger field",
+      "passed": false,
+      "evidence": "No capability blocks exist; the word 'Trigger' as a structured field does not appear. Content is feature bullet lists, not Trigger/Inputs/Logic/Outputs blocks."
+    },
+    {
+      "text": "Each capability has an Inputs field",
+      "passed": false,
+      "evidence": "No 'Inputs' fields; no per-capability structure."
+    },
+    {
+      "text": "Each capability has a Logic flow field",
+      "passed": false,
+      "evidence": "No 'Logic flow' fields; capabilities are described as feature bullets, not numbered logic flows."
+    },
+    {
+      "text": "Each capability has an Outputs field",
+      "passed": false,
+      "evidence": "No 'Outputs' fields anywhere."
+    },
+    {
+      "text": "Each capability has an Edge cases field",
+      "passed": false,
+      "evidence": "No 'Edge cases' fields. Some risks are mentioned inline (e.g., refund abuse) but not as a structured per-capability field."
+    },
+    {
+      "text": "Each capability has a Connects to field",
+      "passed": false,
+      "evidence": "No 'Connects to' fields; no capability cross-references via IDs."
+    },
+    {
+      "text": "Business problem is stated in Problem Statement",
+      "passed": false,
+      "evidence": "No Problem Statement section; business motivation is only implied (operator goal 'Maximize GMV' in the actor table, line 17), not stated as a business problem."
+    },
+    {
+      "text": "User problem is stated in Problem Statement",
+      "passed": false,
+      "evidence": "No Problem Statement section; buyer/seller goals appear in the persona table (lines 15-16) but no user-problem framing."
+    },
+    {
+      "text": "Success criteria are measurable",
+      "passed": false,
+      "evidence": "No success-criteria framing. NFR table (line 399) lists targets (99.9% availability, search <300ms) but these are non-functional engineering targets, not feature success criteria, and not tied to a Problem Statement."
+    },
+    {
+      "text": "Logic flows describe WHAT not HOW (no tech stack, no code, no architecture)",
+      "passed": false,
+      "evidence": "Document is heavily HOW/implementation-oriented: names specific tech and architecture — 'Stripe Connect, PayPal, Adyen' (line 83), 'Elasticsearch/OpenSearch/Algolia' (line 369), '3-D Secure / SCA/3DS2' (lines 185, 212), 'object store with CDN', 'vector search', 'ML models'. Violates the WHAT-not-HOW guideline."
+    },
+    {
+      "text": "Covers buyer-facing capabilities (browsing, search, purchasing)",
+      "passed": true,
+      "evidence": "Section 4 'Discovery & Browsing (Buyer-Facing)' (search, browse, product detail) and Section 5 'Cart, Checkout & Order Management' cover buyer browsing, search, and purchasing."
+    },
+    {
+      "text": "Covers seller-facing capabilities (listing, inventory management)",
+      "passed": true,
+      "evidence": "Section 3 'Catalog & Product Management (Seller-Facing)' includes 3.1 Listing Creation and 3.4 Inventory Management (license-key pools, finite stock, oversell prevention)."
+    },
+    {
+      "text": "Covers payment processing capability for buyer-to-platform transactions",
+      "passed": true,
+      "evidence": "Section 6.1 'Payment Processing' (PCI-compliant tokenized card handling, auth+capture, line 207-213)."
+    },
+    {
+      "text": "Covers payout capability for platform-to-seller settlements",
+      "passed": true,
+      "evidence": "Section 6.3 'Seller Payouts' (balance, payout methods, schedule, holds, line 224-231)."
+    },
+    {
+      "text": "Covers dispute resolution or refund handling capability",
+      "passed": true,
+      "evidence": "Section 6.4 'Refunds, Chargebacks & Disputes' including a dispute resolution center (line 233-238)."
+    },
+    {
+      "text": "Covers user account/onboarding capabilities for both sides",
+      "passed": true,
+      "evidence": "Section 2 'Identity, Accounts & Access' covers buyer accounts (2.2), seller onboarding & verification (2.4 KYC), and profile management (2.3)."
+    },
+    {
+      "text": "Dependency Map uses CAP-01 format for capability IDs",
+      "passed": false,
+      "evidence": "No CAP-01 style IDs used anywhere; no Dependency Map exists."
+    },
+    {
+      "text": "Research Suggestions reference the researcher skill",
+      "passed": false,
+      "evidence": "No mention of the researcher skill or any research suggestions."
+    },
+    {
+      "text": "Does NOT attempt to save/persist the output — suggests librarian skill instead",
+      "passed": false,
+      "evidence": "Does not attempt to save (true half), but also never suggests the librarian skill. The assertion requires recommending librarian for persistence, which is absent. Closing note (line 445) only references internal phasing/matrix."
+    },
+    {
+      "text": "Does NOT attempt to conduct its own research — flags topics for researcher skill",
+      "passed": false,
+      "evidence": "It did not run web research, but it also does not flag any topics for the researcher skill; the delegation behavior the assertion checks for is absent."
+    },
+    {
+      "text": "Checks for existing knowledge via librarian skill before starting",
+      "passed": false,
+      "evidence": "No reference to the librarian skill or any existing-knowledge check; document jumps straight into the breakdown."
+    },
+    {
+      "text": "Flags at least 3 distinct research topics (e.g., marketplace fee models, escrow/trust, fraud detection)",
+      "passed": false,
+      "evidence": "No research topics are flagged. Relevant areas (fee models, escrow/holds, fraud) are designed inline as solved features rather than flagged for research."
+    },
+    {
+      "text": "Edge cases cover input validation scenarios",
+      "passed": false,
+      "evidence": "No structured Edge cases field. Input-validation handling is not described as edge cases; at most implied via 'prevent oversell' and 'anti-takeover checks' inline."
+    },
+    {
+      "text": "Edge cases cover dependency failure scenarios",
+      "passed": false,
+      "evidence": "No structured edge-cases coverage of dependency failures. 'Graceful degradation' is listed as an NFR (line 388) but not as per-capability edge cases."
+    },
+    {
+      "text": "Edge cases cover high-load or unusual conditions",
+      "passed": false,
+      "evidence": "No per-capability high-load edge cases. NFR table mentions 'handle traffic spikes' (line 403) as an engineering target, not capability edge cases."
+    },
+    {
+      "text": "Connects to shows clear dependency chains between capabilities",
+      "passed": false,
+      "evidence": "No capability IDs and no 'Connects to' dependency chains. The actor matrix and domain diagram do not express capability-to-capability dependencies."
+    },
+    {
+      "text": "Open Questions includes unresolved design decisions",
+      "passed": false,
+      "evidence": "No Open Questions section. The document presents decisions as settled feature options rather than surfacing unresolved choices."
+    },
+    {
+      "text": "Next Steps lists concrete actions (e.g., prioritize capabilities, validate with users)",
+      "passed": false,
+      "evidence": "No Next Steps section. Phasing (MVP/V2/V3) suggests sequencing but not concrete next actions like validate-with-users."
+    },
+    {
+      "text": "Output ends with a suggestion to use librarian skill for persistence",
+      "passed": false,
+      "evidence": "Final line (445) is a note about comprehensiveness and phasing; no librarian persistence suggestion."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 31,
+    "total": 37,
+    "pass_rate": 0.16
+  },
+  "execution_metrics": {
+    "output_chars": 23659,
+    "note": "No metrics.json present in outputs_dir; output_chars measured from marketplace-platform.md."
+  },
+  "timing": {
+    "executor_duration_seconds": 142.2,
+    "total_tokens": 25600,
+    "total_duration_seconds": 142.2
+  },
+  "claims": [
+    {
+      "claim": "The breakdown is comprehensive and covers the full platform surface",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The document is genuinely broad (identity, catalog, discovery, checkout, payments, trust/safety, admin, cross-cutting infra). Coverage breadth is strong even though it ignores the prescribed format."
+    },
+    {
+      "claim": "Capabilities are described as WHAT not HOW",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Contradicted: pervasive implementation/tech-stack detail (Stripe Connect, Elasticsearch/Algolia, 3DS2, vector search, ML fraud models, object store + CDN)."
+    },
+    {
+      "claim": "Capabilities are organized as discrete CAP-numbered units with structured fields",
+      "type": "factual",
+      "verified": false,
+      "evidence": "No CAP IDs and no Trigger/Inputs/Logic/Outputs/Edge/Connects structure; organized as numbered domain sections with feature bullets."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "The baseline confirms the assertions are discriminating: a strong, comprehensive but format-unaware breakdown fails 31/37. The 6 passes are all generic content-coverage assertions (buyer/seller/payment/payout/dispute/account) that any competent breakdown satisfies — these are the least discriminating assertions and correctly do not distinguish skill from no-skill on structure."
+      },
+      {
+        "assertion": "Logic flows describe WHAT not HOW (no tech stack, no code, no architecture)",
+        "reason": "Strong, discriminating assertion: cleanly separates the skill output (abstract roles) from the baseline (named tech stack). Good signal."
+      }
+    ],
+    "overall": "Assertions are well-calibrated. Baseline fails every structure/CAP-NN/delegation/WHAT-not-HOW assertion and passes only broad content-coverage items, which is the expected and desired contrast with the with_skill run."
+  }
+}

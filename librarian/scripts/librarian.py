@@ -150,11 +150,14 @@ def _error(msg: str) -> None:
     sys.exit(1)
 
 
-def _artifact_path(base: Path, category: str, slug: str) -> Path:
+def _artifact_path(base: Path, category: str, slug: str, artifact_type: Optional[str] = None) -> Path:
     """Return the file path for an artifact.
 
     For 'researches' category, uses date-prefixed directory structure:
         researches/YYYY_MM_DD__slug/index.md
+    For 'specs' category with artifact_type, uses date-prefixed directory:
+        specs/YYYY_MM_DD__slug/solution.md (for solution-architect)
+        specs/YYYY_MM_DD__slug/technical.md (for technical-architect)
     For all other categories, uses flat structure:
         category/slug.md
     """
@@ -168,19 +171,34 @@ def _artifact_path(base: Path, category: str, slug: str) -> Path:
         # New artifact: create date-prefixed directory
         date_prefix = _today_prefix()
         return base / "researches" / f"{date_prefix}__{slug}" / "index.md"
+    
+    if category == "specs" and artifact_type:
+        # Find existing date-prefixed directory for this slug
+        specs_dir = base / "specs"
+        if specs_dir.is_dir():
+            for entry in sorted(specs_dir.iterdir()):
+                if entry.is_dir() and entry.name.endswith(f"__{slug}"):
+                    return entry / f"{artifact_type}.md"
+        # New artifact: create date-prefixed directory
+        date_prefix = _today_prefix()
+        return base / "specs" / f"{date_prefix}__{slug}" / f"{artifact_type}.md"
+    
     return base / category / f"{slug}.md"
 
 
-def _find_slug_in_researches(base: Path, slug: str) -> Optional[Path]:
-    """Find a researches artifact by slug, searching date-prefixed directories."""
-    researches_dir = base / "researches"
-    if not researches_dir.is_dir():
+def _find_slug_in_category(base: Path, category: str, slug: str, artifact_type: Optional[str] = None) -> Optional[Path]:
+    """Find an artifact by slug in a category with date-prefixed directories."""
+    cat_dir = base / category
+    if not cat_dir.is_dir():
         return None
-    for entry in sorted(researches_dir.iterdir()):
+    for entry in sorted(cat_dir.iterdir()):
         if entry.is_dir() and entry.name.endswith(f"__{slug}"):
-            index_file = entry / "index.md"
-            if index_file.exists():
-                return index_file
+            if artifact_type:
+                artifact_file = entry / f"{artifact_type}.md"
+            else:
+                artifact_file = entry / "index.md"
+            if artifact_file.exists():
+                return artifact_file
     return None
 
 
@@ -226,6 +244,22 @@ def _collect_artifacts(
                         if parsed:
                             meta, body = parsed
                             results.append((index_file, meta, body))
+        elif cat_name == "specs":
+            # Mixed: date-prefixed subdirectories and flat .md files
+            for entry in sorted(cat_dir.iterdir()):
+                if entry.is_dir():
+                    # Date-prefixed directory with solution.md or technical.md
+                    for md_file in sorted(entry.glob("*.md")):
+                        parsed = _read_artifact(md_file)
+                        if parsed:
+                            meta, body = parsed
+                            results.append((md_file, meta, body))
+                elif entry.suffix == ".md":
+                    # Flat .md files
+                    parsed = _read_artifact(entry)
+                    if parsed:
+                        meta, body = parsed
+                        results.append((entry, meta, body))
         else:
             # Flat .md files
             for md_file in sorted(cat_dir.glob("*.md")):
@@ -321,7 +355,8 @@ def cmd_write(args: argparse.Namespace) -> None:
     cat_dir = base / category
     cat_dir.mkdir(parents=True, exist_ok=True)
 
-    filepath = _artifact_path(base, category, slug)
+    artifact_type = getattr(args, 'artifact_type', None)
+    filepath = _artifact_path(base, category, slug, artifact_type)
 
     # Get content
     if args.file:
@@ -388,7 +423,8 @@ def cmd_read(args: argparse.Namespace) -> None:
     slug = args.slug
     category = args.category
 
-    filepath = _artifact_path(base, category, slug)
+    artifact_type = getattr(args, 'artifact_type', None)
+    filepath = _artifact_path(base, category, slug, artifact_type)
     parsed = _read_artifact(filepath)
 
     if not parsed:
@@ -563,8 +599,9 @@ def cmd_move(args: argparse.Namespace) -> None:
     slug = args.slug
     old_category = args.category
     new_category = args.new_category
+    artifact_type = getattr(args, 'artifact_type', None)
 
-    old_path = _artifact_path(base, old_category, slug)
+    old_path = _artifact_path(base, old_category, slug, artifact_type)
     parsed = _read_artifact(old_path)
     if not parsed:
         _error(f"Artifact not found: {old_category}/{slug}")
@@ -575,7 +612,7 @@ def cmd_move(args: argparse.Namespace) -> None:
     new_cat_dir = base / new_category
     new_cat_dir.mkdir(parents=True, exist_ok=True)
 
-    new_path = _artifact_path(base, new_category, slug)
+    new_path = _artifact_path(base, new_category, slug, artifact_type)
 
     # Update frontmatter
     now = _now_iso()
@@ -626,8 +663,9 @@ def cmd_delete(args: argparse.Namespace) -> None:
     base = _get_base_dir(args.scope)
     slug = args.slug
     category = args.category
+    artifact_type = getattr(args, 'artifact_type', None)
 
-    filepath = _artifact_path(base, category, slug)
+    filepath = _artifact_path(base, category, slug, artifact_type)
     if not filepath.exists():
         _error(f"Artifact not found: {category}/{slug}")
 
@@ -635,6 +673,13 @@ def cmd_delete(args: argparse.Namespace) -> None:
 
     # Clean up empty date-prefixed directory for researches
     if category == "researches" and filepath.parent != base / "researches":
+        try:
+            filepath.parent.rmdir()
+        except OSError:
+            pass  # Directory not empty, leave it
+    
+    # Clean up empty date-prefixed directory for specs
+    if category == "specs" and artifact_type and filepath.parent != base / "specs":
         try:
             filepath.parent.rmdir()
         except OSError:
@@ -703,12 +748,16 @@ def main() -> None:
     p_write.add_argument("--content", help="Content string")
     p_write.add_argument("--file", help="Read content from file")
     p_write.add_argument("--tags", help="Comma-separated tags")
+    p_write.add_argument("--artifact-type", dest="artifact_type", default=None,
+                         help="Artifact type for specs category (solution, technical)")
     _add_scope(p_write)
 
     # read
     p_read = subparsers.add_parser("read", help="Read an artifact")
     p_read.add_argument("category", help="Category")
     p_read.add_argument("slug", help="Artifact slug")
+    p_read.add_argument("--artifact-type", dest="artifact_type", default=None,
+                         help="Artifact type for specs category (solution, technical)")
     _add_scope(p_read)
 
     # list
@@ -735,12 +784,16 @@ def main() -> None:
     p_move.add_argument("category", help="Current category")
     p_move.add_argument("slug", help="Artifact slug")
     p_move.add_argument("new_category", help="New category")
+    p_move.add_argument("--artifact-type", dest="artifact_type", default=None,
+                         help="Artifact type for specs category (solution, technical)")
     _add_scope(p_move)
 
     # delete
     p_delete = subparsers.add_parser("delete", help="Delete an artifact")
     p_delete.add_argument("category", help="Category")
     p_delete.add_argument("slug", help="Artifact slug")
+    p_delete.add_argument("--artifact-type", dest="artifact_type", default=None,
+                         help="Artifact type for specs category (solution, technical)")
     _add_scope(p_delete)
 
     # index

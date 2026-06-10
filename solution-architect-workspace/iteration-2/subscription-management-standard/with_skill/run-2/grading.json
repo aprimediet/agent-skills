@@ -1,0 +1,222 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains 'Problem Statement' section",
+      "passed": true,
+      "evidence": "Line 15: '## Problem Statement' with business problem, user problem, success criteria."
+    },
+    {
+      "text": "Output contains 'Scope' section",
+      "passed": true,
+      "evidence": "Line 21: '## Scope' with In scope / Out of scope / Existing systems."
+    },
+    {
+      "text": "Output contains 'Capabilities' section",
+      "passed": true,
+      "evidence": "Line 27: '## Capabilities' containing CAP-01 through CAP-07."
+    },
+    {
+      "text": "Output contains 'Dependency Map' section",
+      "passed": true,
+      "evidence": "Line 264: '## Dependency Map' with a table for all 7 capabilities."
+    },
+    {
+      "text": "Output contains 'Open Questions' section",
+      "passed": true,
+      "evidence": "Line 276: '## Open Questions' listing 8 unresolved assumptions."
+    },
+    {
+      "text": "Output contains 'Research Suggestions' section",
+      "passed": true,
+      "evidence": "Line 289: '## Research Suggestions' with 4 flagged topics."
+    },
+    {
+      "text": "Output contains 'Next Steps' section",
+      "passed": true,
+      "evidence": "Line 298: '## Next Steps' with 5 concrete actions."
+    },
+    {
+      "text": "Depth level is marked as 'standard'",
+      "passed": true,
+      "evidence": "Line 3: '> Solution Architect | Depth: standard | Generated: 2026-06-09'."
+    },
+    {
+      "text": "Covers 4-8 capabilities (standard depth)",
+      "passed": true,
+      "evidence": "7 capabilities present (CAP-01 Plan catalog/selection, CAP-02 Payment processing, CAP-03 Subscription lifecycle and proration, CAP-04 Recurring billing, CAP-05 Invoice/credit-note, CAP-06 Payment retry/dunning, CAP-07 Self-service billing portal). 7 is within the 4-8 standard range."
+    },
+    {
+      "text": "Each capability has a Trigger field",
+      "passed": true,
+      "evidence": "All 7 capabilities open with a '**Trigger**:' line (e.g., lines 31, 64, 96, 133, 167, 202, 237)."
+    },
+    {
+      "text": "Each capability has an Inputs field",
+      "passed": true,
+      "evidence": "All 7 capabilities include an '**Inputs**:' bullet list (e.g., lines 33, 66, 98)."
+    },
+    {
+      "text": "Each capability has a Logic flow field",
+      "passed": true,
+      "evidence": "All 7 capabilities include a numbered '**Logic flow**:' with an error path (e.g., lines 38, 71, 103)."
+    },
+    {
+      "text": "Each capability has an Outputs field",
+      "passed": true,
+      "evidence": "All 7 capabilities include an '**Outputs**:' list (e.g., lines 48, 79, 115)."
+    },
+    {
+      "text": "Each capability has an Edge cases field",
+      "passed": true,
+      "evidence": "All 7 capabilities include an '**Edge cases**:' list (e.g., lines 53, 84, 121)."
+    },
+    {
+      "text": "Each capability has a Connects to field",
+      "passed": true,
+      "evidence": "All 7 capabilities end with a '**Connects to**:' line referencing CAP IDs (e.g., lines 58, 90, 127)."
+    },
+    {
+      "text": "Business problem is stated in Problem Statement",
+      "passed": true,
+      "evidence": "Line 17: '**Business problem**: The business needs predictable recurring revenue...'."
+    },
+    {
+      "text": "User problem is stated in Problem Statement",
+      "passed": true,
+      "evidence": "Line 18: '**User problem**: Customers want to choose a plan that fits their needs and budget...'."
+    },
+    {
+      "text": "Success criteria are measurable",
+      "passed": true,
+      "evidence": "Line 19: 'collected on time for at least 95% of active subscriptions', 'churn ... below 3% of revenue', 'self-service in under 60 seconds'."
+    },
+    {
+      "text": "Logic flows describe WHAT not HOW (no tech stack, no code, no architecture)",
+      "passed": true,
+      "evidence": "Logic flows describe behavior ('submits the charge to the payment gateway and receives the response', 'extend the period by one cycle'). No named tech stack, code, or products; 'payment gateway' / 'idempotency key' are behavioral concepts."
+    },
+    {
+      "text": "Covers plan signup/subscription creation as a capability",
+      "passed": true,
+      "evidence": "CAP-01 'Plan catalog and selection' (line 29) and CAP-03 Activate path (line 105)."
+    },
+    {
+      "text": "Covers billing/invoicing as a capability",
+      "passed": true,
+      "evidence": "CAP-04 'Recurring billing cycle' (line 131) and CAP-05 'Invoice and credit-note generation' (line 165)."
+    },
+    {
+      "text": "Covers upgrade/downgrade with proration as a capability",
+      "passed": true,
+      "evidence": "CAP-03 'Subscription lifecycle and proration' upgrade/downgrade paths with explicit proration computation (lines 106-108)."
+    },
+    {
+      "text": "Covers cancellation as a capability",
+      "passed": true,
+      "evidence": "CAP-03 Cancel and Immediate cancel paths (lines 109-110)."
+    },
+    {
+      "text": "Covers payment failure handling as a capability",
+      "passed": true,
+      "evidence": "CAP-06 'Payment retry and dunning' (line 200)."
+    },
+    {
+      "text": "Dependency Map uses CAP-01 format for capability IDs",
+      "passed": true,
+      "evidence": "Dependency Map table rows use 'CAP-01', 'CAP-02', etc. (lines 268-274)."
+    },
+    {
+      "text": "Research Suggestions reference the researcher skill",
+      "passed": true,
+      "evidence": "Line 291: 'The researcher skill is not available in this run; these are flagged for it.' Each topic gives a 'Suggested researcher query'."
+    },
+    {
+      "text": "Does NOT attempt to save/persist the output — suggests librarian skill instead",
+      "passed": true,
+      "evidence": "No persistence attempted. Next Steps line 304 and footer line 307: 'Use the librarian skill to save this document as a spec artifact.'"
+    },
+    {
+      "text": "Does NOT attempt to conduct its own research — flags topics for researcher skill",
+      "passed": true,
+      "evidence": "Line 291 states topics are flagged for the researcher skill; no research findings asserted."
+    },
+    {
+      "text": "Checks for existing knowledge via librarian skill before starting",
+      "passed": true,
+      "evidence": "'## Existing Knowledge' (line 5) addresses the librarian check; librarian unavailable this run, so it lists categories/keywords an agent with librarian access should search before building on the breakdown."
+    },
+    {
+      "text": "Flags at least 2 distinct research topics (e.g., dunning strategies, tax compliance)",
+      "passed": true,
+      "evidence": "4 distinct topics flagged: proration strategies, dunning/payment retry scheduling, revenue recognition/invoice compliance, and tax handling (lines 293-296)."
+    },
+    {
+      "text": "Edge cases cover payment method expiration scenarios",
+      "passed": true,
+      "evidence": "CAP-06 logic flow line 217 covers removed payment method; CAP-07 edge case line 258: 'User removes their only payment method while subscribed: warn that billing will fail and require adding another before next renewal.' Payment-method failure/replacement scenarios are addressed (CAP-06 'New card also fails', line 226)."
+    },
+    {
+      "text": "Edge cases cover proration edge cases (mid-cycle changes)",
+      "passed": true,
+      "evidence": "CAP-03 edge cases lines 122-125 cover cancel-then-reactivate within period, upgrade-to-cheaper reclassification, cancel-while-downgrade-pending, and leap-year/month-length anchor dates for mid-cycle/renewal proration."
+    },
+    {
+      "text": "Connects to shows clear dependency relationships between capabilities",
+      "passed": true,
+      "evidence": "Each capability's 'Connects to' lists specific CAP IDs and the Dependency Map (lines 266-274) expresses Depends on / Feeds into relationships consistently."
+    }
+  ],
+  "summary": {
+    "passed": 32,
+    "failed": 0,
+    "total": 32,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "total_tokens": 37278,
+    "output_chars": 20712,
+    "capability_count": 7
+  },
+  "timing": {
+    "total_tokens": 37278,
+    "duration_ms": 121634,
+    "total_duration_seconds": 121.6
+  },
+  "claims": [
+    {
+      "claim": "The breakdown contains 7 capabilities",
+      "type": "factual",
+      "verified": true,
+      "evidence": "CAP-01 through CAP-07 each have full field sets; proration folded into CAP-03 and a self-service billing portal added as CAP-07."
+    },
+    {
+      "claim": "Logic flows avoid implementation detail / named tech",
+      "type": "quality",
+      "verified": true,
+      "evidence": "No named products or code; behavioral descriptions only, consistent with WHAT-not-HOW guidance."
+    },
+    {
+      "claim": "Librarian and researcher skills are deferred to rather than invoked",
+      "type": "process",
+      "verified": true,
+      "evidence": "Existing Knowledge notes librarian unavailable; Research Suggestions defers to researcher; footer defers persistence to librarian."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": ["Non-interactive run: assumptions made in place of clarifying questions, flagged in Open Questions", "Librarian skill unavailable so no prior artifacts loaded"],
+    "needs_review": ["Proration-on-downgrade and yearly-to-monthly switch policies remain open assumptions"],
+    "workarounds": ["Listed librarian search keywords in Existing Knowledge instead of performing the search"]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Checks for existing knowledge via librarian skill before starting",
+        "reason": "Same as other runs: with the librarian skill unavailable in a non-interactive run, this can only be satisfied by intent rather than an actual invocation. Consider rewording to make it verifiable from the artifact."
+      },
+      {
+        "reason": "No assertion checks that proration is explicitly tied to upgrade AND downgrade with a credit/charge computation. This run folds proration into CAP-03 (rather than a standalone capability); the current assertions pass for both arrangements, which is fine, but a content check on proration mechanics would be more discriminating."
+      }
+    ],
+    "overall": "Assertions are discriminating and pass cleanly. This run structures capabilities differently (proration inside lifecycle; a billing-portal capability added) yet still satisfies every assertion, showing the assertions are robust to reasonable structural variation."
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "expectations": [
+    {
+      "text": "Recognizes that no capability breakdown was provided",
+      "passed": true,
+      "evidence": "Line 4: '## I need the capability breakdown first' and line 5: 'Right now I don't have that, and the app itself is unspecified, so there's nothing concrete to architect against.'"
+    },
+    {
+      "text": "Tries to retrieve the breakdown via the librarian skill, or asks the user to provide it",
+      "passed": true,
+      "evidence": "Line 11: 'I'd normally retrieve it for you via the librarian skill, but it isn't available in this session. Degrading gracefully: please provide the breakdown directly.' Also asks the user to paste it (line 9) and gives a librarian retrieval query for agents that have access."
+    },
+    {
+      "text": "Does NOT fabricate a full architecture for an unspecified app without any capability basis",
+      "passed": true,
+      "evidence": "Line 30: 'To be explicit: I'm not producing an architecture yet, because doing so for an unspecified app would mean fabricating both the requirements and the stack.' No architecture or tech stack is produced."
+    },
+    {
+      "text": "Asks a small number of targeted questions (not an exhaustive questionnaire)",
+      "passed": true,
+      "evidence": "Lines 21-24 list exactly four bundled constraint topics (Scale & load, Team, Hosting, Hard constraints) framed as 'A few high-leverage constraints (so I only ask once)'. Not an exhaustive questionnaire."
+    },
+    {
+      "text": "If it asks constraint questions, they focus on high-leverage items (scale, team, hosting, compliance)",
+      "passed": true,
+      "evidence": "The four questions are Scale & load (line 21), Team (line 22), Hosting (line 23), and Hard constraints including compliance HIPAA/PCI/GDPR/SOC 2 (line 24) — exactly the high-leverage items named."
+    },
+    {
+      "text": "Suggests running the solution-architect skill first if no breakdown exists",
+      "passed": true,
+      "evidence": "Line 15: 'If no breakdown exists yet, the strongest path is to run the solution-architect skill first to produce the capability breakdown (the CAP-NN list), then bring that back here.'"
+    },
+    {
+      "text": "Does NOT attempt to persist/save output",
+      "passed": true,
+      "evidence": "Only response.md exists in outputs/; no files were written/saved by the assistant. The response is conversational and produces no artifact to persist."
+    },
+    {
+      "text": "Behavior reflects 'build on the breakdown' principle rather than guessing the whole system",
+      "passed": true,
+      "evidence": "Line 5: 'every technical choice has to trace back to a capability — the what the system does.' The whole response is structured around obtaining the breakdown before designing, rather than guessing the system."
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "total": 8,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 3214,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 45.1,
+    "total_duration_seconds": 45.1,
+    "total_tokens": 24748
+  },
+  "claims": [
+    {
+      "claim": "The librarian skill is not available in this session",
+      "type": "process",
+      "verified": true,
+      "evidence": "No librarian tool/skill calls present; the assistant degrades gracefully by asking the user to provide the breakdown directly — consistent behavior for an unavailable skill."
+    },
+    {
+      "claim": "No architecture or tech stack was produced",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Response contains only a description of what will be produced later; no architecture style, stack, or capability-to-tech mapping is present."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": ["Librarian skill unavailable; asked user to provide breakdown directly instead of retrieving it"]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Does NOT attempt to persist/save output",
+        "reason": "This assertion passes trivially in a single-turn conversational eval where there is nothing finished to save. It would be more discriminating in a scenario where a breakdown IS supplied and an architecture is produced, so the no-self-persist behavior is actually tested."
+      }
+    ],
+    "overall": "Assertions are well-targeted for this under-specified prompt and discriminate genuine 'ask first' behavior from fabrication. Most are strongly satisfied; only the persist assertion is weak in this single-turn context."
+  }
+}

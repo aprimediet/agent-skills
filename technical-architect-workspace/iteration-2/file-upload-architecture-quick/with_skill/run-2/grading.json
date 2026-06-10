@@ -1,0 +1,177 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains 'Source Breakdown' section referencing the provided capabilities",
+      "passed": true,
+      "evidence": "L5 '## Source Breakdown' references the five capabilities CAP-01..CAP-05 explicitly (L9)."
+    },
+    {
+      "text": "Output contains 'Constraints & Assumptions' section",
+      "passed": true,
+      "evidence": "L11 '## Constraints & Assumptions' with Scale/Team/Hosting/Hard constraints/Existing systems, tagged [stated]/[assumed]."
+    },
+    {
+      "text": "Output contains 'Architecture Overview' section with a named architecture style",
+      "passed": true,
+      "evidence": "L19-21 '## Architecture Overview', Style: 'Modular monolith + a small async processing tier.'"
+    },
+    {
+      "text": "Output contains 'Tech Stack' section",
+      "passed": true,
+      "evidence": "L24 '## Tech Stack' with full set of layer subsections."
+    },
+    {
+      "text": "Output contains 'Capability → Tech Mapping' section",
+      "passed": true,
+      "evidence": "L76 '## Capability → Tech Mapping' with table for CAP-01..CAP-05."
+    },
+    {
+      "text": "Output contains 'Key Architecture Decisions' section (ADR-style)",
+      "passed": true,
+      "evidence": "L86 '## Key Architecture Decisions' with AD-01/AD-02/AD-03, each Decision/Context/Rationale/Tradeoffs."
+    },
+    {
+      "text": "Output contains 'Research Suggestions' section",
+      "passed": true,
+      "evidence": "L119 '## Research Suggestions' with three flagged topics and researcher queries."
+    },
+    {
+      "text": "Output contains 'Open Questions' section",
+      "passed": true,
+      "evidence": "L127 '## Open Questions' with five items."
+    },
+    {
+      "text": "Output contains 'Next Steps' section",
+      "passed": true,
+      "evidence": "L135 '## Next Steps' with 6 numbered actions."
+    },
+    {
+      "text": "Depth level is marked as 'quick'",
+      "passed": true,
+      "evidence": "L3 '> Technical Architect | Depth: quick | Generated: 2026-06-10'."
+    },
+    {
+      "text": "Tech stack covers at least frontend, backend, data storage, and hosting layers",
+      "passed": true,
+      "evidence": "Frontend (L26), Backend/API (L31), Data storage (L36), Infrastructure & hosting (L51), plus more layers."
+    },
+    {
+      "text": "Each tech stack layer gives a Recommendation, a Why/rationale, and at least one Alternative",
+      "passed": true,
+      "evidence": "Each layer has Recommendation/Why/Alternatives. Auth (L46-49) and CI/CD (L56-59) state 'None warranted/None' as the alternative with justification — acceptable explicit treatment."
+    },
+    {
+      "text": "Recommendations are opinionated (a single clear choice per layer, not an undifferentiated list)",
+      "passed": true,
+      "evidence": "Single clear picks: Node/TypeScript backend (L32), PostgreSQL + S3 storage (L37-38), SQS + workers (L42); alternatives gated by 'prefer if'."
+    },
+    {
+      "text": "Capability mapping covers all 5 provided capabilities (CAP-01..CAP-05)",
+      "passed": true,
+      "evidence": "Mapping table L80-84 has CAP-01 through CAP-05 rows."
+    },
+    {
+      "text": "Virus scanning (CAP-03) is addressed in the architecture (e.g., async scanning approach)",
+      "passed": true,
+      "evidence": "CAP-03 via SQS job consumed by worker running ClamAV before retrievable (L82); AD-03 self-hosted ClamAV."
+    },
+    {
+      "text": "Thumbnail generation (CAP-04) is addressed (e.g., async/worker processing)",
+      "passed": true,
+      "evidence": "CAP-04 via same worker running sharp after clean scan (L83); AD-02 async scan+thumbnail tier."
+    },
+    {
+      "text": "Object/blob storage is recommended for stored files",
+      "passed": true,
+      "evidence": "L38 'Object/blob store: S3-compatible object storage holds original bytes and generated thumbnails'."
+    },
+    {
+      "text": "Describes HOW (technologies, architecture), NOT new features or capabilities",
+      "passed": true,
+      "evidence": "Maps existing CAP-01..CAP-05 to concrete tech; no new functional features. Cleanup/orphan handling are implementation details."
+    },
+    {
+      "text": "Does NOT invent new functional capabilities beyond the provided breakdown",
+      "passed": true,
+      "evidence": "Potential expansions (PDF preview, storage quota) are explicitly flagged back to solution-architect rather than invented (L130, L132)."
+    },
+    {
+      "text": "Checks for the source breakdown via librarian skill, or works from the provided breakdown",
+      "passed": true,
+      "evidence": "L7 notes librarian not available, works from inline breakdown, and gives librarian retrieval keywords."
+    },
+    {
+      "text": "Flags at least one choice for the researcher skill OR justifies that none are high-stakes",
+      "passed": true,
+      "evidence": "L123-125 flag virus scanning, image processing of untrusted uploads, and pre-signed URL hardening with researcher queries."
+    },
+    {
+      "text": "Does NOT attempt to persist/save the output — suggests librarian skill instead",
+      "passed": true,
+      "evidence": "No save action; L7 and footer L145 recommend librarian for retrieval/persistence."
+    },
+    {
+      "text": "Output ends with a suggestion to use the librarian skill for persistence",
+      "passed": true,
+      "evidence": "L145 '*Technical architecture produced by technical-architect skill. Use the librarian skill to persist this artifact.*'"
+    },
+    {
+      "text": "Document is written as a temporary draft (not persisted by the skill itself)",
+      "passed": true,
+      "evidence": "Single markdown draft in outputs/; persistence deferred to librarian (footer L145)."
+    }
+  ],
+  "summary": {
+    "passed": 24,
+    "failed": 0,
+    "total": 24,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "output_chars": 21423,
+    "note": "No metrics.json or transcript provided; only output markdown and timing.json available."
+  },
+  "timing": {
+    "total_tokens": 37951,
+    "duration_ms": 131988,
+    "executor_duration_seconds": 132.0,
+    "total_duration_seconds": 132.0
+  },
+  "claims": [
+    {
+      "claim": "Files are not served until they pass virus scan (status gate on 'ready')",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Stated in Security (L72), Auth (L48), AD-02, and CAP-05 mapping (L84); internally consistent correctness property."
+    },
+    {
+      "claim": "sharp run with decompression-bomb / pixel-size limits guards untrusted image parsing",
+      "type": "quality",
+      "verified": true,
+      "evidence": "L72 and risk L113 explicitly note pixel/size limits and scan-before-thumbnail ordering — a justified security mitigation."
+    },
+    {
+      "claim": "Researcher skill was unavailable this session",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Stated L121; not independently verifiable but consistent with no research being performed."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": ["Librarian and researcher unavailable — worked from inline breakdown, provided librarian retrieval keywords and researcher queries for follow-up."]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Object/blob storage is recommended for stored files",
+        "reason": "Trivially satisfied by any upload design; consider requiring the scan-before-serve retrieval gate, which is the discriminating correctness property."
+      },
+      {
+        "reason": "No assertion checks that retrieval is gated until a clean scan; all runs implemented it but the eval wouldn't catch a design that serves unscanned files."
+      }
+    ],
+    "overall": "Assertions thoroughly cover structure, process, and scope discipline. One correctness assertion (scan-before-serve gate) would raise the bar."
+  }
+}

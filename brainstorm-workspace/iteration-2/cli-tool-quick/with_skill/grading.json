@@ -1,0 +1,80 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains a 'Core Idea' section",
+      "passed": true,
+      "evidence": "Line 5-7: '## Core Idea' header followed by description: 'A single-binary CLI tool that scans a directory tree, computes SHA-256 hashes for every file...'"
+    },
+    {
+      "text": "Output contains a 'Problem & Motivation' section",
+      "passed": true,
+      "evidence": "Line 9-13: '## Problem & Motivation' header with bullet points describing problem, target users, and rationale."
+    },
+    {
+      "text": "Output contains a 'Key Decisions' section with a table",
+      "passed": true,
+      "evidence": "Lines 15-23: '## Key Decisions' followed by a markdown table with columns 'Decision | Choice | Rationale' covering language, hashing strategy, output format, dedup action, and symlink handling."
+    },
+    {
+      "text": "Output contains a 'Dimensions Explored' section",
+      "passed": true,
+      "evidence": "Line 25 onward: '## Dimensions Explored' header with sub-sections for 'Architecture & Tech Stack', 'User Experience', and 'Performance & Scalability'."
+    },
+    {
+      "text": "Output contains an 'Open Questions' section",
+      "passed": true,
+      "evidence": "Lines 55-59: '## Open Questions' header with three bullet-pointed questions about pre-filtering, hardlinks, and empty files."
+    },
+    {
+      "text": "Output contains a 'Research Suggestions' section",
+      "passed": true,
+      "evidence": "Lines 61-67: '## Research Suggestions' header with three topics, each including a suggested researcher query. Explicitly states: 'Topics that need deeper investigation by the researcher skill'."
+    },
+    {
+      "text": "Output contains a 'Risks & Mitigations' section with a table",
+      "passed": true,
+      "evidence": "Lines 69-75: '## Risks & Mitigations' followed by a markdown table with columns 'Risk | Likelihood | Impact | Mitigation' covering three distinct risks."
+    },
+    {
+      "text": "Output contains a 'Next Steps' section",
+      "passed": true,
+      "evidence": "Lines 77-81: '## Next Steps' header with three numbered action items: decide on language, implement default terminal output, add exclusion defaults and publish."
+    },
+    {
+      "text": "Depth level is marked as 'quick'",
+      "passed": true,
+      "evidence": "Line 3: '> Brainstorm | Depth: quick | Generated: 2026-06-09'. Also confirmed in transcript line 6: '- **Depth**: quick (2-3 dimensions, 2-3 question rounds)'."
+    },
+    {
+      "text": "Covers at most 3 dimensions (quick depth)",
+      "passed": true,
+      "evidence": "Exactly 3 dimensions explored: 'Architecture & Tech Stack' (line 27), 'User Experience' (line 35), and 'Performance & Scalability' (line 46). Transcript confirms selection of 3 dimensions at lines 72-77."
+    },
+    {
+      "text": "Suggests researcher skill for topics needing deeper investigation",
+      "passed": true,
+      "evidence": "Lines 63-67: Research Suggestions section states 'Topics that need deeper investigation by the researcher skill' and provides three 'Suggested researcher query' entries. Footer line 84 also says 'Use the librarian skill to persist this artifact.'"
+    },
+    {
+      "text": "Does NOT attempt to save/persist the output (no librarian actions)",
+      "passed": true,
+      "evidence": "No librarian save/persist actions in the output or transcript. The footer on line 84 only says 'Use the librarian skill to persist this artifact' — a suggestion, not an invocation."
+    },
+    {
+      "text": "Does NOT attempt to conduct its own research",
+      "passed": true,
+      "evidence": "Research Suggestions (lines 61-67) flags topics but does not include web search results, external citations, or factual claims from research. Transcript at lines 62-65 confirms topics were 'flagged' for researcher, not investigated."
+    },
+    {
+      "text": "Document is written to ./brainstorm/{slug}.md",
+      "passed": false,
+      "evidence": "File exists at 'brainstorm-workspace/iteration-2/cli-tool-quick/with_skill/outputs/duplicate-content-scanner-cli.md', NOT at './brainstorm/duplicate-content-scanner-cli.md'. A glob search confirms no file exists at the expected path relative to workspace root."
+    }
+  ],
+  "summary": {
+    "passed": 13,
+    "failed": 1,
+    "total": 14,
+    "pass_rate": 0.93
+  }
+}

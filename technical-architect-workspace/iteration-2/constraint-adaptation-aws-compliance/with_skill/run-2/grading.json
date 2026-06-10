@@ -1,0 +1,128 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains 'Constraints & Assumptions' section capturing AWS-only, HIPAA, and Python constraints",
+      "passed": true,
+      "evidence": "Lines 18-27 '## Constraints & Assumptions' marks 'AWS only — no other cloud [stated]', 'HIPAA compliance required [stated]', and 'Team knows Python [stated]' / 'Python backend [stated]'."
+    },
+    {
+      "text": "Recommendations stay within AWS managed services where reasonable (does not recommend a non-AWS cloud)",
+      "passed": true,
+      "evidence": "Stack is AWS-native: Aurora PostgreSQL, ECS Fargate, ElastiCache, S3, Cognito, SQS/EventBridge, Chime SDK, CloudWatch/CloudTrail, KMS, SES/SNS/Pinpoint. Non-AWS (Stripe, e-prescribing partner, clearinghouse) framed as unavoidable BAA-requiring boundaries. No GCP/Azure proposed."
+    },
+    {
+      "text": "Backend recommendation reflects the Python team constraint",
+      "passed": true,
+      "evidence": "Backend / API (lines 42-44): 'Python + FastAPI ... Team knows Python [stated].' SQLAlchemy/Pydantic; alternatives Django/DRF — all Python."
+    },
+    {
+      "text": "Security section addresses HIPAA-relevant controls (encryption at rest/in transit, access controls, audit logging, BAA-eligible services)",
+      "passed": true,
+      "evidence": "Security section (lines 83-92) covers AWS BAA / BAA-eligible services, encryption in transit (TLS 1.2+, HSTS), encryption at rest (KMS CMKs), access control (Cognito MFA, least-privilege IAM, RBAC + record-level), audit logging (CloudTrail to locked logging account + application-level append-only PHI access trail), secrets, network isolation, and data lifecycle."
+    },
+    {
+      "text": "Video visit capability is addressed with a specific approach (e.g., a HIPAA-eligible video/WebRTC service)",
+      "passed": true,
+      "evidence": "Line 78 and AD-02 (lines 113-118): 'Amazon Chime SDK — BAA-eligible, AWS-native real-time media; backend mints attendee tokens, media never transits your servers.' Twilio explicitly rejected as non-AWS."
+    },
+    {
+      "text": "Output contains 'Tech Stack' section covering the full stack",
+      "passed": true,
+      "evidence": "Line 34 '## Tech Stack' with Frontend, Backend/API, Data storage, Async/messaging, Auth, Infrastructure, CI/CD, Observability, Third-party, Security subsections."
+    },
+    {
+      "text": "Output contains 'Capability → Tech Mapping' section",
+      "passed": true,
+      "evidence": "Line 94 '## Capability → Tech Mapping' with a table mapping CAP-01 through CAP-05."
+    },
+    {
+      "text": "Output contains 'Key Architecture Decisions' section",
+      "passed": true,
+      "evidence": "Line 104 '## Key Architecture Decisions' with AD-01 through AD-04 in ADR style."
+    },
+    {
+      "text": "Output contains 'Research Suggestions' section",
+      "passed": true,
+      "evidence": "Line 142 '## Research Suggestions' with four entries, each carrying a ready-to-use researcher query."
+    },
+    {
+      "text": "Depth level is marked as 'standard'",
+      "passed": true,
+      "evidence": "Line 3: '> Technical Architect | Depth: standard | Generated: 2026-06-10'."
+    },
+    {
+      "text": "Recommendations are opinionated and adapted to the stated constraints (not a generic stack)",
+      "passed": true,
+      "evidence": "Single primary recommendation per layer with reasoning tied to AWS-only/HIPAA/Python (e.g. line 60 rejects Auth0/Okta as 'against the AWS-only preference', line 65 rejects EKS as overkill). Not a laundry list."
+    },
+    {
+      "text": "Flags HIPAA-sensitive or high-stakes choices for the researcher skill with a ready-to-use query",
+      "passed": true,
+      "evidence": "Research Suggestions (lines 146-149) flags e-prescribing/EPCS, HIPAA video stack, AWS BAA-eligible service list, and billing/claims clearinghouse — each with a verbatim 'Suggested researcher query'."
+    },
+    {
+      "text": "Describes HOW, not new features or capabilities",
+      "passed": true,
+      "evidence": "Line 7 'no capabilities were invented or expanded'; recording, claims depth, identity proofing deferred to Open Questions / solution-architect (lines 153-157) instead of being invented."
+    },
+    {
+      "text": "Does NOT attempt to persist/save the output — suggests librarian skill instead",
+      "passed": true,
+      "evidence": "Single output .md written; no persist action. Footer line 169: 'Use the librarian skill to persist this artifact.' Line 16 suggests a librarian-equipped agent retrieve the spec; line 7 notes librarian was unavailable."
+    }
+  ],
+  "summary": {
+    "passed": 14,
+    "failed": 0,
+    "total": 14,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "note": "No metrics.json present in outputs_dir.",
+    "output_files": 1,
+    "output_chars": 23712
+  },
+  "timing": {
+    "total_tokens": 33062,
+    "duration_ms": 148273,
+    "total_duration_seconds": 148.3
+  },
+  "claims": [
+    {
+      "claim": "Aurora PostgreSQL is HIPAA/BAA-eligible and suits the relational, transactional domain",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Aurora PostgreSQL is a HIPAA-eligible service; booking-conflict and billing-reconciliation are genuinely relational/transactional, supporting the recommendation (lines 47, 120-125)."
+    },
+    {
+      "claim": "There is no AWS-native e-prescribing service; requires a certified third party with a BAA",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Correct — AWS offers no e-prescribing service; Surescripts/certified vendors are the standard path, and EPCS for controlled substances is a real regulatory requirement (lines 80, 136)."
+    },
+    {
+      "claim": "Application-level PHI-access audit trail is a HIPAA requirement, not optional",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Accurate framing; HIPAA audit controls require recording access to PHI. AD-04 and Security section build it in as append-only (lines 89, 127-132)."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": ["Librarian skill unavailable; output suggests a librarian-equipped agent retrieve the spec and provides researcher queries since researcher was also unavailable."]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Output contains 'Tech Stack' / 'Capability → Tech Mapping' / 'Key Architecture Decisions' / 'Research Suggestions' section",
+        "reason": "Heading-presence checks that pass trivially when the prescribed template is followed; they do not discriminate output quality. Consider upgrading at least one to a content assertion."
+      },
+      {
+        "assertion": "Does NOT attempt to persist/save the output — suggests librarian skill instead",
+        "reason": "Without a transcript/tool-log provided to the grader, this is verified only via the footer text and the absence of extra files. A save-tool call could go undetected. Assert against the transcript that no persistence tool was invoked."
+      }
+    ],
+    "overall": "Assertions meaningfully cover the AWS-only/HIPAA/Python constraint adaptation. Section-presence checks are the weakest; substantive constraint checks carry the load."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "eval_id": 2,
+  "eval_name": "platform-ecosystem-deep",
+  "prompt": "I want to build a platform where indie game developers can publish their games, handle payments, manage DRM, collect analytics, and distribute updates — think an indie-friendly alternative to Steam. It needs to support Windows, Mac, Linux, and maybe mobile. I want to do a thorough exploration before I start building.",
+  "assertions": [
+    "Output contains a 'Core Idea' section",
+    "Output contains a 'Problem & Motivation' section",
+    "Output contains a 'Key Decisions' section with a table",
+    "Output contains a 'Dimensions Explored' section",
+    "Output contains an 'Open Questions' section",
+    "Output contains a 'Research Suggestions' section",
+    "Output contains a 'Risks & Mitigations' section with a table",
+    "Output contains a 'Next Steps' section",
+    "Depth level is marked as 'deep'",
+    "Covers 5-7 dimensions (deep depth)",
+    "Explores technical dimensions (e.g., distribution architecture, cross-platform, CDN)",
+    "Explores non-technical dimensions (e.g., revenue model, developer relations, curation policy)",
+    "Suggests researcher skill for multiple topics needing deeper investigation",
+    "Does NOT attempt to save/persist the output",
+    "Does NOT attempt to conduct its own research",
+    "Flags at least 3 distinct research topics"
+  ]
+}

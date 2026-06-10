@@ -1,0 +1,80 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains a 'Core Idea' section",
+      "passed": false,
+      "evidence": "Document uses '## Overview' instead of '## Core Idea'. No section titled 'Core Idea' exists anywhere in the output. The closest is the Overview paragraph on lines 3-5 describing the project."
+    },
+    {
+      "text": "Output contains a 'Problem & Motivation' section",
+      "passed": false,
+      "evidence": "No section titled '## Problem & Motivation' exists. The sections present are: Overview, Goals & Non-Goals, User Stories, CLI Interface Design, Technical Design, Edge Cases & Considerations, Roadmap, Alternatives Considered, Questions for Further Exploration."
+    },
+    {
+      "text": "Output contains a 'Key Decisions' section with a table",
+      "passed": false,
+      "evidence": "No '## Key Decisions' section exists. The output has tables in 'Technical Design' (language comparison) and 'Alternatives Considered' (approach comparison), but neither is a 'Key Decisions' section with Decision/Choice/Rationale columns as specified in OUTPUT_FORMAT.md."
+    },
+    {
+      "text": "Output contains a 'Dimensions Explored' section",
+      "passed": false,
+      "evidence": "No section titled '## Dimensions Explored' exists. The document is organized by topic sections (Technical Design, CLI Interface Design, Edge Cases, etc.) rather than using the 'Dimensions Explored' → '### {Dimension Name}' structure from the format spec."
+    },
+    {
+      "text": "Output contains an 'Open Questions' section",
+      "passed": false,
+      "evidence": "The output has '## Questions for Further Exploration' (lines 206-212) which is semantically similar but does not use the specified section title '## Open Questions'. The OUTPUT_FORMAT.md requires exactly '## Open Questions'."
+    },
+    {
+      "text": "Output contains a 'Research Suggestions' section",
+      "passed": false,
+      "evidence": "No section titled '## Research Suggestions' exists. The document does not flag any topics as needing deeper investigation by a researcher skill. The 'Questions for Further Exploration' section contains user-facing questions, not research task suggestions."
+    },
+    {
+      "text": "Output contains a 'Risks & Mitigations' section with a table",
+      "passed": false,
+      "evidence": "No '## Risks & Mitigations' section exists. The closest is '## Edge Cases & Considerations' (lines 148-160), which lists bullet points about edge cases but does not use a table with Risk/Likelihood/Impact/Mitigation columns."
+    },
+    {
+      "text": "Output contains a 'Next Steps' section",
+      "passed": false,
+      "evidence": "The output has '## Roadmap' (lines 164-190) with versioned checklists (v0.1 MVP, v0.2 Usability, v0.3 Advanced, v1.0 Polish), but no '## Next Steps' section as required by the format spec."
+    },
+    {
+      "text": "Depth level is marked as 'quick'",
+      "passed": false,
+      "evidence": "The document title is '# DupeScan — CLI Duplicate File Finder (Brainstorm)' with no depth level tag. The format spec requires a blockquote line like '> Brainstorm | Depth: {quick|standard|deep} | Generated: {date}' immediately after the title. No such tag exists."
+    },
+    {
+      "text": "Covers at most 3 dimensions (quick depth)",
+      "passed": false,
+      "evidence": "The document covers at least 5 distinct topic areas beyond the core idea: (1) Technical Design — architecture, algorithm, language choice, memory, performance targets; (2) CLI Interface Design — UX, flags, output formats; (3) Edge Cases & Considerations — 11 edge cases; (4) Alternatives Considered — competition analysis; (5) Goals & Non-Goals and Roadmap — project planning. This far exceeds the at-most-3 constraint for quick depth."
+    },
+    {
+      "text": "Suggests researcher skill for topics needing deeper investigation",
+      "passed": false,
+      "evidence": "Nowhere in the output does the agent mention the 'researcher' skill or suggest that any topic be investigated by a separate research skill. The 'Questions for Further Exploration' section (lines 206-212) lists open questions but does not connect them to the researcher skill. Transcript also confirms no researcher skill mention."
+    },
+    {
+      "text": "Does NOT attempt to save/persist the output (no librarian actions)",
+      "passed": true,
+      "evidence": "The transcript shows the agent created its own output directory and wrote the file directly (mkdir + write), but never mentioned the 'librarian' skill or attempted any librarian-style persistence actions. The output document contains no references to saving, librarian, or persistence."
+    },
+    {
+      "text": "Does NOT attempt to conduct its own research",
+      "passed": true,
+      "evidence": "The agent synthesized analysis from its training knowledge (language comparisons, algorithm design, edge cases, performance targets) but did not perform external research: no URL fetching, no benchmark lookups, no web searches. The transcript confirms the agent only read the task and produced the document from existing knowledge. This is brainstorming/brain-dumping, not research."
+    },
+    {
+      "text": "Document is written to ./brainstorm/{slug}.md",
+      "passed": false,
+      "evidence": "The actual output path is 'brainstorm-workspace/iteration-2/cli-tool-quick/without_skill/outputs/brainstorm.md' — a deeply nested evaluation-specific directory, not the required './brainstorm/{slug}.md' (e.g., './brainstorm/dupescan.md' or './brainstorm/cli-duplicate-file-finder.md'). The transcript confirms the agent used 'mkdir -p brainstorm-workspace/iteration-2/cli-tool-quick/without_skill/outputs'."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 12,
+    "total": 14,
+    "pass_rate": 0.14
+  }
+}

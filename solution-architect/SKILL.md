@@ -48,6 +48,7 @@ Before starting from scratch, check whether relevant knowledge already exists.
    python scripts/librarian.py list --category specs --scope project
    ```
 3. **If the librarian skill is available**, read relevant artifacts and incorporate their findings into the capability breakdown.
+   - For solution-architect artifacts, use: `python scripts/librarian.py read specs <slug> --artifact-type solution --scope project`
 4. **If the librarian skill is NOT available**, report back to the user what to look for so another agent with librarian access can retrieve it:
    - What categories to search (researches, specs, docs)
    - What keywords to use
@@ -106,7 +107,7 @@ Write the output to a temporary file at `./solution-architect/{slug}.md` using t
 
 Then tell the user:
 - The capability breakdown is ready
-- Hand it off to the librarian skill to save it: "Use the librarian skill to save this as a spec artifact." If the librarian skill is unavailable, tell the user what to save and where so an agent with librarian access can persist it.
+- Hand it off to the librarian skill to save it as a `solution` type spec artifact: `python scripts/librarian.py write specs {slug} --artifact-type solution --title "Title" --file ./solution-architect/{slug}.md --tags "architecture,solution" --scope project`. If the librarian skill is unavailable, tell the user what to save and where so an agent with librarian access can persist it.
 
 For real-world examples, see:
 - [examples/subscription-billing.md](examples/subscription-billing.md) — SaaS billing feature (standard)

@@ -1,0 +1,172 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains 'Source Breakdown' section referencing the provided capabilities",
+      "passed": true,
+      "evidence": "Line 5: '## Source Breakdown' section explicitly references the inline breakdown and lists 'Subscription Billing System (CAP-01..CAP-06)' with all six capabilities (line 7-9)."
+    },
+    {
+      "text": "Output contains 'Constraints & Assumptions' section capturing team (TypeScript) and scale",
+      "passed": true,
+      "evidence": "Line 13: '## Constraints & Assumptions'. Line 16 '**Team**: 4 people, comfortable with TypeScript **[stated]**' and line 15 '**Scale & load**: A few thousand customers in year one **[stated]**'."
+    },
+    {
+      "text": "Output contains 'Architecture Overview' section with a named architecture style and rationale",
+      "passed": true,
+      "evidence": "Line 21: '## Architecture Overview'. Line 23 '**Style**: **Modular monolith**' with explicit rationale tied to scale and 4-person team."
+    },
+    {
+      "text": "Output contains 'Tech Stack' section",
+      "passed": true,
+      "evidence": "Line 26: '## Tech Stack' with subsections per layer."
+    },
+    {
+      "text": "Output contains 'Capability → Tech Mapping' section",
+      "passed": true,
+      "evidence": "Line 91: '## Capability → Tech Mapping' with a table mapping CAP-01..CAP-06 to implementing tech (lines 93-100)."
+    },
+    {
+      "text": "Output contains 'Key Architecture Decisions' section with at least 2 ADR-style entries",
+      "passed": true,
+      "evidence": "Line 102: '## Key Architecture Decisions' with AD-01 through AD-05 (lines 104-137), each having Decision/Context/Rationale/Tradeoffs."
+    },
+    {
+      "text": "Output contains 'Risks & Tradeoffs' section",
+      "passed": true,
+      "evidence": "Line 139: '## Risks & Tradeoffs' with six bulleted risks and mitigations."
+    },
+    {
+      "text": "Output contains 'Research Suggestions' section",
+      "passed": true,
+      "evidence": "Line 148: '## Research Suggestions' with five entries, each with a ready-to-use researcher query."
+    },
+    {
+      "text": "Output contains 'Open Questions' section",
+      "passed": true,
+      "evidence": "Line 158: '## Open Questions' with six unresolved items."
+    },
+    {
+      "text": "Output contains 'Next Steps' section",
+      "passed": true,
+      "evidence": "Line 167: '## Next Steps' with six numbered actions."
+    },
+    {
+      "text": "Depth level is marked as 'standard'",
+      "passed": true,
+      "evidence": "Line 3: '> Technical Architect | Depth: standard | Generated: 2026-06-10'."
+    },
+    {
+      "text": "Tech stack covers frontend, backend, data storage, auth, infrastructure, CI/CD, observability, and security layers",
+      "passed": true,
+      "evidence": "All eight layers present as subsections: Frontend (28), Backend/API (33), Data storage (38), Async/messaging (47), Authentication & authorization (57), Infrastructure & hosting (62), CI/CD & developer tooling (67), Observability (72), Third-party services (77), Security (86)."
+    },
+    {
+      "text": "Each tech stack layer gives a Recommendation, a Why/rationale, and at least one Alternative",
+      "passed": true,
+      "evidence": "Every layer has **Recommendation**/**Why**/**Alternatives**. E.g. Frontend lines 29-31; Backend lines 34-36; Data storage lines 39-45; Observability lines 73-75. Security (line 86) gives Recommendation/Why/Alternatives (line 89 'Storing cards yourself ... explicitly rejected')."
+    },
+    {
+      "text": "Recommendation adapts to the stated TypeScript team constraint (e.g., Node/TS backend)",
+      "passed": true,
+      "evidence": "Line 34 'Node.js + TypeScript with NestJS'; line 29 'Next.js (App Router) with React and TypeScript'. Line 35 'TypeScript end-to-end matches the team's strength.'"
+    },
+    {
+      "text": "Recommendation reflects the stated scale (does not over-engineer for millions when thousands are expected)",
+      "passed": true,
+      "evidence": "Line 15 explicitly states 'designing for millions would be over-engineering for a 4-person team'; line 45 'Cache / search / analytics — Not needed at this scale'; line 65 'Kubernetes ... avoid at this team size and scale'."
+    },
+    {
+      "text": "Capability mapping covers all 6 provided capabilities (CAP-01..CAP-06)",
+      "passed": true,
+      "evidence": "Mapping table (lines 95-100) has a row each for CAP-01, CAP-02, CAP-03, CAP-04, CAP-05, CAP-06."
+    },
+    {
+      "text": "Payment processing architecture addresses a payment gateway integration (PCI handled by a provider, not storing raw card data)",
+      "passed": true,
+      "evidence": "Line 24 'The payment gateway (Stripe) is the only place card data ever lives; the system stores provider tokens and references, never card numbers.' Line 30 Stripe Elements keeps PCI scope at SAQ A; AD-02 (line 111)."
+    },
+    {
+      "text": "Recurring billing / scheduled jobs are addressed for the billing cycle (CAP-04)",
+      "passed": true,
+      "evidence": "Line 50 'CAP-04 (billing cycle) is a scheduled batch — the scheduler enqueues one billing job per due subscription.' Mapping row CAP-04 (line 98) describes cron scheduler + FOR UPDATE double-billing guard."
+    },
+    {
+      "text": "Async retry/dunning handling is addressed for CAP-06",
+      "passed": true,
+      "evidence": "Line 52 'CAP-06 (payment retry/dunning) schedules future retry attempts over days — durable delayed jobs are exactly this.' Mapping row CAP-06 (line 100) and AD-04 (line 125)."
+    },
+    {
+      "text": "Describes HOW (technologies, architecture), NOT new features or capabilities",
+      "passed": true,
+      "evidence": "Line 7 'no new functional capabilities are introduced.' Output anchors every choice to existing CAP-01..06; line 165 explicitly defers functional questions to solution-architect."
+    },
+    {
+      "text": "Flags at least one high-stakes choice for the researcher skill with a ready-to-use query",
+      "passed": true,
+      "evidence": "Research Suggestions (lines 150-156) flags gateway selection, build-vs-buy, proration, retry schedule, and queue tech, each with a quoted ready-to-use query, e.g. line 152."
+    },
+    {
+      "text": "Does NOT attempt to persist/save the output — suggests librarian skill instead",
+      "passed": true,
+      "evidence": "No file-save attempt within content; line 11 recommends an agent with librarian access persist the document, and footer (line 177) suggests librarian. (The doc itself was written as the eval output artifact, not self-persisted by the architect.)"
+    },
+    {
+      "text": "Output ends with a suggestion to use the librarian skill for persistence",
+      "passed": true,
+      "evidence": "Line 177 footer: '*Technical architecture produced by technical-architect skill. Use the librarian skill to persist this artifact.*'"
+    }
+  ],
+  "summary": {
+    "passed": 23,
+    "failed": 0,
+    "total": 23,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "note": "No metrics.json found in outputs_dir; metrics unavailable.",
+    "output_chars": 13800
+  },
+  "timing": {
+    "total_tokens": 43977,
+    "executor_duration_seconds": 141.1,
+    "total_duration_seconds": 141.1
+  },
+  "claims": [
+    {
+      "claim": "Stripe Elements keeps card data out of frontend/backend, holding PCI scope at SAQ A",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Technically correct: client-side tokenization via Elements qualifies a merchant for SAQ A. Stated lines 30, 87."
+    },
+    {
+      "claim": "Postgres provides sequences for gapless invoice numbering (CAP-05)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Correct that Postgres has sequences. Minor nuance: sequences are not strictly gapless under rollback, but the design intent (sequential invoice numbers) is sound and standard."
+    },
+    {
+      "claim": "Every tech stack layer includes a real alternative",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Confirmed across all layers including Security, which frames the rejected alternative (self-hosted card vault → SAQ D)."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": ["Librarian and researcher skills noted as unavailable in-session; output flags both for follow-up rather than invoking them."]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Does NOT attempt to persist/save the output — suggests librarian skill instead",
+        "reason": "Hard to discriminate from outputs alone since no transcript exists. A write to disk by the executor harness (the eval saves the .md) is indistinguishable from the architect self-persisting. Consider checking the transcript for an explicit librarian/Write tool call, or have the assertion verify only the in-content recommendation."
+      },
+      {
+        "assertion": "Each tech stack layer gives a Recommendation, a Why/rationale, and at least one Alternative",
+        "reason": "Strong, discriminating assertion. Note the Security layer expresses its 'Alternative' as a rejected option rather than a preferred fallback — acceptable, but if strict alternatives are required the assertion wording could clarify that a rejected-alternative counts."
+      }
+    ],
+    "overall": "Assertions map tightly to the prescribed OUTPUT_FORMAT structure and are well-discriminating. with_skill output is a faithful instantiation of the format. Main gap is the absence of a transcript/metrics.json, which weakens verification of the persistence/skill-invocation assertions."
+  }
+}

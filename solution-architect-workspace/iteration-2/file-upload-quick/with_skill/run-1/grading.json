@@ -1,0 +1,207 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains 'Problem Statement' section",
+      "passed": true,
+      "evidence": "Line 15: '## Problem Statement' present with Business problem, User problem, Success criteria."
+    },
+    {
+      "text": "Output contains 'Scope' section",
+      "passed": true,
+      "evidence": "Line 27: '## Scope' with In scope / Out of scope / Existing systems."
+    },
+    {
+      "text": "Output contains 'Capabilities' section",
+      "passed": true,
+      "evidence": "Line 43: '## Capabilities' present."
+    },
+    {
+      "text": "Output contains 'Dependency Map' section",
+      "passed": true,
+      "evidence": "Line 198: '## Dependency Map' with a CAP table."
+    },
+    {
+      "text": "Output contains 'Open Questions' section",
+      "passed": true,
+      "evidence": "Line 208: '## Open Questions' with 8 unresolved items."
+    },
+    {
+      "text": "Output contains 'Research Suggestions' section",
+      "passed": true,
+      "evidence": "Line 219: '## Research Suggestions' with topics and suggested researcher queries."
+    },
+    {
+      "text": "Output contains 'Next Steps' section",
+      "passed": true,
+      "evidence": "Line 228: '## Next Steps' with 4 concrete actions."
+    },
+    {
+      "text": "Depth level is marked as 'quick'",
+      "passed": true,
+      "evidence": "Line 3: '> Solution Architect | Depth: quick | Generated: 2026-06-09'."
+    },
+    {
+      "text": "Covers 1-3 capabilities (quick depth)",
+      "passed": false,
+      "evidence": "Output contains 5 capabilities (CAP-01 through CAP-05), confirmed by grep count of 5. Quick depth requires 1-3 capabilities per OUTPUT_FORMAT.md depth guidance. Exceeds the range."
+    },
+    {
+      "text": "Each capability has a Trigger field",
+      "passed": true,
+      "evidence": "All 5 capabilities have '**Trigger**:' (e.g. lines 47, 80, 112, 144, 174)."
+    },
+    {
+      "text": "Each capability has an Inputs field",
+      "passed": true,
+      "evidence": "All 5 capabilities have '**Inputs**:' (e.g. lines 49, 82, 114, 146, 176)."
+    },
+    {
+      "text": "Each capability has a Logic flow field",
+      "passed": true,
+      "evidence": "All 5 capabilities have '**Logic flow**:' with numbered steps (e.g. lines 54, 87, 118, 150, 180)."
+    },
+    {
+      "text": "Each capability has an Outputs field",
+      "passed": true,
+      "evidence": "All 5 capabilities have '**Outputs**:' (e.g. lines 63, 95, 127, 157, 187)."
+    },
+    {
+      "text": "Each capability has an Edge cases field",
+      "passed": true,
+      "evidence": "All 5 capabilities have '**Edge cases**:' (e.g. lines 67, 100, 132, 162, 191)."
+    },
+    {
+      "text": "Each capability has a Connects to field",
+      "passed": true,
+      "evidence": "All 5 capabilities have '**Connects to**:' (e.g. lines 74, 106, 138, 168, 196)."
+    },
+    {
+      "text": "Business problem is stated in Problem Statement",
+      "passed": true,
+      "evidence": "Line 17: '**Business problem**: The web app needs users to bring their own images and PDFs into the platform safely...'"
+    },
+    {
+      "text": "User problem is stated in Problem Statement",
+      "passed": true,
+      "evidence": "Line 18: '**User problem**: Users have images and PDF documents on their devices that they need to attach within the app...'"
+    },
+    {
+      "text": "Success criteria are measurable",
+      "passed": true,
+      "evidence": "Lines 19-24: bulleted success criteria including 'up to 10 MB each', 'every uploaded file is virus-scanned', status visibility — concrete and verifiable."
+    },
+    {
+      "text": "Logic flows describe WHAT not HOW (no tech stack, no code, no architecture)",
+      "passed": true,
+      "evidence": "Logic flows use vendor-neutral language: 'submits the stored file to the virus-scanning capability', 'generates one or more thumbnail renditions'. No specific tech (no ClamAV, S3, libraries) named in flows."
+    },
+    {
+      "text": "Dependency Map uses CAP-01 format for capability IDs",
+      "passed": true,
+      "evidence": "Lines 202-206: table rows 'CAP-01', 'CAP-02', ... 'CAP-05'."
+    },
+    {
+      "text": "Research Suggestions reference the researcher skill",
+      "passed": true,
+      "evidence": "Line 221: 'Topics flagged for the researcher skill' and each item gives a 'Suggested researcher query'."
+    },
+    {
+      "text": "Does NOT attempt to save/persist the output — suggests librarian skill instead",
+      "passed": true,
+      "evidence": "Footer line 236: 'Use the librarian skill to persist this artifact.' and Next Steps line 233 suggests librarian for persistence. No self-persistence attempt."
+    },
+    {
+      "text": "Does NOT attempt to conduct its own research — flags topics for researcher skill",
+      "passed": true,
+      "evidence": "Line 221: 'research was not performed in this session'; topics are flagged with researcher queries rather than researched."
+    },
+    {
+      "text": "Checks for existing knowledge via librarian skill before starting",
+      "passed": true,
+      "evidence": "Lines 5-13: '## Existing Knowledge' section notes librarian was unavailable and specifies the librarian searches that should be done (researches/specs/docs with keywords)."
+    },
+    {
+      "text": "Flags at least one topic as needing research (e.g., virus scanning approaches, thumbnail generation)",
+      "passed": true,
+      "evidence": "Lines 223-226 flag virus/malware scanning approaches and image thumbnail generation strategy as research topics."
+    },
+    {
+      "text": "Document is written to ./solution-architect/{slug}.md",
+      "passed": true,
+      "evidence": "Output captured at outputs/file-upload-feature.md; slug 'file-upload-feature' matches the {slug}.md convention and the doc self-identifies as the solution-architect capability breakdown. Harness collects into outputs/ rather than ./solution-architect/."
+    },
+    {
+      "text": "Output ends with a suggestion to use librarian skill for persistence",
+      "passed": true,
+      "evidence": "Final line 236: '*Capability breakdown produced by solution-architect skill. Use the librarian skill to persist this artifact.*'"
+    },
+    {
+      "text": "Edge cases cover missing/invalid input scenarios",
+      "passed": true,
+      "evidence": "CAP-01 edge cases (lines 68-72): disguised file rejected, zero-byte file rejected, file with no extension validated by header. Covers invalid/missing input."
+    },
+    {
+      "text": "Edge cases cover dependency failure scenarios",
+      "passed": true,
+      "evidence": "CAP-03 edge cases line 133: 'Scanner times out or is down: file is never auto-released; held and retried (fail-closed).' CAP-05 line 185 storage retrieval failure. Covers dependency failures."
+    },
+    {
+      "text": "Connects to references other capability IDs or explicit '—' for standalone capabilities",
+      "passed": true,
+      "evidence": "All Connects to fields reference CAP IDs (e.g. line 74 'CAP-02', line 106 'CAP-01, CAP-03')."
+    }
+  ],
+  "summary": {
+    "passed": 29,
+    "failed": 1,
+    "total": 30,
+    "pass_rate": 0.97
+  },
+  "execution_metrics": {
+    "note": "No metrics.json present in outputs; metrics not available.",
+    "output_chars": 15922
+  },
+  "timing": {
+    "total_tokens": 31083,
+    "executor_duration_seconds": 99.3,
+    "total_duration_seconds": 99.3
+  },
+  "claims": [
+    {
+      "claim": "Depth is quick and breakdown is appropriately scoped",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Marked 'quick' but produced 5 capabilities, exceeding the 1-3 quick-depth bound. The depth label and the actual capability count are inconsistent."
+    },
+    {
+      "claim": "Logic flows avoid implementation detail",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Flows describe behaviors (validate header/magic bytes, submit to scanning capability) without naming tools, libraries, or architecture."
+    },
+    {
+      "claim": "Dependency Map is internally consistent with per-capability Connects to fields",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Map (lines 202-206) matches the Connects to relationships declared in each capability."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": ["No user_notes.md present in outputs."],
+    "needs_review": [],
+    "workarounds": ["Librarian and researcher skills reported unavailable in-session; output describes what should be done rather than doing it (consistent with skill design)."]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Covers 1-3 capabilities (quick depth)",
+        "reason": "This is the one discriminating assertion the skill consistently fails — all three runs emit 5 capabilities. The assertion is good; the skill is over-producing for quick depth. Worth keeping as the primary signal."
+      },
+      {
+        "assertion": "Document is written to ./solution-architect/{slug}.md",
+        "reason": "The harness relocates output into outputs/, so the exact path cannot be verified from artifacts alone — only the slug-style filename and self-identification. Consider asserting on filename/slug convention rather than the literal directory to avoid a path that the harness masks."
+      }
+    ],
+    "overall": "Assertions are mostly presence checks that pass easily; the capability-count assertion is the meaningful discriminator and correctly catches the skill over-scoping quick-depth breakdowns."
+  }
+}

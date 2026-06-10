@@ -1,0 +1,172 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains 'Source Breakdown' section referencing the capability set",
+      "passed": true,
+      "evidence": "'## Source Breakdown' (line 5) enumerates CAP-01..CAP-13 as an inline enumeration of the stated digital-goods marketplace capability areas; notes librarian unavailable and recommends solution-architect."
+    },
+    {
+      "text": "Output contains 'Constraints & Assumptions' section capturing the large-scale target",
+      "passed": true,
+      "evidence": "'## Constraints & Assumptions' (line 27): 'Scale & load: Design for growth to millions of users [stated]. Implies horizontal scalability, a read-heavy browse/search path...'"
+    },
+    {
+      "text": "Output contains 'Architecture Overview' section with a named architecture style and rationale appropriate for scale",
+      "passed": true,
+      "evidence": "'## Architecture Overview' (line 40): Style = 'Modular monolith at launch with pre-carved seams for service extraction', rationale tied to small team and millions-of-users fault lines (money/ledger, entitlement/delivery, search, notifications)."
+    },
+    {
+      "text": "Output contains 'Tech Stack' section",
+      "passed": true,
+      "evidence": "'## Tech Stack' (line 45) with per-layer subsections."
+    },
+    {
+      "text": "Output contains 'Capability → Tech Mapping' section",
+      "passed": true,
+      "evidence": "'## Capability → Tech Mapping' (line 133) with a 13-row table CAP-01..CAP-13."
+    },
+    {
+      "text": "Output contains 'Key Architecture Decisions' section with multiple ADR-style entries",
+      "passed": true,
+      "evidence": "'## Key Architecture Decisions' (line 151) with AD-01 through AD-07, each Decision/Context/Rationale/Tradeoffs."
+    },
+    {
+      "text": "Output contains 'Risks & Tradeoffs' section",
+      "passed": true,
+      "evidence": "'## Risks & Tradeoffs' (line 195) with 8 bulleted risks each with mitigation."
+    },
+    {
+      "text": "Output contains 'Research Suggestions' section",
+      "passed": true,
+      "evidence": "'## Research Suggestions' (line 206) with 4 entries and ready-to-use researcher queries."
+    },
+    {
+      "text": "Output contains 'Open Questions' section",
+      "passed": true,
+      "evidence": "'## Open Questions' (line 215) with 6 items (entitlement-revocation policy, chargeback liability/clawback, license-pool semantics, KYC/tax scope, IdP choice, data residency)."
+    },
+    {
+      "text": "Output contains 'Next Steps' section",
+      "passed": true,
+      "evidence": "'## Next Steps' (line 224) with 7 numbered concrete actions."
+    },
+    {
+      "text": "Depth level is marked as 'deep'",
+      "passed": true,
+      "evidence": "Header line 3: '> Technical Architect | Depth: deep | Generated: 2026-06-10'."
+    },
+    {
+      "text": "Tech stack covers frontend, backend, data storage, async/messaging, auth, infrastructure, CI/CD, observability, third-party integrations, and security",
+      "passed": true,
+      "evidence": "All ten layers present (lines 47-131): Frontend, Backend/API, Data storage (incl. license-key storage), Async/messaging, Authentication & authorization, Infrastructure & hosting, CI/CD & developer tooling, Observability, Third-party services & integrations, Security."
+    },
+    {
+      "text": "Each tech stack layer gives a Recommendation, a Why/rationale, and at least one Alternative",
+      "passed": true,
+      "evidence": "Frontend/Backend/Data-storage/Async/Auth/Infra/CI-CD subsections each have Recommendation/Why/Alternatives bullets (e.g., lines 48-50, 53-55, 92-94). Third-party and Security are itemized lists with per-item rationale rather than strict triplets, but all core layers comply."
+    },
+    {
+      "text": "Architecture style choice (e.g., microservices/event-driven) is justified by the scale and capability breadth",
+      "passed": true,
+      "evidence": "AD-01 (line 153) justifies modular monolith over microservices against millions-of-users scale, small team, and domain fault lines; emphasizes exactly-once/no-oversell invariants being easier in one DB transaction."
+    },
+    {
+      "text": "Search capability is addressed with a dedicated search technology",
+      "passed": true,
+      "evidence": "Search engine subsection (line 70) OpenSearch/Elasticsearch dedicated cluster fed from catalog events; AD-05 (line 177) dedicated ADR."
+    },
+    {
+      "text": "Payment processing and seller payouts are addressed (e.g., a payments/marketplace provider, ledger)",
+      "passed": true,
+      "evidence": "Third-party (line 117) Stripe-Connect-class payment & payout gateway with connected-account payouts and chargeback webhooks; AD-02 double-entry ledger; CAP-06/09/10 mapped."
+    },
+    {
+      "text": "Digital delivery/entitlements is addressed (object storage + access control / signed delivery)",
+      "passed": true,
+      "evidence": "Object storage + delivery subsection (line 75): private S3 bucket + short-lived signed CDN URLs minted against valid entitlement; AD-03 (line 165) makes entitlement the authoritative grant; CAP-07 mapped."
+    },
+    {
+      "text": "Async/event-driven processing is used for cross-cutting flows (e.g., notifications, payouts, moderation)",
+      "passed": true,
+      "evidence": "Async/messaging (line 88): Kafka event log carrying OrderPaid/EntitlementGranted/RefundIssued/ChargebackOpened/PayoutSettled/ListingPublished to consumers for entitlement granting, indexing, notifications (CAP-13), ledger postings, payout batching; AD-06 dedicated ADR."
+    },
+    {
+      "text": "Capability mapping covers the major capability areas (buyer, seller, payments, delivery, trust/moderation)",
+      "passed": true,
+      "evidence": "Mapping table (lines 137-149) covers buyer library/re-download (CAP-07), seller onboarding (CAP-01), payments/ledger/payouts (CAP-06/09/10), delivery/entitlements (CAP-07), moderation & trust/safety (CAP-12)."
+    },
+    {
+      "text": "Describes HOW (technologies, architecture), NOT new features or capabilities",
+      "passed": true,
+      "evidence": "Technology/architecture focused; functional rules (entitlement-revocation policy, chargeback liability/clawback, license-pool semantics) explicitly flagged as solution-architect decisions, not invented (Open Questions lines 217-220; Risks line 200)."
+    },
+    {
+      "text": "Flags at least 2 high-stakes choices for the researcher skill with ready-to-use queries",
+      "passed": true,
+      "evidence": "Research Suggestions (lines 210-213) flags 4: marketplace payment/payout/KYC gateway, async backbone, search technology, anti-piracy/moderation tooling — each with a quoted ready-to-use researcher query."
+    },
+    {
+      "text": "Does NOT attempt to persist/save the output — suggests librarian skill instead",
+      "passed": true,
+      "evidence": "No persistence attempted; Next Steps item 7 (line 232) 'Hand this document to the librarian skill to persist as a spec artifact.'"
+    },
+    {
+      "text": "Output ends with a suggestion to use the librarian skill for persistence",
+      "passed": true,
+      "evidence": "Final line 235: '*Technical architecture produced by technical-architect skill. Use the librarian skill to persist this artifact.*'"
+    }
+  ],
+  "summary": {
+    "passed": 23,
+    "failed": 0,
+    "total": 23,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "note": "No metrics.json present in outputs_dir.",
+    "output_chars": 44350,
+    "output_files": 1
+  },
+  "timing": {
+    "total_tokens": 53875,
+    "duration_ms": 237296,
+    "total_duration_seconds": 237.3
+  },
+  "claims": [
+    {
+      "claim": "Exactly-once entitlement grant is enforced via a unique constraint on order_id inside the payment-confirmation transaction.",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Data storage (line 61) and AD-03 (line 166) describe a unique constraint on order_id in the entitlements table within the payment txn; CAP-07 mapping row repeats it."
+    },
+    {
+      "claim": "No double-sale of license keys is guaranteed via SELECT ... FOR UPDATE SKIP LOCKED / status CAS plus a Redis reservation gate.",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Data storage (line 61), Cache (line 65-66), and AD-04 (line 171) describe the Redis reservation + Postgres SKIP LOCKED/CAS two-layer approach."
+    },
+    {
+      "claim": "The librarian skill was unavailable; capabilities are an inline enumeration, not invented scope.",
+      "type": "process",
+      "verified": true,
+      "evidence": "Source Breakdown (lines 7, 25) states librarian unavailable and recommends running solution-architect first."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": ["Librarian skill unavailable; capability breakdown derived inline (CAP-01..CAP-13) from the stated areas; solution-architect recommended for a formal breakdown."]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Each tech stack layer gives a Recommendation, a Why/rationale, and at least one Alternative",
+        "reason": "Third-party services and Security layers are itemized lists rather than the Recommendation/Why/Alternative triplet. The check passes on core layers; specifying which layers must carry the full triplet would make it more discriminating."
+      },
+      {
+        "reason": "This run added a license-key storage layer and detailed exactly-once / no-oversell concurrency controls that exceed the other runs — strong correctness depth that no assertion rewards. An assertion checking that finite-inventory/license-key concurrency is addressed would credit genuine digital-goods correctness and discriminate stronger from weaker outputs."
+      }
+    ],
+    "overall": "Assertions are comprehensive and align with OUTPUT_FORMAT. They reliably pass for a correct output; consider one content assertion for digital-goods-specific correctness (exactly-once entitlement / license-key oversell) to reward the depth this run demonstrated."
+  }
+}

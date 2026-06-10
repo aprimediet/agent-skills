@@ -1,0 +1,26 @@
+{
+  "expectations": [
+    {"text": "Output contains a 'Core Idea' section", "passed": true, "evidence": "Line 5: '## Core Idea' heading present"},
+    {"text": "Output contains a 'Problem & Motivation' section", "passed": true, "evidence": "Line 9: '## Problem & Motivation' heading present"},
+    {"text": "Output contains a 'Key Decisions' section with a table", "passed": true, "evidence": "Line 15: '## Key Decisions' heading; lines 17-27 contain a markdown table with Decision|Choice|Rationale columns covering 8 decisions (Architecture, Frontend, Payment processing, DRM, Game distribution, Analytics pipeline, Revenue model, Developer onboarding)"},
+    {"text": "Output contains a 'Dimensions Explored' section", "passed": true, "evidence": "Line 28: '## Dimensions Explored' heading present"},
+    {"text": "Output contains an 'Open Questions' section", "passed": true, "evidence": "Line 95: '## Open Questions' heading with 5 enumerated open questions"},
+    {"text": "Output contains a 'Research Suggestions' section", "passed": true, "evidence": "Line 103: '## Research Suggestions' heading present"},
+    {"text": "Output contains a 'Risks & Mitigations' section with a table", "passed": true, "evidence": "Line 113: '## Risks & Mitigations' heading; lines 115-122 contain a markdown table with Risk|Likelihood|Impact|Mitigation columns covering 6 risks"},
+    {"text": "Output contains a 'Next Steps' section", "passed": true, "evidence": "Line 124: '## Next Steps' heading with 7 enumerated next steps"},
+    {"text": "Depth level is marked as 'deep'", "passed": true, "evidence": "Line 3: '> Brainstorm | Depth: deep | Generated: 2026-06-09'"},
+    {"text": "Covers 5-7 dimensions (deep depth)", "passed": true, "evidence": "7 dimensions explored: Architecture & Tech Stack (line 30), Distribution & Update Pipeline (line 39), DRM & Security (line 48), Payment Processing & Business Model (line 57), Competition & Differentiation (line 67), User Experience & Discovery (line 76), Go-to-Market Strategy (line 86)"},
+    {"text": "Explores technical dimensions (e.g., distribution architecture, cross-platform, CDN)", "passed": true, "evidence": "Architecture & Tech Stack (lines 30-37) covers Next.js, React Native, Go/Node.js, modular monolith, bounded contexts; Distribution & Update Pipeline (lines 39-46) covers CDN, signed URLs, S3, CloudFront, bsdiff/xdelta delta patching, Merkle-tree hashing; DRM & Security (lines 48-55) covers JWT tokens, AES-256 encryption, device fingerprinting, code signing, stateless Lambda verification service"},
+    {"text": "Explores non-technical dimensions (e.g., revenue model, developer relations, curation policy)", "passed": true, "evidence": "Payment Processing & Business Model (lines 57-65) covers 10% commission, Stripe Connect, regional pricing, Pro subscription tiers; Competition & Differentiation (lines 67-74) covers market positioning vs Steam/Itch.io/Epic/GOG; User Experience & Discovery (lines 76-84) covers curation policy, review systems, tag moderation, accessibility filters; Go-to-Market Strategy (lines 86-93) covers developer recruitment, revenue guarantees, referral programs, marketing budget"},
+    {"text": "Suggests researcher skill for multiple topics needing deeper investigation", "passed": true, "evidence": "Lines 107-111 in Research Suggestions: each of the 5 topics includes a 'Suggested researcher query:' directive, e.g., line 107: 'Suggested researcher query: Delta update algorithms for game distribution...'"},
+    {"text": "Does NOT attempt to save/persist the output", "passed": true, "evidence": "Line 135: '*Brainstorm document produced by brainstorm skill. Use the librarian skill to persist this artifact.*' — defers persistence to the librarian skill. Transcript (line 152) confirms 'the document includes 5 research suggestions as required by the deep depth level' but no save/persist action was taken"},
+    {"text": "Does NOT attempt to conduct its own research", "passed": true, "evidence": "Research Suggestions section (lines 103-111) explicitly says 'Topics that need deeper investigation by the researcher skill' — research is deferred, not conducted. Transcript lines 129-136 confirm 5 topics were 'flagged for the researcher skill' and 'the document includes 5 research suggestions... each with a specific query ready for the researcher skill'"},
+    {"text": "Flags at least 3 distinct research topics", "passed": true, "evidence": "5 distinct research topics flagged: (1) Delta update algorithms for game distribution (line 107), (2) DRM approaches for indie games (line 108), (3) Stripe Connect marketplace models (line 109), (4) Cross-platform game launcher architecture comparison (line 110), (5) Game storefront curation models (line 111)"}
+  ],
+  "summary": {
+    "passed": 16,
+    "failed": 0,
+    "total": 16,
+    "pass_rate": 1.00
+  }
+}

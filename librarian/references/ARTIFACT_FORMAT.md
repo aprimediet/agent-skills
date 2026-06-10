@@ -14,7 +14,9 @@ docs/
 │       └── index.md
 ├── specs/
 │   ├── api-auth.md                        # Flat structure for non-research categories
-│   └── rate-limiting.md
+│   └── 2026_06_10__payment-system/        # Date-prefixed for architecture specs
+│       ├── solution.md                    # solution-architect output
+│       └── technical.md                   # technical-architect output
 ├── tasks/
 │   └── sprint-12.md
 └── docs/
@@ -120,13 +122,17 @@ Creates or updates an artifact. Content can be provided via `--content`, `--file
 
 For `researches` category, automatically creates a date-prefixed directory (`YYYY_MM_DD__slug/index.md`).
 
+For `specs` category with `--artifact-type solution` or `--artifact-type technical`, creates a date-prefixed directory (`YYYY_MM_DD__slug/solution.md` or `YYYY_MM_DD__slug/technical.md`).
+
 ### read
 
 ```bash
-python scripts/librarian.py read <category> <slug> [--scope project|global]
+python scripts/librarian.py read <category> <slug> [--artifact-type solution|technical] [--scope project|global]
 ```
 
 Returns the full artifact content including parsed frontmatter and body.
+
+For `specs` category with `--artifact-type`, reads the specific architecture artifact (`solution.md` or `technical.md`).
 
 ### list
 
@@ -155,18 +161,20 @@ Find artifacts by partial slug or title match. Returns up to 10 results ranked b
 ### move
 
 ```bash
-python scripts/librarian.py move <category> <slug> <new-category> [--scope project|global]
+python scripts/librarian.py move <category> <slug> <new-category> [--artifact-type solution|technical] [--scope project|global]
 ```
 
 Moves an artifact to a different category. Updates frontmatter (category, updated timestamp) and rebuilds the index.
 
+For `specs` category with `--artifact-type`, moves the specific architecture artifact.
+
 ### delete
 
 ```bash
-python scripts/librarian.py delete <category> <slug> [--scope project|global]
+python scripts/librarian.py delete <category> <slug> [--artifact-type solution|technical] [--scope project|global]
 ```
 
-Removes an artifact file. Cleans up empty date-prefixed directories for researches. Rebuilds the index.
+Removes an artifact file. Cleans up empty date-prefixed directories for researches and specs architecture artifacts. Rebuilds the index.
 
 ### index
 

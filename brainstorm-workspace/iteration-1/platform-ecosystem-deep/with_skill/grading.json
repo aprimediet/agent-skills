@@ -1,0 +1,90 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains a 'Core Idea' section",
+      "passed": true,
+      "evidence": "Line 5: '## Core Idea' header with substantive paragraph describing the platform as 'A publishing and distribution platform purpose-built for indie game developers...'"
+    },
+    {
+      "text": "Output contains a 'Problem & Motivation' section",
+      "passed": true,
+      "evidence": "Line 9: '## Problem & Motivation' header with bullet points covering the problem ('Steam takes 30% revenue...'), who ('Solo indie developers and small indie studios'), and why now ('Steam's 30% cut is increasingly untenable...')"
+    },
+    {
+      "text": "Output contains a 'Key Decisions' section with a table",
+      "passed": true,
+      "evidence": "Line 15: '## Key Decisions' header followed by a markdown table (lines 17-27) with columns Decision | Choice | Rationale, covering 9 decisions including Architecture, Frontend, Client launcher, DRM, Payment processing, Auth, Update delivery, Analytics pipeline, and Revenue share"
+    },
+    {
+      "text": "Output contains a 'Dimensions Explored' section",
+      "passed": true,
+      "evidence": "Line 29: '## Dimensions Explored' header with 7 sub-dimensions (Architecture & Tech Stack, Data Model & Storage, Security & DRM, Business Model & Monetization, Competition & Differentiation, Developer Experience & Workflows, Performance Scalability & Distribution)"
+    },
+    {
+      "text": "Output contains an 'Open Questions' section",
+      "passed": true,
+      "evidence": "Line 93: '## Open Questions' header followed by 5 numbered open questions covering developer departure, refund policies, community/forum integration, launcher optionality, and developer identity verification"
+    },
+    {
+      "text": "Output contains a 'Research Suggestions' section",
+      "passed": true,
+      "evidence": "Line 101: '## Research Suggestions' header followed by 5 research topics, each with background description and a 'Suggested researcher query:' ready for the researcher skill"
+    },
+    {
+      "text": "Output contains a 'Risks & Mitigations' section with a table",
+      "passed": true,
+      "evidence": "Line 115: '## Risks & Mitigations' header followed by a markdown table (lines 117-125) with columns Risk | Likelihood | Impact | Mitigation, covering 7 risks including cold-start problem, bandwidth costs, Stripe onboarding friction, player perception, malware, refund abuse, and mobile distribution blockers"
+    },
+    {
+      "text": "Output contains a 'Next Steps' section",
+      "passed": true,
+      "evidence": "Line 127: '## Next Steps' header followed by 5 numbered actionable next steps: build clickable prototype, negotiate CDN commitments, build launcher MVP, recruit launch partners, and build/validate unit economics model"
+    },
+    {
+      "text": "Depth level is marked as 'deep'",
+      "passed": true,
+      "evidence": "Line 3: metadata header '> Brainstorm | Depth: deep | Generated: 2026-06-09' explicitly states depth as 'deep'"
+    },
+    {
+      "text": "Covers 5-7 dimensions (deep depth)",
+      "passed": true,
+      "evidence": "The Dimensions Explored section contains exactly 7 sub-dimensions, which falls within the 5-7 range required for deep depth: (1) Architecture & Tech Stack, (2) Data Model & Storage, (3) Security & DRM, (4) Business Model & Monetization, (5) Competition & Differentiation, (6) Developer Experience & Workflows, (7) Performance, Scalability & Distribution"
+    },
+    {
+      "text": "Explores technical dimensions (e.g., distribution architecture, cross-platform, CDN)",
+      "passed": true,
+      "evidence": "Multiple technical dimensions explored: 'Architecture & Tech Stack' (lines 31-38) covers monolith vs services, Tauri vs Electron, CDN/object storage; 'Data Model & Storage' (lines 40-48) covers Postgres, ClickHouse, content-addressed storage; 'Security & DRM' (lines 50-57) covers token-based validation, 2FA; 'Performance, Scalability & Distribution' (lines 84-91) covers CDN strategy, binary diff patching, peer-to-peer, mobile distribution architecture"
+    },
+    {
+      "text": "Explores non-technical dimensions (e.g., revenue model, developer relations, curation policy)",
+      "passed": true,
+      "evidence": "Multiple non-technical dimensions explored: 'Business Model & Monetization' (lines 60-65) covers 15% revenue share, featured placements, cloud saves, bundles; 'Competition & Differentiation' (lines 67-73) covers market positioning vs Steam, itch.io, GOG, Epic; 'Developer Experience & Workflows' (lines 75-82) covers onboarding, build validation, regional pricing, wishlist system, analytics dashboard"
+    },
+    {
+      "text": "Suggests researcher skill for multiple topics needing deeper investigation",
+      "passed": true,
+      "evidence": "Lines 102-113: 5 research topics each include 'Suggested researcher query:' — explicit reference to the researcher skill. Examples: 'Suggested researcher query: \"CDN cost optimization for large binary game file distribution...\"' (line 105) and 'Suggested researcher query: \"Payment processing platforms for game distribution marketplaces...\"' (line 113)"
+    },
+    {
+      "text": "Does NOT attempt to save/persist the output",
+      "passed": true,
+      "evidence": "Line 140: closing footer explicitly states '*Brainstorm document produced by brainstorm skill. Use the librarian skill to persist this artifact.*' — defers persistence to the librarian skill. Transcript line 109 confirms: 'No librarian skill was invoked for persistence since this is a test run within the brainstorm workspace.'"
+    },
+    {
+      "text": "Does NOT attempt to conduct its own research",
+      "passed": true,
+      "evidence": "The document identifies research gaps and defers them to the researcher skill via 'Suggested researcher query:' entries (lines 103-113). No inline research results or external citations are presented — the skill asks questions and flags topics rather than answering them with researched data. The transcript lines 83-95 confirm these were 'Research Topics Flagged' for the researcher skill."
+    },
+    {
+      "text": "Flags at least 3 distinct research topics",
+      "passed": true,
+      "evidence": "Research Suggestions section (lines 101-113) lists 5 distinct research topics: (1) CDN cost optimization for game distribution, (2) Binary diff patching algorithms for game updates, (3) Regional pricing data and consumer behavior in game markets, (4) Third-party marketplace compliance on iOS (EU DMA), (5) Stripe Connect vs alternative payment platforms for marketplace payouts. All 5 exceed the minimum threshold of 3."
+    }
+  ],
+  "summary": {
+    "passed": 16,
+    "failed": 0,
+    "total": 16,
+    "pass_rate": 1.0
+  }
+}

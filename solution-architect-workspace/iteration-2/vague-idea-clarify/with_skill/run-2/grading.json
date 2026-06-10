@@ -1,0 +1,167 @@
+{
+  "expectations": [
+    {
+      "text": "Starts by asking ONE clarifying question to anchor the conversation (not a full questionnaire)",
+      "passed": true,
+      "evidence": "opening-question.md asks a single anchor question: 'What channels does this notification system need to deliver through — in-app ... email, SMS, push ... and which is the primary one?' Framed as 'the single most important question to ask first'."
+    },
+    {
+      "text": "Does NOT immediately produce a final document — engages in dialogue first",
+      "passed": true,
+      "evidence": "opening-question.md is a separate Step-1 artifact that asks a question and states an assumption to be carried into / recorded under Open Questions, before the final document is produced."
+    },
+    {
+      "text": "First response asks a targeted question about scope or context (e.g., 'What kind of notifications? Email, SMS, in-app?')",
+      "passed": true,
+      "evidence": "The opening question targets channel scope ('in-app (notification center / bell icon), email, SMS, push (mobile/web), or some combination'), directly matching the example."
+    },
+    {
+      "text": "Output eventually contains 'Problem Statement' section after clarification",
+      "passed": true,
+      "evidence": "notification-system.md line 14: '## Problem Statement' with Business problem, User problem, Success criteria."
+    },
+    {
+      "text": "Output eventually contains 'Scope' section",
+      "passed": true,
+      "evidence": "notification-system.md line 24: '## Scope' with In scope / Out of scope (v1) / Existing systems."
+    },
+    {
+      "text": "Output eventually contains 'Capabilities' section",
+      "passed": true,
+      "evidence": "notification-system.md line 30: '## Capabilities' containing CAP-01 through CAP-09."
+    },
+    {
+      "text": "Output eventually contains 'Dependency Map' section",
+      "passed": true,
+      "evidence": "notification-system.md line 303: '## Dependency Map' with a 9-row table."
+    },
+    {
+      "text": "Output eventually contains 'Open Questions' section",
+      "passed": true,
+      "evidence": "notification-system.md line 317: '## Open Questions' listing assumed channels/audience plus 5 other unresolved items."
+    },
+    {
+      "text": "Output eventually contains 'Research Suggestions' section",
+      "passed": true,
+      "evidence": "notification-system.md line 329: '## Research Suggestions' with 5 topics and suggested researcher queries."
+    },
+    {
+      "text": "Output eventually contains 'Next Steps' section",
+      "passed": true,
+      "evidence": "notification-system.md line 339: '## Next Steps' with 6 numbered actions."
+    },
+    {
+      "text": "Depth level is marked as 'standard' when depth is not specified",
+      "passed": true,
+      "evidence": "notification-system.md line 3: '> Solution Architect | Depth: standard | Generated: 2026-06-09'."
+    },
+    {
+      "text": "Each capability has a Logic flow field describing WHAT not HOW",
+      "passed": true,
+      "evidence": "All 9 capabilities contain '**Logic flow**' numbered lists. E.g., CAP-09 step 3: 'On a deferred/soft-fail signal, system schedules a retry per policy until success or max attempts' — describes behavior, not implementation."
+    },
+    {
+      "text": "Business problem is stated in Problem Statement",
+      "passed": true,
+      "evidence": "Line 16: '**Business problem**: The product generates events users care about ... but has no reliable way to surface them ... engagement and retention drop, and support load rises.'"
+    },
+    {
+      "text": "User problem is stated in Problem Statement",
+      "passed": true,
+      "evidence": "Line 17: '**User problem**: Users want to be told about things relevant to them — promptly, through a channel they prefer, and without being overwhelmed by noise.'"
+    },
+    {
+      "text": "Success criteria are measurable",
+      "passed": true,
+      "evidence": "Line 18-22: 'delivered to at least 99% of intended recipients within 1 minute'; in-app 'within seconds'; 'No user receives a notification on a channel they have opted out of' — quantified/verifiable targets."
+    },
+    {
+      "text": "Covers at least 4 capabilities (standard depth minimum)",
+      "passed": true,
+      "evidence": "9 capabilities: CAP-01 Event intake and normalization, CAP-02 Recipient resolution and preference check, CAP-03 Notification preference management, CAP-04 In-app delivery, CAP-05 Email delivery, CAP-06 Batching and digest, CAP-07 Templating and personalization, CAP-08 Notification history and read-state, CAP-09 Delivery tracking and retry. 9 >= 4."
+    },
+    {
+      "text": "Research Suggestions reference the researcher skill",
+      "passed": true,
+      "evidence": "Line 331: 'The researcher skill is not available in this run; these topics are flagged for it rather than researched here.' Each item includes a 'Suggested researcher query'."
+    },
+    {
+      "text": "Does NOT attempt to save/persist the output — suggests librarian skill instead",
+      "passed": true,
+      "evidence": "No persisted artifact was saved. Footer (line 349) and Next Steps item 6 (line 346): 'use the librarian skill to persist this document as a spec artifact.'"
+    },
+    {
+      "text": "Does NOT attempt to conduct its own research — flags topics for researcher skill",
+      "passed": true,
+      "evidence": "Line 331 explicitly states topics are 'flagged for it rather than researched here'. No researched conclusions are presented as fact."
+    },
+    {
+      "text": "Checks for existing knowledge via librarian skill before starting",
+      "passed": true,
+      "evidence": "Step 0 note (lines 5-10) documents the librarian knowledge check: notes the librarian skill is unavailable and lists the categories/keywords ('researches', 'specs', 'docs') to search before building. The librarian step was engaged and documented; Existing Knowledge section omitted because nothing was retrieved."
+    },
+    {
+      "text": "Flags at least one topic as needing research (e.g., delivery channels, rate limiting)",
+      "passed": true,
+      "evidence": "Research Suggestions flags 5 topics including 'Transactional email deliverability', 'Notification preference UX patterns', 'Digest and batching strategies', 'Anti-noise / notification fatigue', 'Compliance for messaging'."
+    },
+    {
+      "text": "Logic flows describe WHAT not HOW (no tech stack, no code, no architecture)",
+      "passed": true,
+      "evidence": "Logic flows are technology-agnostic. E.g., CAP-05 'submits the message to the email delivery provider'; CAP-06 'accumulates digest-bound notification items per recipient in a pending collection'. No named tech stack, code, or architecture; 'email delivery provider' is generic."
+    }
+  ],
+  "summary": {
+    "passed": 22,
+    "failed": 0,
+    "total": 22,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 27551,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 157.5,
+    "total_duration_seconds": 157.5,
+    "total_tokens": 39313
+  },
+  "claims": [
+    {
+      "claim": "The breakdown covers 9 capabilities",
+      "type": "factual",
+      "verified": true,
+      "evidence": "CAP-01 through CAP-09 present, each with full structure (Trigger/Inputs/Logic flow/Outputs/Edge cases/Connects to)."
+    },
+    {
+      "claim": "Transactional notifications delivered to >=99% of recipients within 1 minute",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Framed as a success criterion/target, not an achieved result; appropriate as a measurable goal."
+    },
+    {
+      "claim": "The researcher and librarian skills were not available in this run",
+      "type": "process",
+      "verified": true,
+      "evidence": "Stated lines 5 and 331; handled gracefully by documenting deferred checks. Tool availability cannot be independently confirmed but the document behavior is consistent."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": ["Librarian and researcher skills unavailable in-session; both steps documented as deferred"],
+    "needs_review": [],
+    "workarounds": ["Answered the channel anchor question with a stated assumption (in-app + email, end-user audience, SMS/push deferred) to proceed non-interactively; recorded under Open Questions"]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Checks for existing knowledge via librarian skill before starting",
+        "reason": "Same as other runs: the librarian skill is unavailable, so this passes on documented intent rather than an actual query. Consider exposing the librarian skill in the eval environment or rewording to match what is verifiable."
+      }
+    ],
+    "overall": "Assertions are well-targeted and all clearly satisfied. The librarian-check assertion is the only one whose pass rests on documentation rather than an executed tool call."
+  }
+}

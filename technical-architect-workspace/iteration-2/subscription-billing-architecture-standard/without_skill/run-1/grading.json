@@ -1,0 +1,175 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains 'Source Breakdown' section referencing the provided capabilities",
+      "passed": false,
+      "evidence": "No '## Source Breakdown' section exists. The closest is '## 1. Context & Constraints' (line 5), which references the capabilities but is not the prescribed Source Breakdown section. Prescribed structure absent in baseline."
+    },
+    {
+      "text": "Output contains 'Constraints & Assumptions' section capturing team (TypeScript) and scale",
+      "passed": false,
+      "evidence": "No section titled 'Constraints & Assumptions'. Constraints are captured in '## 1. Context & Constraints' (table lines 13-16, team=TypeScript, scale=few thousand), but the prescribed named section with [stated]/[assumed] tagging is absent."
+    },
+    {
+      "text": "Output contains 'Architecture Overview' section with a named architecture style and rationale",
+      "passed": false,
+      "evidence": "No 'Architecture Overview' section. Section '## 2. Architecture Style' (line 27) does name a style ('Modular monolith', line 29) with rationale, but the prescribed 'Architecture Overview' header is absent."
+    },
+    {
+      "text": "Output contains 'Tech Stack' section",
+      "passed": true,
+      "evidence": "Line 81: '## 3. Recommended Tech Stack' — contains the 'Tech Stack' designation with per-layer recommendations."
+    },
+    {
+      "text": "Output contains 'Capability → Tech Mapping' section",
+      "passed": false,
+      "evidence": "No 'Capability → Tech Mapping' section. Section '## 5. How the Architecture Realizes Each Capability' (line 178) is a functional-equivalent table but is not the prescribed named section."
+    },
+    {
+      "text": "Output contains 'Key Architecture Decisions' section with at least 2 ADR-style entries",
+      "passed": false,
+      "evidence": "No 'Key Architecture Decisions' section and no numbered ADR-style entries (AD-01 etc. with Decision/Context/Rationale/Tradeoffs). Decisions are embedded inline in the stack and a 'Build vs. Buy Summary' table (line 220), but not in ADR form."
+    },
+    {
+      "text": "Output contains 'Risks & Tradeoffs' section",
+      "passed": false,
+      "evidence": "No 'Risks & Tradeoffs' section. Risk-like content is dispersed under '## 6. Cross-Cutting Concerns' (reliability/scale/security, line 191), but the prescribed named section is absent."
+    },
+    {
+      "text": "Output contains 'Research Suggestions' section",
+      "passed": true,
+      "evidence": "Line 241: '## 9. Research Suggestions (flag to researcher skill — not resolved here)' with three flagged items."
+    },
+    {
+      "text": "Output contains 'Open Questions' section",
+      "passed": false,
+      "evidence": "Section is titled '## 8. Open Technical Questions' (line 234), not 'Open Questions'. It serves the purpose but the prescribed header string differs."
+    },
+    {
+      "text": "Output contains 'Next Steps' section",
+      "passed": true,
+      "evidence": "Line 247: '## 10. Next Steps' with four numbered actions."
+    },
+    {
+      "text": "Depth level is marked as 'standard'",
+      "passed": true,
+      "evidence": "Line 3: '> Technical Architect | Depth: standard | Generated: 2026-06-10'."
+    },
+    {
+      "text": "Tech stack covers frontend, backend, data storage, auth, infrastructure, CI/CD, observability, and security layers",
+      "passed": false,
+      "evidence": "Covers frontend (Next.js, line 90), backend/runtime (line 85), database (line 96), auth (line 138), hosting (line 127), observability (line 132), and security (under Cross-Cutting Concerns, line 199). However there is NO CI/CD layer — no build/test/deploy pipeline coverage anywhere in the stack. Eight-layer coverage incomplete (CI/CD missing)."
+    },
+    {
+      "text": "Each tech stack layer gives a Recommendation, a Why/rationale, and at least one Alternative",
+      "passed": false,
+      "evidence": "Most layers give Recommendation + Why + Alternative (e.g. DB lines 96-100, Jobs lines 113-116). But 'Invoice PDF generation' (line 123) gives no distinct alternative, and 'Auth' (line 138) lists Auth.js only as a fallback. The summary table (line 143) shows '—' (no alternative) for Auth. Not every layer satisfies the rule."
+    },
+    {
+      "text": "Recommendation adapts to the stated TypeScript team constraint (e.g., Node/TS backend)",
+      "passed": true,
+      "evidence": "Line 85 'TypeScript on Node.js 22 LTS'; line 87 'Matches team skill exactly. End-to-end TypeScript'. Drizzle/Resend/React Email all chosen for TS-native ergonomics."
+    },
+    {
+      "text": "Recommendation reflects the stated scale (does not over-engineer for millions when thousands are expected)",
+      "passed": true,
+      "evidence": "Line 15 'Low absolute load. A single relational database ... is more than sufficient'; line 33 rejects microservices; line 210-211 'a few thousand renewals/month, trivially handled by a single Postgres primary and one worker.'"
+    },
+    {
+      "text": "Capability mapping covers all 6 provided capabilities (CAP-01..CAP-06)",
+      "passed": true,
+      "evidence": "Section 5 table (lines 181-187) has a row each for CAP-01 through CAP-06 describing realization. (Mapping content is present even though the section is not the prescribed-named one.)"
+    },
+    {
+      "text": "Payment processing architecture addresses a payment gateway integration (PCI handled by a provider, not storing raw card data)",
+      "passed": true,
+      "evidence": "Line 109 'Stripe is PCI-DSS Level 1; using Stripe Elements/Checkout + Setup Intents means raw PAN/CVV never hit our servers, collapsing our PCI scope to ... SAQ A.' Line 170 payment_method stores only Stripe token (never raw PAN)."
+    },
+    {
+      "text": "Recurring billing / scheduled jobs are addressed for the billing cycle (CAP-04)",
+      "passed": true,
+      "evidence": "Line 185 'A BullMQ repeatable (daily cron) job sweeps subscription ... using FOR UPDATE SKIP LOCKED'; idempotency on last-billed date prevents double-billing; missed-run catch-up automatic."
+    },
+    {
+      "text": "Async retry/dunning handling is addressed for CAP-06",
+      "passed": true,
+      "evidence": "Line 187 'schedule delayed BullMQ jobs at the configured intervals (3/7/14 days), creating retry_schedule rows and sending dunning emails. Lean on Stripe Smart Retries.'"
+    },
+    {
+      "text": "Describes HOW (technologies, architecture), NOT new features or capabilities",
+      "passed": true,
+      "evidence": "Output stays on technical implementation of CAP-01..06; no new functional capabilities invented. Functional unknowns (e.g. multiple subscriptions per user) are flagged as open questions (line 238), not invented."
+    },
+    {
+      "text": "Flags at least one high-stakes choice for the researcher skill with a ready-to-use query",
+      "passed": false,
+      "evidence": "Section 9 (lines 243-245) flags three high-stakes topics (ASC 606, dunning cadence, proration) and labels them 'flag to researcher skill', but provides only topic descriptions — NOT ready-to-use researcher queries (no quoted prompt strings). The 'ready-to-use query' part of the assertion is unmet."
+    },
+    {
+      "text": "Does NOT attempt to persist/save the output — suggests librarian skill instead",
+      "passed": true,
+      "evidence": "No self-persistence in content; footer (line 255) suggests the librarian skill. (Cannot fully verify tool behavior — no transcript available.)"
+    },
+    {
+      "text": "Output ends with a suggestion to use the librarian skill for persistence",
+      "passed": true,
+      "evidence": "Line 255 footer: '... Built on the subscription-billing capability breakdown (CAP-01..06). Use the librarian skill to persist this artifact.'"
+    }
+  ],
+  "summary": {
+    "passed": 13,
+    "failed": 10,
+    "total": 23,
+    "pass_rate": 0.57
+  },
+  "execution_metrics": {
+    "note": "No metrics.json found in outputs_dir; metrics unavailable.",
+    "output_chars": 13400
+  },
+  "timing": {
+    "total_tokens": 37541,
+    "executor_duration_seconds": 161.1,
+    "total_duration_seconds": 161.1
+  },
+  "claims": [
+    {
+      "claim": "The capability breakdown states a user-account system already exists (so auth is reused)",
+      "type": "factual",
+      "verified": false,
+      "evidence": "The eval prompt does NOT state an existing user-account system; it only lists CAP-01..06. Baseline asserts (line 139) 'The capability breakdown states a user-account system already exists' — this is an unsupported assumption stated as fact. with_skill correctly treated this as an open question instead."
+    },
+    {
+      "claim": "Stripe collapses PCI scope to SAQ A",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Correct for client-side tokenized capture via Elements/Checkout (line 109)."
+    },
+    {
+      "claim": "Output is depth 'standard' and is a complete full-stack architecture",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Content is substantively complete and high quality (data model, idempotency, testing). However it omits a CI/CD layer and uses non-prescribed section structure."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": ["Baseline fabricates an 'existing user-account system' constraint not present in the prompt (line 139), leading it to skip provisioning auth — a factual error the skill version avoided."],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Flags at least one high-stakes choice for the researcher skill with a ready-to-use query",
+        "reason": "This assertion is well-discriminating: the baseline flags research topics but omits ready-to-use query strings, so it correctly fails while the skill version (which includes quoted queries) passes. Good separator — keep it."
+      },
+      {
+        "reason": "No assertion checks whether the architect invents unstated constraints. The baseline fabricated an 'existing user-account system already exists' claim absent from the prompt; the skill version correctly flagged auth as an open question. Consider an assertion like 'Does not assert unstated facts about existing systems; treats unknowns as assumptions/open questions.'"
+      },
+      {
+        "assertion": "Output contains 'Open Questions' section",
+        "reason": "Baseline used 'Open Technical Questions' — a near-synonym. If the eval intends to reward the exact prescribed header (a skill-vs-baseline separator), this is fine; if it only cares that open questions exist, the assertion will produce false negatives on reasonable header variants. Clarify intent."
+      }
+    ],
+    "overall": "Header-structure assertions (Source Breakdown, Constraints & Assumptions, Architecture Overview, Capability → Tech Mapping, Key Architecture Decisions, Risks & Tradeoffs, Open Questions) are the primary skill-vs-baseline separators and behaved as designed. Two content assertions (full-layer coverage incl. CI/CD; ready-to-use research query; per-layer alternative) also separated the runs on substance, not just headers — strong signal."
+  }
+}

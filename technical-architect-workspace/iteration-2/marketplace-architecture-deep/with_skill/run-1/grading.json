@@ -1,0 +1,173 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains 'Source Breakdown' section referencing the capability set",
+      "passed": true,
+      "evidence": "'## Source Breakdown' (line 5) enumerates CAP-01..CAP-15 derived from the task's ~15 capability areas (seller onboarding, listing, asset/license, search, checkout, payment, delivery/entitlements, refunds/chargebacks, ledger, payouts, reviews, moderation, notifications)."
+    },
+    {
+      "text": "Output contains 'Constraints & Assumptions' section capturing the large-scale target",
+      "passed": true,
+      "evidence": "'## Constraints & Assumptions' (line 29): 'Scale & load: Design for growth to millions of users [stated]. Implies horizontal scalability...'"
+    },
+    {
+      "text": "Output contains 'Architecture Overview' section with a named architecture style and rationale appropriate for scale",
+      "passed": true,
+      "evidence": "'## Architecture Overview' (line 42): Style = 'Modular monolith at launch, with a small set of pre-carved seams for extraction into services' with rationale tied to team size and millions-of-users scale ramp."
+    },
+    {
+      "text": "Output contains 'Tech Stack' section",
+      "passed": true,
+      "evidence": "'## Tech Stack' (line 47) with per-layer subsections."
+    },
+    {
+      "text": "Output contains 'Capability → Tech Mapping' section",
+      "passed": true,
+      "evidence": "'## Capability → Tech Mapping' (line 131) with a 15-row table CAP-01..CAP-15."
+    },
+    {
+      "text": "Output contains 'Key Architecture Decisions' section with multiple ADR-style entries",
+      "passed": true,
+      "evidence": "'## Key Architecture Decisions' (line 151) with AD-01 through AD-07, each having Decision/Context/Rationale/Tradeoffs."
+    },
+    {
+      "text": "Output contains 'Risks & Tradeoffs' section",
+      "passed": true,
+      "evidence": "'## Risks & Tradeoffs' (line 195) with 7 bulleted risks each with mitigation."
+    },
+    {
+      "text": "Output contains 'Research Suggestions' section",
+      "passed": true,
+      "evidence": "'## Research Suggestions' (line 206) with 3 entries and ready-to-use researcher queries."
+    },
+    {
+      "text": "Output contains 'Open Questions' section",
+      "passed": true,
+      "evidence": "'## Open Questions' (line 214) with 6 items (entitlement/license model, refund/chargeback policy, gateway feature set, anti-piracy, data residency, identity)."
+    },
+    {
+      "text": "Output contains 'Next Steps' section",
+      "passed": true,
+      "evidence": "'## Next Steps' (line 223) with 7 numbered concrete actions."
+    },
+    {
+      "text": "Depth level is marked as 'deep'",
+      "passed": true,
+      "evidence": "Header line 3: '> Technical Architect | Depth: deep | Generated: 2026-06-10'."
+    },
+    {
+      "text": "Tech stack covers frontend, backend, data storage, async/messaging, auth, infrastructure, CI/CD, observability, third-party integrations, and security",
+      "passed": true,
+      "evidence": "All ten layers present as subsections: Frontend, Backend/API, Data storage, Async/messaging, Authentication & authorization, Infrastructure & hosting, CI/CD & developer tooling, Observability, Third-party services & integrations, Security (lines 49-129)."
+    },
+    {
+      "text": "Each tech stack layer gives a Recommendation, a Why/rationale, and at least one Alternative",
+      "passed": true,
+      "evidence": "Frontend/Backend/Data-storage subsections etc. each have Recommendation/Why/Alternatives bullets (e.g., Frontend line 50-52: React/Next.js, why SSR, alternatives Remix/SvelteKit). Third-party services and Security are itemized lists with per-item rationale rather than strict Recommendation/Why/Alternatives triplets, but all core stack layers comply."
+    },
+    {
+      "text": "Architecture style choice (e.g., microservices/event-driven) is justified by the scale and capability breadth",
+      "passed": true,
+      "evidence": "AD-01 (line 153) 'Modular monolith with pre-carved seams, not microservices (yet)' justifies the choice against millions-of-users scale, small team, and domain fault lines (search, payments/ledger, delivery, moderation, notifications)."
+    },
+    {
+      "text": "Search capability is addressed with a dedicated search technology",
+      "passed": true,
+      "evidence": "Search engine subsection (line 72) recommends OpenSearch/Elasticsearch dedicated cluster fed from listing events; AD-04 (line 171) dedicates an ADR to it."
+    },
+    {
+      "text": "Payment processing and seller payouts are addressed (e.g., a payments/marketplace provider, ledger)",
+      "passed": true,
+      "evidence": "Third-party section (line 114) Stripe-Connect-class gateway for charge/capture/refunds/connected-account payouts; AD-02 double-entry ledger; AD-07 gateway delegation; CAP-06/09/10 in mapping table."
+    },
+    {
+      "text": "Digital delivery/entitlements is addressed (object storage + access control / signed delivery)",
+      "passed": true,
+      "evidence": "Object storage subsection (line 77): private S3 buckets + CDN + short-lived signed URLs gated by entitlement; AD-03 (line 165) dedicated ADR; CAP-07 in mapping table."
+    },
+    {
+      "text": "Async/event-driven processing is used for cross-cutting flows (e.g., notifications, payouts, moderation)",
+      "passed": true,
+      "evidence": "Async/messaging (line 85): Kafka event log carrying OrderPaid/EntitlementGranted/RefundProcessed/etc. to consumers for notifications (CAP-13), payout batching (CAP-10), search indexing, analytics; AD-05 dedicated ADR."
+    },
+    {
+      "text": "Capability mapping covers the major capability areas (buyer, seller, payments, delivery, trust/moderation)",
+      "passed": true,
+      "evidence": "Mapping table (lines 133-149) covers buyer storefront/library (CAP-14), seller onboarding/dashboard (CAP-01/15), payments/ledger/payouts (CAP-06/09/10), delivery/entitlements (CAP-07), moderation (CAP-12)."
+    },
+    {
+      "text": "Describes HOW (technologies, architecture), NOT new features or capabilities",
+      "passed": true,
+      "evidence": "Document is technology/architecture-focused; where functional scope could expand (DRM, refund policy) it explicitly flags back to solution-architect rather than inventing (e.g., Risks line 198: 'DRM-grade protection is out of scope... would be a new capability — flag to solution-architect')."
+    },
+    {
+      "text": "Flags at least 2 high-stakes choices for the researcher skill with ready-to-use queries",
+      "passed": true,
+      "evidence": "Research Suggestions (lines 210-212) flags 3: async backbone (Kafka vs queue), digital-goods delivery/anti-piracy, and trust&safety build-vs-buy — each with a quoted ready-to-use researcher query."
+    },
+    {
+      "text": "Does NOT attempt to persist/save the output — suggests librarian skill instead",
+      "passed": true,
+      "evidence": "No persistence attempted; Next Steps item 7 (line 231) 'Hand this document to the librarian skill to persist as a spec artifact.'"
+    },
+    {
+      "text": "Output ends with a suggestion to use the librarian skill for persistence",
+      "passed": true,
+      "evidence": "Final line 234: '*Technical architecture produced by technical-architect skill. Use the librarian skill to persist this artifact.*'"
+    }
+  ],
+  "summary": {
+    "passed": 23,
+    "failed": 0,
+    "total": 23,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "note": "No metrics.json present in outputs_dir.",
+    "output_chars": 43678,
+    "output_files": 1
+  },
+  "timing": {
+    "total_tokens": 53678,
+    "duration_ms": 229894,
+    "total_duration_seconds": 229.9
+  },
+  "claims": [
+    {
+      "claim": "The librarian skill was unavailable, so the capability list is an inline breakdown derived from the task statement (not invented).",
+      "type": "process",
+      "verified": true,
+      "evidence": "Source Breakdown (line 7) states this; the CAP-01..CAP-15 list maps cleanly to the enumerated task areas, with CAP-14/15 flagged as implied surfaces (line 27)."
+    },
+    {
+      "claim": "All ~15 task capability areas are mapped to implementing technologies.",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Mapping table has 15 rows; each task area (onboarding, listing, asset/license, search, checkout, payment, delivery, refunds, ledger, payouts, reviews, moderation, notifications) plus buyer library and seller dashboard is covered."
+    },
+    {
+      "claim": "Stays on the 'how' side and refuses to invent new functional scope.",
+      "type": "quality",
+      "verified": true,
+      "evidence": "DRM, refund policy, and entitlement model are flagged as solution-architect/functional decisions rather than designed in (Open Questions lines 216-221; Risks line 198)."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": ["Librarian skill unavailable in run; capability breakdown derived inline from the task statement rather than retrieved."]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Each tech stack layer gives a Recommendation, a Why/rationale, and at least one Alternative",
+        "reason": "The Third-party services and Security layers are itemized lists without the strict Recommendation/Why/Alternative triplet that the other layers follow. The assertion passes because all core layers comply, but it could be made more discriminating by specifying which layers must carry the full triplet (the format reference itself notes some layers may legitimately not need alternatives)."
+      },
+      {
+        "assertion": "Describes HOW (technologies, architecture), NOT new features or capabilities",
+        "reason": "This is hard to falsify mechanically — a discriminating version could require that any functional gap (e.g., refund policy, DRM) be explicitly deferred to solution-architect rather than decided, which all runs happen to do well but a weaker output could violate undetected."
+      }
+    ],
+    "overall": "Assertions are comprehensive and map well to the OUTPUT_FORMAT reference. Section-presence checks are mostly structural; the two content-quality assertions (HOW-not-WHAT, full triplet per layer) are the most valuable and could be tightened slightly."
+  }
+}

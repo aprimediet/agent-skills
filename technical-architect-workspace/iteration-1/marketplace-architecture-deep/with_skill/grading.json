@@ -1,0 +1,181 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains 'Source Breakdown' section referencing the capability set",
+      "passed": true,
+      "evidence": "Line 5 '## Source Breakdown'; lines 9-25 enumerate CAP-01..CAP-15 (seller onboarding, listing/asset, search, checkout, payment, delivery/entitlements, refunds/chargebacks, ledger, payouts, reviews, moderation, notifications), explicitly referencing the prompt's ~15 capability set."
+    },
+    {
+      "text": "Output contains 'Constraints & Assumptions' section capturing the large-scale target",
+      "passed": true,
+      "evidence": "Line 29 '## Constraints & Assumptions'; line 31 'Scale & load: Design for growth to millions of users [stated]' with read-heavy/horizontal-scale implications. Items tagged [stated]/[assumed] per format."
+    },
+    {
+      "text": "Output contains 'Architecture Overview' section with a named architecture style and rationale appropriate for scale",
+      "passed": true,
+      "evidence": "Line 42 '## Architecture Overview'; line 44 Style: 'Modular monolith at launch with pre-carved seams for later service extraction' with rationale tied to small team at launch and extraction at millions of users."
+    },
+    {
+      "text": "Output contains 'Tech Stack' section",
+      "passed": true,
+      "evidence": "Line 47 '## Tech Stack' with layered subsections (Frontend, Backend/API, Data storage, Async/messaging, Auth, Infra, CI/CD, Observability, Third-party, Security)."
+    },
+    {
+      "text": "Output contains 'Capability → Tech Mapping' section",
+      "passed": true,
+      "evidence": "Line 129 '## Capability → Tech Mapping' with a table mapping CAP-01..CAP-15 to implementing components/tech (lines 131-147)."
+    },
+    {
+      "text": "Output contains 'Key Architecture Decisions' section with multiple ADR-style entries",
+      "passed": true,
+      "evidence": "Line 149 '## Key Architecture Decisions' with AD-01 through AD-07 (lines 151-191), each with Decision/Context/Rationale/Tradeoffs structure."
+    },
+    {
+      "text": "Output contains 'Risks & Tradeoffs' section",
+      "passed": true,
+      "evidence": "Line 193 '## Risks & Tradeoffs' with 8 bulleted risk items each carrying a mitigation."
+    },
+    {
+      "text": "Output contains 'Research Suggestions' section",
+      "passed": true,
+      "evidence": "Line 205 '## Research Suggestions' with 4 entries, each carrying a ready-to-use researcher query."
+    },
+    {
+      "text": "Output contains 'Open Questions' section",
+      "passed": true,
+      "evidence": "Line 214 '## Open Questions' with 6 unresolved items (payment gateway feature set, identity strategy, asset types, license semantics, refund policy, data residency)."
+    },
+    {
+      "text": "Output contains 'Next Steps' section",
+      "passed": true,
+      "evidence": "Line 223 '## Next Steps' with 7 numbered concrete actions (skeleton, money-core spike, delivery spike, search spike, etc.)."
+    },
+    {
+      "text": "Depth level is marked as 'deep'",
+      "passed": true,
+      "evidence": "Line 3 '> Technical Architect | Depth: deep | Generated: 2026-06-10'."
+    },
+    {
+      "text": "Tech stack covers frontend, backend, data storage, async/messaging, auth, infrastructure, CI/CD, observability, third-party integrations, and security",
+      "passed": true,
+      "evidence": "All ten layers present as subsections: Frontend (49), Backend/API (54), Data storage (59), Async/messaging (85), Auth & authorization (93), Infrastructure & hosting (98), CI/CD & developer tooling (103), Observability (108), Third-party services & integrations (113), Security (121)."
+    },
+    {
+      "text": "Each tech stack layer gives a Recommendation, a Why/rationale, and at least one Alternative",
+      "passed": true,
+      "evidence": "Frontend/Backend/each data sub-store/Async/Auth/Infra/CI-CD/Observability all use Recommendation+Why+Alternatives (e.g., lines 50-52, 55-57, 62-64, 89-91, 94-96, 99-101, 104-106, 109-111). Third-party and Security are listed as integration/control catalogs rather than strict Recommendation/Alternative triplets, which the format explicitly permits ('Omit layers that genuinely don't apply'); analytics store also gives recommendation+why+alternative path. Substantially every layer that warrants the triplet provides it."
+    },
+    {
+      "text": "Architecture style choice (e.g., microservices/event-driven) is justified by the scale and capability breadth",
+      "passed": true,
+      "evidence": "Line 44 and AD-01 (lines 151-155): modular monolith with seams justified by 'Designing for millions of users but launching lean' and the domain's 'clear fault lines' (search, money core, delivery, moderation, notifications) needing independent scaling — explicitly ties to scale and capability breadth."
+    },
+    {
+      "text": "Search capability is addressed with a dedicated search technology",
+      "passed": true,
+      "evidence": "Lines 71-74 recommend OpenSearch/Elasticsearch dedicated cluster fed asynchronously from events; AD-05 (lines 175-179) dedicates a search engine. CAP-04 mapped to OpenSearch (line 136)."
+    },
+    {
+      "text": "Payment processing and seller payouts are addressed (e.g., a payments/marketplace provider, ledger)",
+      "passed": true,
+      "evidence": "Third-party payment gateway with marketplace/connected-account payouts (line 114), double-entry ledger as system of record (AD-02, lines 157-161), CAP-07 payments / CAP-10 ledger / CAP-11 payouts mapped (lines 139-143)."
+    },
+    {
+      "text": "Digital delivery/entitlements is addressed (object storage + access control / signed delivery)",
+      "passed": true,
+      "evidence": "Lines 76-79 S3-compatible private storage with pre-signed PUT uploads and short-lived signed GET URLs gated on entitlement check via CDN; AD-03 (lines 163-167). CAP-08 mapped (line 140)."
+    },
+    {
+      "text": "Async/event-driven processing is used for cross-cutting flows (e.g., notifications, payouts, moderation)",
+      "passed": true,
+      "evidence": "Async/messaging section (lines 85-91) Kafka-class event log carrying OrderPaid/RefundIssued/PayoutSettled etc. to consumers: notifications, search indexing, ledger, payout batching, entitlement revocation, moderation/fraud. AD-04 (lines 169-173)."
+    },
+    {
+      "text": "Capability mapping covers the major capability areas (buyer, seller, payments, delivery, trust/moderation)",
+      "passed": true,
+      "evidence": "Capability→Tech table (lines 131-147) covers seller onboarding, listing, inventory, search, catalog browse (buyer), checkout, payments, delivery/entitlements, refunds, ledger, payouts, reviews, moderation/trust, notifications, dashboards — all five areas covered."
+    },
+    {
+      "text": "Describes HOW (technologies, architecture), NOT new features or capabilities",
+      "passed": true,
+      "evidence": "Document stays technical; line 7 explicitly states 'no new functional capabilities are introduced' and functional gaps are flagged back to solution-architect (e.g., Open Questions lines 219-220 mark license semantics and refund policy as '(Functional, defer to solution-architect)')."
+    },
+    {
+      "text": "Flags at least 2 high-stakes choices for the researcher skill with ready-to-use queries",
+      "passed": true,
+      "evidence": "Research Suggestions (lines 209-212) flags 4 items, each with a quoted ready-to-use researcher query: event backbone (Kafka vs managed queue), search engine selection, delivery/anti-piracy, and payment+tax+KYC provider fit."
+    },
+    {
+      "text": "Does NOT attempt to persist/save the output — suggests librarian skill instead",
+      "passed": true,
+      "evidence": "No file-write/persistence attempted by the doc itself; line 7 notes librarian was not available to persist, and the doc defers persistence to the librarian skill (Next Steps step 7, line 231; footer line 234)."
+    },
+    {
+      "text": "Output ends with a suggestion to use the librarian skill for persistence",
+      "passed": true,
+      "evidence": "Line 234 footer: '*Technical architecture produced by technical-architect skill. Use the librarian skill to persist this artifact.*' and Next Steps step 7 (line 231)."
+    }
+  ],
+  "summary": {
+    "passed": 23,
+    "failed": 0,
+    "total": 23,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 21357,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 244.4,
+    "total_tokens": 54924
+  },
+  "claims": [
+    {
+      "claim": "The breakdown names ~15 capabilities, enumerated as CAP-01..CAP-15",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Lines 11-25 list exactly 15 capabilities matching the prompt's enumerated areas; CAP-04/CAP-05 split is disclosed and noted as mergeable (line 27)."
+    },
+    {
+      "claim": "Card data never touches the platform; platform stays at PCI SAQ A",
+      "type": "process",
+      "verified": true,
+      "evidence": "Stated consistently in Security (line 123) and AD-07 (line 189); gateway tokenization keeps platform out of card-data scope — a correct standard pattern."
+    },
+    {
+      "claim": "A double-entry ledger is the source of truth for money; gateway only moves money",
+      "type": "quality",
+      "verified": true,
+      "evidence": "AD-02 (lines 157-161) and mapping CAP-10 (line 142) model an append-only double-entry ledger with reconciliation against the gateway — appropriate for the financial-correctness constraint."
+    },
+    {
+      "claim": "Every tech stack layer provides Recommendation/Why/Alternatives",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Most layers do, but Third-party services & integrations (lines 113-119) and Security (lines 121-127) are presented as catalogs of choices without an explicit single Recommendation+Alternative triplet. Defensible under the format's 'omit/adapt' guidance, but the universal claim is not strictly true for those two layers."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": ["Librarian skill was not available; the doc notes this and defers persistence to librarian rather than writing a file itself."]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Each tech stack layer gives a Recommendation, a Why/rationale, and at least one Alternative",
+        "reason": "This assertion is binary but the format explicitly allows omitting/adapting layers (e.g., Security and Third-party are naturally catalogs, not single-choice triplets). Consider scoping it to the decision-bearing layers (frontend, backend, primary DB, search, async, auth, infra) so a correct doc that lists security controls instead of one 'alternative' isn't penalized, and so a doc that omits alternatives on core layers is still caught."
+      },
+      {
+        "assertion": "Does NOT attempt to persist/save the output — suggests librarian skill instead",
+        "reason": "Without a transcript/tool-call log, 'does not attempt to persist' can only be judged from the document text. Consider an assertion that checks the transcript for absence of a Write/save tool call to the librarian path, to make this genuinely discriminating rather than inferred from prose."
+      }
+    ],
+    "overall": "Assertions are well-targeted at the prescribed structure and substance; the with_skill run satisfies all of them with genuine, capability-anchored content. Two assertions are slightly under-specified (alternatives-on-every-layer, no-persist) and could be tightened."
+  }
+}

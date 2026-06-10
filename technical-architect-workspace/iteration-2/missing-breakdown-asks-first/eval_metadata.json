@@ -1,0 +1,16 @@
+{
+  "eval_id": 3,
+  "eval_name": "missing-breakdown-asks-first",
+  "prompt": "Design the technical architecture and pick a tech stack for my app.",
+  "depth": "standard",
+  "assertions": [
+    "Recognizes that no capability breakdown was provided",
+    "Tries to retrieve the breakdown via the librarian skill, or asks the user to provide it",
+    "Does NOT fabricate a full architecture for an unspecified app without any capability basis",
+    "Asks a small number of targeted questions (not an exhaustive questionnaire)",
+    "If it asks constraint questions, they focus on high-leverage items (scale, team, hosting, compliance)",
+    "Suggests running the solution-architect skill first if no breakdown exists",
+    "Does NOT attempt to persist/save output",
+    "Behavior reflects 'build on the breakdown' principle rather than guessing the whole system"
+  ]
+}

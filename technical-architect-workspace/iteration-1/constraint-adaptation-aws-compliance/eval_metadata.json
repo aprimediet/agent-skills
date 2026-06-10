@@ -1,0 +1,22 @@
+{
+  "eval_id": 4,
+  "eval_name": "constraint-adaptation-aws-compliance",
+  "prompt": "Here's the capability breakdown for a telehealth appointment-booking system (patient registration, provider scheduling, video visits, prescriptions, billing). We are an AWS-only shop, must be HIPAA compliant, and the team knows Python. Design the technical architecture and recommend the stack.",
+  "depth": "standard",
+  "assertions": [
+    "Output contains 'Constraints & Assumptions' section capturing AWS-only, HIPAA, and Python constraints",
+    "Recommendations stay within AWS managed services where reasonable (does not recommend a non-AWS cloud)",
+    "Backend recommendation reflects the Python team constraint",
+    "Security section addresses HIPAA-relevant controls (encryption at rest/in transit, access controls, audit logging, BAA-eligible services)",
+    "Video visit capability is addressed with a specific approach (e.g., a HIPAA-eligible video/WebRTC service)",
+    "Output contains 'Tech Stack' section covering the full stack",
+    "Output contains 'Capability \u2192 Tech Mapping' section",
+    "Output contains 'Key Architecture Decisions' section",
+    "Output contains 'Research Suggestions' section",
+    "Depth level is marked as 'standard'",
+    "Recommendations are opinionated and adapted to the stated constraints (not a generic stack)",
+    "Flags HIPAA-sensitive or high-stakes choices for the researcher skill with a ready-to-use query",
+    "Describes HOW, not new features or capabilities",
+    "Does NOT attempt to persist/save the output \u2014 suggests librarian skill instead"
+  ]
+}

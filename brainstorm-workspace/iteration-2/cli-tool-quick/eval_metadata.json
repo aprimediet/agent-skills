@@ -1,0 +1,21 @@
+{
+  "eval_id": 0,
+  "eval_name": "cli-tool-quick",
+  "prompt": "I want to build a simple CLI tool that scans a directory and reports which files have duplicate content using SHA-256 hashes. Just a single-purpose utility I can run from the terminal.",
+  "assertions": [
+    "Output contains a 'Core Idea' section",
+    "Output contains a 'Problem & Motivation' section",
+    "Output contains a 'Key Decisions' section with a table",
+    "Output contains a 'Dimensions Explored' section",
+    "Output contains an 'Open Questions' section",
+    "Output contains a 'Research Suggestions' section",
+    "Output contains a 'Risks & Mitigations' section with a table",
+    "Output contains a 'Next Steps' section",
+    "Depth level is marked as 'quick'",
+    "Covers at most 3 dimensions (quick depth)",
+    "Suggests researcher skill for topics needing deeper investigation",
+    "Does NOT attempt to save/persist the output (no librarian actions)",
+    "Does NOT attempt to conduct its own research",
+    "Document is written to ./brainstorm/{slug}.md"
+  ]
+}

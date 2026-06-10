@@ -1,0 +1,256 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains 'Problem Statement' section",
+      "passed": true,
+      "evidence": "Line 15: '## Problem Statement' with Business problem, User problem, Success criteria."
+    },
+    {
+      "text": "Output contains 'Scope' section",
+      "passed": true,
+      "evidence": "Line 29: '## Scope' with In scope / Out of scope / Existing systems."
+    },
+    {
+      "text": "Output contains 'Capabilities' section",
+      "passed": true,
+      "evidence": "Line 47: '## Capabilities' followed by CAP-01 through CAP-15."
+    },
+    {
+      "text": "Output contains 'Dependency Map' section",
+      "passed": true,
+      "evidence": "Line 576: '## Dependency Map' with a table (Capability | Depends on | Feeds into)."
+    },
+    {
+      "text": "Output contains 'Open Questions' section",
+      "passed": true,
+      "evidence": "Line 596: '## Open Questions' with 11 unresolved decisions."
+    },
+    {
+      "text": "Output contains 'Research Suggestions' section",
+      "passed": true,
+      "evidence": "Line 613: '## Research Suggestions' flagged for the researcher skill."
+    },
+    {
+      "text": "Output contains 'Next Steps' section",
+      "passed": true,
+      "evidence": "Line 625: '## Next Steps' with 7 numbered concrete actions."
+    },
+    {
+      "text": "Depth level is marked as 'deep'",
+      "passed": true,
+      "evidence": "Line 3: '> Solution Architect | Depth: deep | Generated: 2026-06-09'."
+    },
+    {
+      "text": "Covers 8-15 capabilities (deep depth)",
+      "passed": true,
+      "evidence": "Exactly 15 capabilities defined, CAP-01 through CAP-15, within the deep range."
+    },
+    {
+      "text": "Each capability has a Trigger field",
+      "passed": true,
+      "evidence": "Every CAP block opens with '**Trigger**:' (e.g., CAP-01 line 51, CAP-15 line 546)."
+    },
+    {
+      "text": "Each capability has an Inputs field",
+      "passed": true,
+      "evidence": "Every CAP block contains '**Inputs**:' (e.g., CAP-01 line 53, CAP-08 line 295)."
+    },
+    {
+      "text": "Each capability has a Logic flow field",
+      "passed": true,
+      "evidence": "Every CAP block contains '**Logic flow**:' with numbered steps including error paths."
+    },
+    {
+      "text": "Each capability has an Outputs field",
+      "passed": true,
+      "evidence": "Every CAP block contains '**Outputs**:' (e.g., CAP-01 line 70, CAP-13 line 494)."
+    },
+    {
+      "text": "Each capability has an Edge cases field",
+      "passed": true,
+      "evidence": "Every CAP block contains '**Edge cases**:' with bullet scenarios."
+    },
+    {
+      "text": "Each capability has a Connects to field",
+      "passed": true,
+      "evidence": "Every CAP block ends with '**Connects to**:' listing CAP IDs (e.g., line 81: 'CAP-02, CAP-12, CAP-13, CAP-14')."
+    },
+    {
+      "text": "Business problem is stated in Problem Statement",
+      "passed": true,
+      "evidence": "Line 17: '**Business problem**: The business wants to operate a two-sided marketplace for digital goods... earns revenue by taking a commission on each sale.'"
+    },
+    {
+      "text": "User problem is stated in Problem Statement",
+      "passed": true,
+      "evidence": "Lines 18-20 '**User problem**:' splits buyer and seller needs explicitly."
+    },
+    {
+      "text": "Success criteria are measurable",
+      "passed": true,
+      "evidence": "Lines 22-27: quantified targets (>=95% first-attempt delivery, <1% did-not-receive, median purchase <3 min, >98% payout success, chargeback+refund <2%)."
+    },
+    {
+      "text": "Logic flows describe WHAT not HOW (no tech stack, no code, no architecture)",
+      "passed": true,
+      "evidence": "Flows stay at behavioral level (e.g., CAP-08 'System charges the buyer's payment method via the payment gateway') without naming specific tech, code, or architecture; 'payment gateway'/'object storage' are abstract roles, consistent with OUTPUT_FORMAT guidance."
+    },
+    {
+      "text": "Covers buyer-facing capabilities (browsing, search, purchasing)",
+      "passed": true,
+      "evidence": "CAP-04 Catalog search and discovery, CAP-05 Product detail/preview, CAP-08 Cart/checkout/payment, CAP-09 fulfillment & buyer library."
+    },
+    {
+      "text": "Covers seller-facing capabilities (listing, inventory management)",
+      "passed": true,
+      "evidence": "CAP-02 Product listing creation and management, CAP-03 Asset management, CAP-07 Inventory and availability management."
+    },
+    {
+      "text": "Covers payment processing capability for buyer-to-platform transactions",
+      "passed": true,
+      "evidence": "CAP-08 (line 291) 'Cart, checkout, and payment' charges the buyer's payment method for the full order."
+    },
+    {
+      "text": "Covers payout capability for platform-to-seller settlements",
+      "passed": true,
+      "evidence": "CAP-14 (line 510) 'Seller payouts and withdrawals' initiates transfer of available balance to seller via gateway; CAP-13 ledger supports it."
+    },
+    {
+      "text": "Covers dispute resolution or refund handling capability",
+      "passed": true,
+      "evidence": "CAP-12 (line 439) 'Refunds, chargebacks, and order support' covers refund requests, chargebacks, representment."
+    },
+    {
+      "text": "Covers user account/onboarding capabilities for both sides",
+      "passed": true,
+      "evidence": "CAP-01 covers seller onboarding/account setup; buyer accounts referenced via identity system in CAP-08/CAP-09. Seller side fully detailed; buyer onboarding leans on assumed existing identity system rather than a dedicated CAP."
+    },
+    {
+      "text": "Dependency Map uses CAP-01 format for capability IDs",
+      "passed": true,
+      "evidence": "Dependency Map table rows use CAP-01...CAP-15 IDs (line 580 onward)."
+    },
+    {
+      "text": "Research Suggestions reference the researcher skill",
+      "passed": true,
+      "evidence": "Line 615: 'Flagged for the **researcher skill** (this run did not conduct research)'; each item has a 'Suggested researcher query'."
+    },
+    {
+      "text": "Does NOT attempt to save/persist the output — suggests librarian skill instead",
+      "passed": true,
+      "evidence": "No file-save attempt; line 633 Next Step 7 and footer line 636 'Use the librarian skill to persist this artifact.'"
+    },
+    {
+      "text": "Does NOT attempt to conduct its own research — flags topics for researcher skill",
+      "passed": true,
+      "evidence": "Line 615 states 'this run did not conduct research' and defers to researcher skill with ready queries."
+    },
+    {
+      "text": "Checks for existing knowledge via librarian skill before starting",
+      "passed": true,
+      "evidence": "'## Existing Knowledge' (line 5) addresses librarian: notes librarian was unavailable in this run and lists exact categories/keywords to search. Intent to check is present though the librarian tool itself was not invocable here."
+    },
+    {
+      "text": "Flags at least 3 distinct research topics (e.g., marketplace fee models, escrow/trust, fraud detection)",
+      "passed": true,
+      "evidence": "7 distinct topics: refund/abuse policies, payout holding periods, license models, marketplace fraud, commission/fee benchmarks, merchant-of-record/tax, secure digital delivery (lines 617-623)."
+    },
+    {
+      "text": "Edge cases cover input validation scenarios",
+      "passed": true,
+      "evidence": "CAP-01 'Store name collides...rejects'; CAP-04 'Contradictory filters (min price > max): invalid filter ignored'; CAP-06 'Conflicting parameters...blocks invalid combination'."
+    },
+    {
+      "text": "Edge cases cover dependency failure scenarios",
+      "passed": true,
+      "evidence": "CAP-04 'If the search index is unavailable, system falls back to a cached snapshot'; CAP-09 'If fulfillment fails (asset missing, key pool empty)...auto-refunds'; CAP-15 'If a data source is temporarily unavailable, dashboards show last-known cached values'."
+    },
+    {
+      "text": "Edge cases cover high-load or unusual conditions",
+      "passed": true,
+      "evidence": "CAP-07 'If two checkouts race for the last unit, the reservation step ensures only one succeeds'; CAP-15 'Rapid burst of events: optionally batched into a digest'; CAP-08 duplicate-submit idempotency."
+    },
+    {
+      "text": "Connects to shows clear dependency chains between capabilities",
+      "passed": true,
+      "evidence": "Connects-to fields plus the Dependency Map table form coherent chains (e.g., CAP-08 feeds CAP-09/CAP-12/CAP-13; CAP-13 feeds CAP-14)."
+    },
+    {
+      "text": "Open Questions includes unresolved design decisions",
+      "passed": true,
+      "evidence": "11 items including recurring-vs-one-time, refund policy, holding period, commission structure, tax/VAT responsibility (lines 600-611)."
+    },
+    {
+      "text": "Next Steps lists concrete actions (e.g., prioritize capabilities, validate with users)",
+      "passed": true,
+      "evidence": "7 numbered actions: resolve high-impact open questions, define license catalog, specify fee/ledger, prototype happy path with one seller/buyer, define notification catalog, commission research, persist artifact (lines 627-633)."
+    },
+    {
+      "text": "Output ends with a suggestion to use librarian skill for persistence",
+      "passed": true,
+      "evidence": "Final line 636: '*Capability breakdown produced by solution-architect skill. Use the librarian skill to persist this artifact.*'"
+    }
+  ],
+  "summary": {
+    "passed": 37,
+    "failed": 0,
+    "total": 37,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "output_chars": 47507,
+    "note": "No metrics.json present in outputs_dir; output_chars measured from digital-goods-marketplace.md."
+  },
+  "timing": {
+    "executor_duration_seconds": 265.5,
+    "total_tokens": 52244,
+    "total_duration_seconds": 265.5
+  },
+  "claims": [
+    {
+      "claim": "Exactly 15 capabilities are defined (CAP-01..CAP-15)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted CAP-01 through CAP-15; matches deep-depth 8-15 range."
+    },
+    {
+      "claim": "The librarian skill was not available in this run",
+      "type": "process",
+      "verified": true,
+      "evidence": "Line 7 states librarian skill is not available; the output adapts by listing what to search instead of invoking it. Consistent with a non-interactive eval harness without skill tools wired in."
+    },
+    {
+      "claim": "This run conducted no research itself",
+      "type": "process",
+      "verified": true,
+      "evidence": "Line 615 explicitly says 'this run did not conduct research'; no web/search activity reflected in output, only flagged topics."
+    },
+    {
+      "claim": "Logic flows avoid implementation detail",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Reviewed all 15 flows; they describe behavior/decisions, using abstract roles (payment gateway, object storage, CDN) rather than named tech, code, or architecture."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": ["Run noted librarian skill unavailable, so existing-knowledge check was documented as guidance rather than executed"],
+    "needs_review": [],
+    "workarounds": ["Made explicit Key Assumptions (line 35) because clarifying questions could not be asked in a non-interactive run"]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Checks for existing knowledge via librarian skill before starting",
+        "reason": "This assertion can only be partially verified from the output. The skill cannot truly invoke librarian in the eval harness, so it documents intent instead of performing the check. Both runs are graded on a deferred-tools environment; consider clarifying whether 'documents the librarian check' satisfies this, or whether an actual tool call is required (which the harness may not support)."
+      },
+      {
+        "assertion": "Covers user account/onboarding capabilities for both sides",
+        "reason": "Buyer-side onboarding is only implied via an assumed external identity system, while seller onboarding gets a full CAP. The assertion passes generously; consider specifying whether buyer onboarding needs its own capability to make this discriminating."
+      },
+      {
+        "reason": "No assertion checks for the 'Existing Knowledge' section that OUTPUT_FORMAT prescribes (and which the with_skill run produced). Adding one would better discriminate the prescribed structure from a generic breakdown."
+      }
+    ],
+    "overall": "Assertions are strong and discriminating for structure, CAP-NN format, delegation, and content coverage. The with_skill output passes all 37 cleanly. Two assertions (librarian check, both-side onboarding) pass somewhat generously and could be tightened."
+  }
+}

@@ -32,8 +32,11 @@ Artifacts are markdown files stored in a structured directory:
 ├── researches/                  # Date-prefixed directories
 │   └── 2026_06_09__topic/       # YYYY_MM_DD__slug format
 │       └── index.md             # The artifact file
-├── specs/                       # Flat structure
-│   └── api-auth.md              # slug.md format
+├── specs/                       # Flat structure + date-prefixed for architecture
+│   ├── api-auth.md              # Flat spec files
+│   └── 2026_06_10__feature/     # Date-prefixed for solution/technical
+│       ├── solution.md          # solution-architect output
+│       └── technical.md         # technical-architect output
 ├── tasks/                       # Flat structure
 │   └── sprint-12.md
 └── docs/                        # Flat structure
@@ -173,7 +176,7 @@ When in doubt, use project scope. Only use global scope when the user explicitly
 | Category | Structure | Purpose | Examples |
 |-----------|-----------|---------|---------|
 | `researches` | `YYYY_MM_DD__slug/index.md` | Research reports, findings, evaluations | "Yjs vs Automerge comparison", "Bun production readiness" |
-| `specs` | `slug.md` | Specifications, design docs, architecture decisions | "API design spec", "Auth flow design" |
+| `specs` | `slug.md` (flat) or `YYYY_MM_DD__slug/{solution,technical}.md` (architecture) | Specifications, design docs, architecture decisions | "API design spec" (flat), "payment-system" (solution.md + technical.md) |
 | `tasks` | `slug.md` | Task tracking, sprint notes, TODO lists | "Sprint 5 notes", "Bug triage log" |
 | `docs` | `slug.md` | General documentation, how-tos, guides | "Deployment guide", "Onboarding checklist" |
 
@@ -189,3 +192,4 @@ You can create custom categories by simply writing to them — the script create
 - **Initialize before first use** — run `init` if the docs directory doesn't exist yet.
 - **The index is auto-maintained** — every write, move, or delete rebuilds `index.md`. You can also manually rebuild with `index --rebuild`.
 - **Researches use date-prefixed directories** — this keeps research chronologically organized and avoids name collisions.
+- **Specs architecture artifacts use date-prefixed directories** — `solution-architect` outputs save as `specs/YYYY_MM_DD__slug/solution.md`, `technical-architect` outputs save as `specs/YYYY_MM_DD__slug/technical.md`. Use `--artifact-type solution` or `--artifact-type technical` when writing/reading/moving/deleting these.

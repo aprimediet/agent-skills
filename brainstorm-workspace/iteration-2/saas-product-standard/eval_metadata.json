@@ -1,0 +1,23 @@
+{
+  "eval_id": 1,
+  "eval_name": "saas-product-standard",
+  "prompt": "I'm thinking about building a SaaS for small dental clinics to manage patient appointments, send automated reminders, and handle intake forms. I'd target solo practitioners and small clinics with 1-5 dentists. What should I think through?",
+  "assertions": [
+    "Output contains a 'Core Idea' section",
+    "Output contains a 'Problem & Motivation' section",
+    "Output contains a 'Key Decisions' section with a table",
+    "Output contains a 'Dimensions Explored' section",
+    "Output contains an 'Open Questions' section",
+    "Output contains a 'Research Suggestions' section",
+    "Output contains a 'Risks & Mitigations' section with a table",
+    "Output contains a 'Next Steps' section",
+    "Depth level is marked as 'standard'",
+    "Covers 4-5 dimensions (standard depth)",
+    "Explores technical dimensions (e.g., architecture, HIPAA compliance, integrations)",
+    "Explores non-technical dimensions (e.g., business model, competition, target users)",
+    "Suggests researcher skill for topics needing deeper investigation",
+    "Does NOT attempt to save/persist the output",
+    "Does NOT attempt to conduct its own research",
+    "Flags at least one research topic (e.g., HIPAA compliance requirements, competitor analysis)"
+  ]
+}

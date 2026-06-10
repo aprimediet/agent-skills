@@ -1,0 +1,94 @@
+{
+  "expectations": [
+    {
+      "text": "Recognizes that no capability breakdown was provided",
+      "passed": true,
+      "evidence": "Title is 'Before I design the architecture, I need the capability breakdown'. Line 3: 'Right now I have neither the breakdown nor a description of the app (\"my app\" is unspecified)'."
+    },
+    {
+      "text": "Tries to retrieve the breakdown via the librarian skill, or asks the user to provide it",
+      "passed": true,
+      "evidence": "Does both. Section 2: 'Normally I'd try to pull a saved breakdown via the librarian skill before asking you. The librarian skill is not available in this run' and provides the exact librarian commands (python scripts/librarian.py search/list, category specs, scope project). Section 1 also asks the user to paste it or give a file path."
+    },
+    {
+      "text": "Does NOT fabricate a full architecture for an unspecified app without any capability basis",
+      "passed": true,
+      "evidence": "No stack, components, or architecture were produced. Footer line 42: 'No architecture was generated because the app and its capabilities are unspecified — designing one now would invent your product rather than architect it.'"
+    },
+    {
+      "text": "Asks a small number of targeted questions (not an exhaustive questionnaire)",
+      "passed": true,
+      "evidence": "Section 3 asks exactly four constraint questions and frames them as 'the only constraints that actually change my recommendation', explicitly avoiding an exhaustive questionnaire."
+    },
+    {
+      "text": "If it asks constraint questions, they focus on high-leverage items (scale, team, hosting, compliance)",
+      "passed": true,
+      "evidence": "The four questions are: 1. Scale & load, 2. Team (skills/size), 3. Hosting (cloud/on-prem/existing infra), 4. Hard constraints (budget, compliance: HIPAA/PCI/GDPR/SOC 2, must-use/avoid tech). Maps directly to scale, team, hosting, compliance."
+    },
+    {
+      "text": "Suggests running the solution-architect skill first if no breakdown exists",
+      "passed": true,
+      "evidence": "Line 10: 'If no — I'd recommend running the solution-architect skill first to produce one; it makes for a much stronger, fully-traceable architecture.'"
+    },
+    {
+      "text": "Does NOT attempt to persist/save output",
+      "passed": true,
+      "evidence": "No save/persist action taken. It only describes a future intent to 'hand it to the librarian skill to persist' once it actually produces an architecture; nothing was written this turn."
+    },
+    {
+      "text": "Behavior reflects 'build on the breakdown' principle rather than guessing the whole system",
+      "passed": true,
+      "evidence": "Line 3: 'I decide the how ... by building on a capability breakdown that says what the app does ... a fabricated stack would be unanchored guesswork.' It explicitly defers to the breakdown rather than guessing the system, and cites the skill's Step 0."
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "total": 8,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 0,
+    "errors_encountered": 0,
+    "output_chars": 2960,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 47.1,
+    "total_duration_seconds": 47.1
+  },
+  "claims": [
+    {
+      "claim": "The librarian skill is not available in this run",
+      "type": "process",
+      "verified": true,
+      "evidence": "Consistent with the harness sandbox not exposing the librarian skill; the response correctly degrades to providing the commands an agent with access could run rather than claiming to have retrieved anything."
+    },
+    {
+      "claim": "Designing a stack now would mean inventing the product",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Justified — the prompt gives no app description or capabilities, so any stack would be unanchored. The response correctly refuses to fabricate."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": ["Librarian skill unavailable; provided manual librarian commands and asked the user to paste the breakdown instead"]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Tries to retrieve the breakdown via the librarian skill, or asks the user to provide it",
+        "reason": "The OR makes this easy to pass on the 'asks the user' branch alone. Since the librarian-retrieval behavior is the skill-specific differentiator, consider a separate assertion that specifically credits referencing/invoking the librarian skill, so the librarian behavior is measured distinctly from generic 'ask the user'."
+      },
+      {
+        "assertion": "Does NOT attempt to persist/save output",
+        "reason": "Trivially satisfied here because there was no output to persist. It only meaningfully discriminates in evals where an architecture IS produced; for the ask-first eval it is near-vacuous."
+      }
+    ],
+    "overall": "Assertions are well-targeted for this under-specification scenario and clearly separate skill from baseline. Two assertions (the OR-joined librarian one and the no-persist one) are easy to pass for the wrong reasons; splitting/sharpening them would increase discrimination."
+  }
+}

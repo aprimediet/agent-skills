@@ -1,0 +1,91 @@
+{
+  "expectations": [
+    {
+      "text": "Recognizes that no capability breakdown was provided",
+      "passed": true,
+      "evidence": "Line 1: 'Right now I don't have either the capability breakdown or a description of the app, so I'd be inventing both.' Line 3 header: '## 1. I need the capability breakdown first'."
+    },
+    {
+      "text": "Tries to retrieve the breakdown via the librarian skill, or asks the user to provide it",
+      "passed": true,
+      "evidence": "Lines 13-22 '### On retrieving it automatically' explain that normally the librarian skill would be used but 'The librarian skill isn't available in this environment', then ask the user to paste/point to the breakdown (line 9, 22)."
+    },
+    {
+      "text": "Does NOT fabricate a full architecture for an unspecified app without any capability basis",
+      "passed": true,
+      "evidence": "No architecture or stack is produced. Line 1: avoids 'inventing both', and line 37 describes the architecture only as what will be produced once inputs arrive."
+    },
+    {
+      "text": "Asks a small number of targeted questions (not an exhaustive questionnaire)",
+      "passed": true,
+      "evidence": "Lines 28-31 list exactly four constraint topics, explicitly framed (line 26) as 'just the handful of questions that genuinely move the architecture, not an exhaustive questionnaire.'"
+    },
+    {
+      "text": "If it asks constraint questions, they focus on high-leverage items (scale, team, hosting, compliance)",
+      "passed": true,
+      "evidence": "The four questions are Scale & load (line 28), Team (line 29), Hosting (line 30), and Hard constraints incl. compliance HIPAA/PCI/GDPR/SOC 2 (line 31) — exactly the high-leverage items."
+    },
+    {
+      "text": "Suggests running the solution-architect skill first if no breakdown exists",
+      "passed": true,
+      "evidence": "Line 10: 'If no — that's fine, but I'd strongly recommend running the solution-architect skill first. It will produce a much stronger, more honest architecture than me guessing at the capabilities.'"
+    },
+    {
+      "text": "Does NOT attempt to persist/save output",
+      "passed": true,
+      "evidence": "Only response.md exists in outputs/; no files written. Line 39 explicitly states 'I don't persist the result myself — saving it is the librarian skill's job.'"
+    },
+    {
+      "text": "Behavior reflects 'build on the breakdown' principle rather than guessing the whole system",
+      "passed": true,
+      "evidence": "Line 5: 'Every layer of the stack I recommend gets traced back to a specific capability, so nothing is unsupported and nothing is gratuitous.' Whole response is anchored on obtaining the breakdown before designing."
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "total": 8,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 3834,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 52.4,
+    "total_duration_seconds": 52.4,
+    "total_tokens": 24959
+  },
+  "claims": [
+    {
+      "claim": "The librarian skill is not available in this environment",
+      "type": "process",
+      "verified": true,
+      "evidence": "No librarian calls; assistant degrades to asking the user, consistent with unavailability."
+    },
+    {
+      "claim": "Persisting output is the librarian skill's job, not the architect's",
+      "type": "process",
+      "verified": true,
+      "evidence": "Line 39 states this explicitly and the assistant does not save any file, matching the 'build on the breakdown' / separation-of-roles design."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": ["Librarian skill unavailable; asked user to provide breakdown directly and described how an agent with librarian access could retrieve it"]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Does NOT attempt to persist/save output",
+        "reason": "Passes trivially in a single-turn ask-first scenario with nothing to save. More discriminating if a breakdown is supplied and an architecture produced, so the no-self-persist behavior is genuinely exercised."
+      }
+    ],
+    "overall": "Assertions discriminate genuine 'ask first' behavior from fabrication and are strongly satisfied here. Only the persist assertion is weak in this single-turn context."
+  }
+}

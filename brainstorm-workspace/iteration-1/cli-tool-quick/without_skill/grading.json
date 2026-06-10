@@ -1,0 +1,80 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains a 'Core Idea' section",
+      "passed": false,
+      "evidence": "No 'Core Idea' section exists. The closest heading is '## Elevator Pitch' (line 3) and '## Core Requirements' (line 9), but neither is named 'Core Idea'."
+    },
+    {
+      "text": "Output contains a 'Problem & Motivation' section",
+      "passed": false,
+      "evidence": "No 'Problem & Motivation' section exists. The document starts with an Elevator Pitch but has no dedicated Problem & Motivation heading."
+    },
+    {
+      "text": "Output contains a 'Key Decisions' section with a table",
+      "passed": false,
+      "evidence": "No 'Key Decisions' section exists in the output. The transcript (not the output) lists 'Key Decisions Made', but the brainstorm.md has no such section."
+    },
+    {
+      "text": "Output contains a 'Dimensions Explored' section",
+      "passed": false,
+      "evidence": "No 'Dimensions Explored' section exists anywhere in the output."
+    },
+    {
+      "text": "Output contains an 'Open Questions' section",
+      "passed": true,
+      "evidence": "Line 190: '## Open Questions' followed by 5 numbered questions about symlinks, deletion scope, hard links, dedupe extension, and naming."
+    },
+    {
+      "text": "Output contains a 'Research Suggestions' section",
+      "passed": false,
+      "evidence": "No 'Research Suggestions' section exists in the output."
+    },
+    {
+      "text": "Output contains a 'Risks & Mitigations' section with a table",
+      "passed": false,
+      "evidence": "No 'Risks & Mitigations' section exists. There is an '### Error Handling' subsection (line 141) with a table, but it is not named 'Risks & Mitigations'."
+    },
+    {
+      "text": "Output contains a 'Next Steps' section",
+      "passed": false,
+      "evidence": "No 'Next Steps' section exists. There is an '## Implementation Plan' with phases (line 153), but no 'Next Steps' heading."
+    },
+    {
+      "text": "Depth level is marked as 'quick'",
+      "passed": false,
+      "evidence": "No depth level indicator (e.g., 'quick', 'standard', 'deep') appears anywhere in the output."
+    },
+    {
+      "text": "Covers at most 3 dimensions (quick depth)",
+      "passed": false,
+      "evidence": "Output covers 7+ dimensions: Core Requirements, User Experience, Technical Design, Implementation Plan, Alternatives Considered, Open Questions, Future Extensions — well beyond the 3-dimension quick-depth limit."
+    },
+    {
+      "text": "Suggests researcher skill for topics needing deeper investigation",
+      "passed": false,
+      "evidence": "No mention of the 'researcher' skill or any suggestion to use it for deeper investigation appears anywhere in the output."
+    },
+    {
+      "text": "Does NOT attempt to save/persist the output (no librarian actions)",
+      "passed": true,
+      "evidence": "The output is written directly to a file by the model without any librarian skill invocation. No librarian-related commands, references, or save/persist instructions appear in the document."
+    },
+    {
+      "text": "Does NOT attempt to conduct its own research",
+      "passed": true,
+      "evidence": "The output is purely a brainstorm document — no evidence of web searches, external source references, or research-style investigation. All content is generated reasoning."
+    },
+    {
+      "text": "Document is written to ./brainstorm/{slug}.md",
+      "passed": false,
+      "evidence": "The document is written to 'brainstorm-workspace/iteration-1/cli-tool-quick/without_skill/outputs/brainstorm.md', not './brainstorm/{slug}.md' (e.g., './brainstorm/cli-duplicate-scanner.md')."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 11,
+    "total": 14,
+    "pass_rate": 0.21
+  }
+}

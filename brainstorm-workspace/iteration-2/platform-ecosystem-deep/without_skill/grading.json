@@ -1,0 +1,90 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains a 'Core Idea' section",
+      "passed": false,
+      "evidence": "No section titled 'Core Idea' exists. The closest is '1. Vision & Core Identity' (line 28), which has sub-sections '### One-Sentence Pitch' and '### Core Beliefs', but no explicit 'Core Idea' heading."
+    },
+    {
+      "text": "Output contains a 'Problem & Motivation' section",
+      "passed": false,
+      "evidence": "No section titled 'Problem & Motivation' exists anywhere in the output. The document opens with 'Vision & Core Identity' but lacks a dedicated problem/motivation section."
+    },
+    {
+      "text": "Output contains a 'Key Decisions' section with a table",
+      "passed": false,
+      "evidence": "No section titled 'Key Decisions' exists. The transcript mentions 'Key creative decisions made during brainstorming' (line 27), but the actual output document has no such section."
+    },
+    {
+      "text": "Output contains a 'Dimensions Explored' section",
+      "passed": false,
+      "evidence": "No section titled 'Dimensions Explored' exists. The document is structured around 13 numbered sections (Vision & Core Identity, User Personas, Feature Inventory, etc.) but does not enumerate dimensions under that heading."
+    },
+    {
+      "text": "Output contains an 'Open Questions' section",
+      "passed": true,
+      "evidence": "Section '## 12. Open Questions' (line 417) exists with four sub-sections: Product Strategy, Technical, Business, and Legal & Regulatory, containing 11 numbered questions."
+    },
+    {
+      "text": "Output contains a 'Research Suggestions' section",
+      "passed": false,
+      "evidence": "No section titled 'Research Suggestions' exists. The closest is '## 13. Appendix: Technical Spikes Needed' (line 442), which lists prototyping sprints but is about internal technical validation, not external research suggestions."
+    },
+    {
+      "text": "Output contains a 'Risks & Mitigations' section with a table",
+      "passed": true,
+      "evidence": "Section '## 9. Risks & Challenges' (line 334) contains two tables: 'Technical Risks' and 'Business Risks', both with columns Risk | Impact | Likelihood | Mitigation (lines 338-355). Though the heading says 'Risks & Challenges' rather than 'Risks & Mitigations', the content is a risk-and-mitigation table."
+    },
+    {
+      "text": "Output contains a 'Next Steps' section",
+      "passed": false,
+      "evidence": "No section titled 'Next Steps' exists. The closest sections are '## 10. Go-To-Market Strategy' (line 358) and '## 11. Feature Prioritization (Phased Roadmap)' (line 386), but neither is a 'Next Steps' section."
+    },
+    {
+      "text": "Depth level is marked as 'deep'",
+      "passed": false,
+      "evidence": "The depth level in the header (line 5) is '> **Depth**: Thorough exploration', not 'deep'."
+    },
+    {
+      "text": "Covers 5-7 dimensions (deep depth)",
+      "passed": true,
+      "evidence": "The output covers well over 7 dimensions: Vision & Core Identity, User Personas, Feature Inventory, System Architecture, Platform-Specific Considerations, Business Model, Revenue Model Deep-Dive, Competitive Landscape, Risks & Challenges, Go-To-Market Strategy, Feature Prioritization, Open Questions, and Technical Spikes."
+    },
+    {
+      "text": "Explores technical dimensions (e.g., distribution architecture, cross-platform, CDN)",
+      "passed": true,
+      "evidence": "Section 4 (System Architecture) covers CDN layer, service mesh, data layer, binary diff patching, DRM architecture, and analytics pipeline (lines 160-213). Section 5 covers platform-specific details for Windows, macOS, Linux, Android, and iOS (lines 216-248). Section 13 covers technical spikes including binary delta patching, DRM validation, CDN cost projection, and launcher tech comparison."
+    },
+    {
+      "text": "Explores non-technical dimensions (e.g., revenue model, developer relations, curation policy)",
+      "passed": true,
+      "evidence": "Section 6 (Business Model) covers revenue streams, cost structure, and margin analysis (lines 251-275). Section 7 (Revenue Model Deep-Dive) covers payout model, tax handling, and refund policy (lines 278-304). Section 8 (Competitive Landscape) covers market positioning. Section 10 (Go-To-Market Strategy) covers community building and developer outreach (lines 358-383). Curation is addressed in the Vision section (line 37: 'Quality over quantity — curated but not gatekept')."
+    },
+    {
+      "text": "Suggests researcher skill for multiple topics needing deeper investigation",
+      "passed": false,
+      "evidence": "Nowhere in the output does it mention or suggest the 'researcher' skill. The document has 'Open Questions' (section 12) and 'Technical Spikes Needed' (section 13), but it never recommends using a researcher skill to investigate those topics."
+    },
+    {
+      "text": "Does NOT attempt to save/persist the output",
+      "passed": false,
+      "evidence": "The transcript (line 32) states: 'Wrote the document to the specified output path.' The output was persisted to disk at 'outputs/platform-ecosystem-deep.md' using the write tool. This is an attempt to save/persist the output."
+    },
+    {
+      "text": "Does NOT attempt to conduct its own research",
+      "passed": true,
+      "evidence": "The document contains no external research or references. All content is speculative brainstorming based on prior knowledge — no web fetches, citations, or research results are evident. The transcript (line 13) confirms the approach was pure brainstorming and structuring."
+    },
+    {
+      "text": "Flags at least 3 distinct research topics",
+      "passed": true,
+      "evidence": "The 'Open Questions' section (lines 417-439) flags 11 distinct topics needing investigation across Product Strategy, Technical, Business, and Legal/Regulatory domains. Examples: #4 update/patching system, #5 CDN strategy, #6 Linux compatibility. The 'Technical Spikes Needed' table (lines 444-455) flags 7 prototyping topics. Well over 3 distinct research topics are flagged."
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 9,
+    "total": 16,
+    "pass_rate": 0.44
+  }
+}

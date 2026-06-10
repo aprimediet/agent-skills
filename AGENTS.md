@@ -186,7 +186,7 @@ The skill does NOT persist output — the `{slug}.md` file is a temporary handof
 
 The skill manages artifacts in `./docs/` (project scope) or `$AGENT_ROOT/docs/` (global scope):
 - `researches/` — date-prefixed directories (`YYYY_MM_DD__slug/index.md`)
-- `specs/` — flat files (`slug.md`)
+- `specs/` — flat files (`slug.md`) + date-prefixed for architecture (`YYYY_MM_DD__slug/solution.md`, `YYYY_MM_DD__slug/technical.md`)
 - `tasks/` — flat files (`slug.md`)
 - `docs/` — flat files (`slug.md`)
 - `index.md` — auto-maintained knowledge index

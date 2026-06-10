@@ -1,0 +1,212 @@
+{
+  "metadata": {
+    "skill_name": "brainstorm",
+    "skill_path": "/home/aditya/workspaces/researches/skills-dev-oc/brainstorm",
+    "timestamp": "2026-06-09T14:00:00Z",
+    "evals_run": ["cli-tool-quick", "saas-product-standard", "platform-ecosystem-deep"],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "eval_name": "cli-tool-quick",
+      "configuration": "with_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 0.93,
+        "passed": 13,
+        "failed": 1,
+        "total": 14
+      },
+      "expectations": [
+        {"text": "Output contains a 'Core Idea' section", "passed": true, "evidence": "## Core Idea heading present"},
+        {"text": "Output contains a 'Problem & Motivation' section", "passed": true, "evidence": "## Problem & Motivation heading present"},
+        {"text": "Output contains a 'Key Decisions' section with a table", "passed": true, "evidence": "## Key Decisions with Decision|Choice|Rationale table"},
+        {"text": "Output contains a 'Dimensions Explored' section", "passed": true, "evidence": "## Dimensions Explored with 3 subsections"},
+        {"text": "Output contains an 'Open Questions' section", "passed": true, "evidence": "## Open Questions present"},
+        {"text": "Output contains a 'Research Suggestions' section", "passed": true, "evidence": "## Research Suggestions with researcher queries"},
+        {"text": "Output contains a 'Risks & Mitigations' section with a table", "passed": true, "evidence": "## Risks & Mitigations with risk table"},
+        {"text": "Output contains a 'Next Steps' section", "passed": true, "evidence": "## Next Steps present"},
+        {"text": "Depth level is marked as 'quick'", "passed": true, "evidence": "Metadata: Brainstorm | Depth: quick"},
+        {"text": "Covers at most 3 dimensions (quick depth)", "passed": true, "evidence": "3 dimensions covered"},
+        {"text": "Suggests researcher skill for topics needing deeper investigation", "passed": true, "evidence": "Research Suggestions explicitly names researcher skill"},
+        {"text": "Does NOT attempt to save/persist the output (no librarian actions)", "passed": true, "evidence": "Footer suggests librarian skill for persistence"},
+        {"text": "Does NOT attempt to conduct its own research", "passed": true, "evidence": "Research topics flagged, not investigated"},
+        {"text": "Document is written to ./brainstorm/{slug}.md", "passed": false, "evidence": "Written to brainstorm-workspace path instead of ./brainstorm/{slug}.md"}
+      ]
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "cli-tool-quick",
+      "configuration": "without_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 0.14,
+        "passed": 2,
+        "failed": 12,
+        "total": 14
+      },
+      "expectations": [
+        {"text": "Output contains a 'Core Idea' section", "passed": false, "evidence": "Has 'Overview' instead of 'Core Idea'"},
+        {"text": "Output contains a 'Problem & Motivation' section", "passed": false, "evidence": "No dedicated Problem & Motivation section"},
+        {"text": "Output contains a 'Key Decisions' section with a table", "passed": false, "evidence": "No Key Decisions section"},
+        {"text": "Output contains a 'Dimensions Explored' section", "passed": false, "evidence": "No Dimensions Explored section"},
+        {"text": "Output contains an 'Open Questions' section", "passed": false, "evidence": "Has 'Questions for Further Exploration' instead"},
+        {"text": "Output contains a 'Research Suggestions' section", "passed": false, "evidence": "No Research Suggestions section"},
+        {"text": "Output contains a 'Risks & Mitigations' section with a table", "passed": false, "evidence": "No Risks & Mitigations section"},
+        {"text": "Output contains a 'Next Steps' section", "passed": false, "evidence": "Has 'Roadmap' instead of 'Next Steps'"},
+        {"text": "Depth level is marked as 'quick'", "passed": false, "evidence": "No depth level indicator"},
+        {"text": "Covers at most 3 dimensions (quick depth)", "passed": false, "evidence": "Covers many more dimensions than quick depth"},
+        {"text": "Suggests researcher skill for topics needing deeper investigation", "passed": false, "evidence": "No mention of researcher skill"},
+        {"text": "Does NOT attempt to save/persist the output (no librarian actions)", "passed": true, "evidence": "No librarian invocation"},
+        {"text": "Does NOT attempt to conduct its own research", "passed": true, "evidence": "No external research conducted"},
+        {"text": "Document is written to ./brainstorm/{slug}.md", "passed": false, "evidence": "Written to outputs/brainstorm.md, not ./brainstorm/{slug}.md"}
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "saas-product-standard",
+      "configuration": "with_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 1.00,
+        "passed": 16,
+        "failed": 0,
+        "total": 16
+      },
+      "expectations": [
+        {"text": "Output contains a 'Core Idea' section", "passed": true, "evidence": "## Core Idea heading present"},
+        {"text": "Output contains a 'Problem & Motivation' section", "passed": true, "evidence": "## Problem & Motivation with bullets"},
+        {"text": "Output contains a 'Key Decisions' section with a table", "passed": true, "evidence": "## Key Decisions with 7-row table"},
+        {"text": "Output contains a 'Dimensions Explored' section", "passed": true, "evidence": "## Dimensions Explored with 5 subsections"},
+        {"text": "Output contains an 'Open Questions' section", "passed": true, "evidence": "## Open Questions present"},
+        {"text": "Output contains a 'Research Suggestions' section", "passed": true, "evidence": "## Research Suggestions with 4 topics"},
+        {"text": "Output contains a 'Risks & Mitigations' section with a table", "passed": true, "evidence": "## Risks & Mitigations with 5-row table"},
+        {"text": "Output contains a 'Next Steps' section", "passed": true, "evidence": "## Next Steps with 5 items"},
+        {"text": "Depth level is marked as 'standard'", "passed": true, "evidence": "Metadata: Brainstorm | Depth: standard"},
+        {"text": "Covers 4-5 dimensions (standard depth)", "passed": true, "evidence": "5 dimensions explored"},
+        {"text": "Explores technical dimensions", "passed": true, "evidence": "Architecture, HIPAA, tech stack covered"},
+        {"text": "Explores non-technical dimensions", "passed": true, "evidence": "Target users, business model covered"},
+        {"text": "Suggests researcher skill for topics needing deeper investigation", "passed": true, "evidence": "4 research topics with 'Suggested researcher query:'"},
+        {"text": "Does NOT attempt to save/persist the output", "passed": true, "evidence": "Footer suggests librarian skill"},
+        {"text": "Does NOT attempt to conduct its own research", "passed": true, "evidence": "Research topics flagged, not investigated"},
+        {"text": "Flags at least one research topic", "passed": true, "evidence": "4 topics flagged"}
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "saas-product-standard",
+      "configuration": "without_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 0.50,
+        "passed": 8,
+        "failed": 8,
+        "total": 16
+      },
+      "expectations": [
+        {"text": "Output contains a 'Core Idea' section", "passed": false, "evidence": "No 'Core Idea' heading; has blockquote instead"},
+        {"text": "Output contains a 'Problem & Motivation' section", "passed": false, "evidence": "No dedicated Problem & Motivation section"},
+        {"text": "Output contains a 'Key Decisions' section with a table", "passed": true, "evidence": "Has a Key Decisions table in section 5"},
+        {"text": "Output contains a 'Dimensions Explored' section", "passed": false, "evidence": "No Dimensions Explored heading"},
+        {"text": "Output contains an 'Open Questions' section", "passed": true, "evidence": "Section 8: 'Open Questions'"},
+        {"text": "Output contains a 'Research Suggestions' section", "passed": false, "evidence": "No Research Suggestions section"},
+        {"text": "Output contains a 'Risks & Mitigations' section with a table", "passed": true, "evidence": "Section 7: 'Risks & Mitigations' with table"},
+        {"text": "Output contains a 'Next Steps' section", "passed": true, "evidence": "Section 10: 'Next Steps'"},
+        {"text": "Depth level is marked as 'standard'", "passed": false, "evidence": "No depth metadata"},
+        {"text": "Covers 4-5 dimensions (standard depth)", "passed": false, "evidence": "Covers 10 sections, far exceeding 4-5"},
+        {"text": "Explores technical dimensions", "passed": true, "evidence": "Architecture, HIPAA, tech stack covered"},
+        {"text": "Explores non-technical dimensions", "passed": true, "evidence": "Target market, business model, competition covered"},
+        {"text": "Suggests researcher skill for topics needing deeper investigation", "passed": false, "evidence": "No mention of researcher skill"},
+        {"text": "Does NOT attempt to save/persist the output", "passed": false, "evidence": "Wrote file to disk directly"},
+        {"text": "Does NOT attempt to conduct its own research", "passed": true, "evidence": "No external research conducted"},
+        {"text": "Flags at least one research topic", "passed": true, "evidence": "Open questions flag HIPAA, insurance APIs, etc."}
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "platform-ecosystem-deep",
+      "configuration": "with_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 1.00,
+        "passed": 16,
+        "failed": 0,
+        "total": 16
+      },
+      "expectations": [
+        {"text": "Output contains a 'Core Idea' section", "passed": true, "evidence": "## Core Idea heading present"},
+        {"text": "Output contains a 'Problem & Motivation' section", "passed": true, "evidence": "## Problem & Motivation with bullets"},
+        {"text": "Output contains a 'Key Decisions' section with a table", "passed": true, "evidence": "## Key Decisions with 8-row table"},
+        {"text": "Output contains a 'Dimensions Explored' section", "passed": true, "evidence": "## Dimensions Explored with 7 subsections"},
+        {"text": "Output contains an 'Open Questions' section", "passed": true, "evidence": "## Open Questions with 5 items"},
+        {"text": "Output contains a 'Research Suggestions' section", "passed": true, "evidence": "## Research Suggestions with 5 topics"},
+        {"text": "Output contains a 'Risks & Mitigations' section with a table", "passed": true, "evidence": "## Risks & Mitigations with 6-row table"},
+        {"text": "Output contains a 'Next Steps' section", "passed": true, "evidence": "## Next Steps with 7 items"},
+        {"text": "Depth level is marked as 'deep'", "passed": true, "evidence": "Metadata: Brainstorm | Depth: deep"},
+        {"text": "Covers 5-7 dimensions (deep depth)", "passed": true, "evidence": "7 dimensions explored"},
+        {"text": "Explores technical dimensions", "passed": true, "evidence": "Architecture, distribution, DRM, CDN covered"},
+        {"text": "Explores non-technical dimensions", "passed": true, "evidence": "Revenue model, competition, UX, GTM covered"},
+        {"text": "Suggests researcher skill for multiple topics needing deeper investigation", "passed": true, "evidence": "5 research topics with 'Suggested researcher query:'"},
+        {"text": "Does NOT attempt to save/persist the output", "passed": true, "evidence": "Footer suggests librarian skill"},
+        {"text": "Does NOT attempt to conduct its own research", "passed": true, "evidence": "Research topics flagged, not investigated"},
+        {"text": "Flags at least 3 distinct research topics", "passed": true, "evidence": "5 topics flagged"}
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "platform-ecosystem-deep",
+      "configuration": "without_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 0.44,
+        "passed": 7,
+        "failed": 9,
+        "total": 16
+      },
+      "expectations": [
+        {"text": "Output contains a 'Core Idea' section", "passed": false, "evidence": "Has 'Vision & Positioning' instead of 'Core Idea'"},
+        {"text": "Output contains a 'Problem & Motivation' section", "passed": false, "evidence": "No dedicated Problem & Motivation section"},
+        {"text": "Output contains a 'Key Decisions' section with a table", "passed": false, "evidence": "No 'Key Decisions' section"},
+        {"text": "Output contains a 'Dimensions Explored' section", "passed": false, "evidence": "No Dimensions Explored heading"},
+        {"text": "Output contains an 'Open Questions' section", "passed": true, "evidence": "Section 12: 'Open Questions' with 11 items"},
+        {"text": "Output contains a 'Research Suggestions' section", "passed": false, "evidence": "No Research Suggestions section"},
+        {"text": "Output contains a 'Risks & Mitigations' section with a table", "passed": true, "evidence": "Section 9: 'Risks & Mitigations' with tables"},
+        {"text": "Output contains a 'Next Steps' section", "passed": false, "evidence": "Has 'Roadmap' instead of 'Next Steps'"},
+        {"text": "Depth level is marked as 'deep'", "passed": false, "evidence": "Says 'Thorough exploration' not 'deep'"},
+        {"text": "Covers 5-7 dimensions (deep depth)", "passed": true, "evidence": "Covers 7+ dimensions"},
+        {"text": "Explores technical dimensions", "passed": true, "evidence": "CDN, cross-platform, DRM, distribution covered"},
+        {"text": "Explores non-technical dimensions", "passed": true, "evidence": "Revenue model, developer relations, GTM covered"},
+        {"text": "Suggests researcher skill for multiple topics needing deeper investigation", "passed": false, "evidence": "No mention of researcher skill"},
+        {"text": "Does NOT attempt to save/persist the output", "passed": false, "evidence": "Wrote file directly to disk"},
+        {"text": "Does NOT attempt to conduct its own research", "passed": true, "evidence": "No external research conducted"},
+        {"text": "Flags at least 3 distinct research topics", "passed": true, "evidence": "11 open questions + 7 technical spikes flagged"}
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 0.98, "stddev": 0.03, "min": 0.93, "max": 1.00},
+      "passed": {"mean": 15.0, "stddev": 1.73, "min": 13, "max": 16},
+      "total": {"mean": 15.33, "stddev": 1.15, "min": 14, "max": 16}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.36, "stddev": 0.15, "min": 0.14, "max": 0.50},
+      "passed": {"mean": 5.67, "stddev": 2.52, "min": 2, "max": 8},
+      "total": {"mean": 15.33, "stddev": 1.15, "min": 14, "max": 16}
+    },
+    "delta": {
+      "pass_rate": "+0.62",
+      "passed": "+9.33",
+      "total": "0.00"
+    }
+  },
+  "notes": [
+    "With-skill runs achieve 93-100% pass rate across all 3 depth levels — highly consistent structural compliance",
+    "Without-skill runs average 36% pass rate (down from 42% in iteration 1) — more variance in format compliance",
+    "The one with-skill failure (cli-tool-quick, assertion 14) is about output path: the subagent wrote to the workspace path instead of ./brainstorm/{slug}.md — this is a test harness artifact, not a skill defect",
+    "Iteration 2 confirms iteration 1 results: the skill consistently enforces the prescribed format while without-skill outputs vary in structure",
+    "Key differentiators remain: Core Idea section, Key Decisions table, Dimensions Explored grouping, Research Suggestions with researcher skill delegation, and depth metadata",
+    "Without-skill runs produce quality content but in inconsistent formats — sometimes matching some sections (Open Questions, Risks & Mitigations, Next Steps) but never all required sections"
+  ]
+}

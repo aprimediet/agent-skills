@@ -1,0 +1,30 @@
+{
+  "eval_id": 3,
+  "eval_name": "vague-idea-clarify",
+  "prompt": "I want to build a notification system.",
+  "depth": "standard",
+  "assertions": [
+    "Starts by asking ONE clarifying question to anchor the conversation (not a full questionnaire)",
+    "Does NOT immediately produce a final document \u2014 engages in dialogue first",
+    "First response asks a targeted question about scope or context (e.g., 'What kind of notifications? Email, SMS, in-app?')",
+    "Output eventually contains 'Problem Statement' section after clarification",
+    "Output eventually contains 'Scope' section",
+    "Output eventually contains 'Capabilities' section",
+    "Output eventually contains 'Dependency Map' section",
+    "Output eventually contains 'Open Questions' section",
+    "Output eventually contains 'Research Suggestions' section",
+    "Output eventually contains 'Next Steps' section",
+    "Depth level is marked as 'standard' when depth is not specified",
+    "Each capability has a Logic flow field describing WHAT not HOW",
+    "Business problem is stated in Problem Statement",
+    "User problem is stated in Problem Statement",
+    "Success criteria are measurable",
+    "Covers at least 4 capabilities (standard depth minimum)",
+    "Research Suggestions reference the researcher skill",
+    "Does NOT attempt to save/persist the output \u2014 suggests librarian skill instead",
+    "Does NOT attempt to conduct its own research \u2014 flags topics for researcher skill",
+    "Checks for existing knowledge via librarian skill before starting",
+    "Flags at least one topic as needing research (e.g., delivery channels, rate limiting)",
+    "Logic flows describe WHAT not HOW (no tech stack, no code, no architecture)"
+  ]
+}
