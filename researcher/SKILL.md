@@ -5,13 +5,16 @@ description: >
   Gathers sources from the web, journals, documentation, and citations, then produces
   a structured markdown report with JSON metadata. Optimized for tech evaluation —
   comparing technologies, benchmarking frameworks, evaluating libraries, assessing
-  APIs, and making evidence-based software decisions. Use this skill whenever the user
-  asks to research, evaluate, compare, or investigate any technology, library, framework,
-  tool, API, architecture pattern, or software product — even if they don't use the
-  word "research." Triggers on phrases like "look into X", "what's the best Y", "compare
-  A vs B", "should I use X", "evaluate this library", "what are the alternatives to X",
-  "is X production-ready", "tech stack for X", or any request that requires gathering
-  and synthesizing information from multiple sources to make a software decision.
+  APIs, and making evidence-based software decisions. Suggests the librarian skill
+  for persisting research artifacts; if unavailable, reports what to save and where
+  so another agent can persist it. Use this skill whenever the user asks to research,
+  evaluate, compare, or investigate any technology, library, framework, tool, API,
+  architecture pattern, or software product — even if they don't use the word
+  "research." Triggers on phrases like "look into X", "what's the best Y", "compare
+  A vs B", "should I use X", "evaluate this library", "what are the alternatives to
+  X", "is X production-ready", "tech stack for X", or any request that requires
+  gathering and synthesizing information from multiple sources to make a software
+  decision.
 metadata:
   author: aprimediet <aprimediet@gmail.com>
   version: "1.0"
@@ -119,6 +122,11 @@ Save two files to `./researcher/`:
 
 For the exact output format, see [references/OUTPUT_FORMAT.md](references/OUTPUT_FORMAT.md).
 
+After saving, tell the user:
+- The research report is ready
+- Suggest using the librarian skill to save it: "Use the librarian skill to save this as a research artifact."
+- If the librarian skill is NOT available, report what to save and where, so another agent with librarian access can persist it. Example: "I've saved the research output to `./researcher/{slug}.md`. An agent with librarian access should save this as a research artifact using: `python scripts/librarian.py write researches {slug} --title \"{title}\" --file ./researcher/{slug}.md --tags \"{tags}\" --scope project`"
+
 For real-world examples of each research type, see:
 - [examples/tech-evaluation-deep.md](examples/tech-evaluation-deep.md) — Yjs vs Automerge CRDT comparison (deep)
 - [examples/product-research-standard.md](examples/product-research-standard.md) — Bun production readiness (standard)
@@ -132,4 +140,4 @@ For real-world examples of each research type, see:
 - **Bias toward recency for tech.** Software moves fast. A 2023 benchmark may be irrelevant in 2025. Always check publication dates and flag stale information.
 - **Practical over academic.** This is optimized for software development decisions. Prioritize real-world performance, DX, and production experience over theoretical elegance.
 - **Check for conflicts.** Vendor comparisons sponsored by one of the vendors should be flagged. Blog posts by the tool's creator should be noted as potentially biased.
-- **Save outputs immediately.** Write the files as soon as synthesis is complete. Don't wait for the user to ask.
+- **Save outputs immediately.** Write the files as soon as synthesis is complete. Don't wait for the user to ask. Then suggest the librarian skill for persistence. If the librarian skill isn't available, tell the user exactly what to save and where, so another agent with librarian access can persist it.

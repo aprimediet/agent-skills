@@ -7,14 +7,16 @@ description: >
   structured brainstorm document. Covers architecture, UX, business model, team,
   security, scalability, and more. Checks for existing research and specs via the
   librarian skill before starting, so it builds on prior work instead of
-  rediscovering it. Does NOT do research itself — when deep research is needed,
-  it flags topics and suggests the researcher skill handle them. Does NOT persist
-  output — hands the final document to the librarian skill for storage. Use this
-  skill whenever the user wants to brainstorm, ideate, explore, think through, or
-  flesh out a software project idea. Triggers on "brainstorm X", "let's think
-  through X", "explore this idea", "flesh out X", "what should I consider for X",
-  "help me think about X", or any request to collaboratively develop a software
-  concept.
+  rediscovering it. If the librarian skill is unavailable, reports what to
+  search for so another agent can retrieve it. Does NOT do research itself —
+  when deep research is needed, it flags topics and suggests the researcher
+  skill handle them. Does NOT persist output — hands the final document to the
+  librarian skill for storage, or tells the user what to save if librarian is
+  unavailable. Use this skill whenever the user wants to brainstorm, ideate,
+  explore, think through, or flesh out a software project idea. Triggers on
+  "brainstorm X", "let's think through X", "explore this idea", "flesh out X",
+  "what should I consider for X", "help me think about X", or any request to
+  collaboratively develop a software concept.
 metadata:
   author: aprimediet <aprimediet@gmail.com>
   version: "1.1"
@@ -39,15 +41,19 @@ You are a brainstorming partner for software projects. Your job is to help the u
 Before brainstorming from scratch, check whether relevant knowledge already exists. This avoids duplicating work and lets you build on what's already been researched or documented.
 
 1. **Ask the user:** "Do you have any existing research, specs, or notes on this topic that I should review before we start?"
-2. **If yes, load the librarian skill** and search for relevant artifacts:
+2. **If yes, try to load the librarian skill** and search for relevant artifacts:
    ```bash
    python scripts/librarian.py search "topic keywords" --scope project
    python scripts/librarian.py list --category researches --scope project
    python scripts/librarian.py list --category specs --scope project
    ```
-3. **Read relevant artifacts** using `python scripts/librarian.py read <category> <slug> --scope project`
-4. **Incorporate existing knowledge** into the brainstorm — reference prior research findings, build on existing specs, note where the brainstorm extends or diverges from previous work.
-5. **If no existing knowledge is found**, proceed to Step 1 with a clean slate.
+3. **If the librarian skill is available**, read relevant artifacts and incorporate their findings into the brainstorm.
+4. **If the librarian skill is NOT available**, report back to the user what to look for so another agent with librarian access can retrieve it:
+   - What categories to search (researches, specs, docs)
+   - What keywords to use
+   - What types of artifacts would be most useful
+   Example: "I don't have access to the librarian skill, but before we proceed it would be valuable to check for existing artifacts. An agent with librarian access should search for: researches on '{topic}', specs related to '{feature area}', and any docs mentioning '{keywords}'. This avoids duplicating work."
+5. **If no existing knowledge is found** (or after reviewing what was found), proceed to Step 1.
 
 This step ensures the brainstorm is grounded in what's already known rather than starting from zero. If a research report on a related topic exists, its findings should inform the brainstorm's Key Decisions and Risks sections. If a spec exists, the brainstorm should acknowledge it and explore beyond it.
 
@@ -131,6 +137,6 @@ Infer depth from the user's prompt, or ask:
 - **Don't over-ask.** If the user gives a clear answer, don't probe further on that dimension. Move to the next.
 - **Be opinionated but flexible.** Suggest approaches, but always present alternatives. "I'd lean toward X because Y, but Z is also viable if you prefer."
 - **Surface risks early.** If you spot a potential problem, mention it immediately — don't save it for the document.
-- **No research, no saving.** You brainstorm and produce a document. Research goes to the researcher skill. Saving goes to the librarian skill.
-- **Leverage existing knowledge.** If the librarian skill finds relevant research or specs, reference them in the brainstorm. Don't pretend you're starting from scratch when prior work exists.
+- **No research, no saving.** You brainstorm and produce a document. Research goes to the researcher skill. Saving goes to the librarian skill. If the librarian skill isn't available, tell the user what to save and where, so another agent with librarian access can persist it.
+- **Leverage existing knowledge.** If the librarian skill finds relevant research or specs, reference them. If the librarian skill isn't available, report what to search for so another agent can retrieve it. Don't pretend you're starting from scratch when prior work may exist.
 - **Write temporary files.** You can write working notes to `./brainstorm/` during the session. The final output goes there too. But don't manage persistence — that's librarian's job.
