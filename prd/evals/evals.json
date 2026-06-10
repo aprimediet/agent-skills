@@ -1,0 +1,29 @@
+{
+  "skill_name": "prd",
+  "evals": [
+    {
+      "id": 0,
+      "name": "full-inputs-billing",
+      "prompt": "Write the PRD for the active project. It's the subscription billing work — there's research, a solution spec, and a technical spec already in the librarian. Compile them into a product requirements document.",
+      "fixture": "billing",
+      "expected_output": "A complete PRD with all sections supported, functional requirements traced to CAP-NN capabilities, NFRs from the technical spec, problem framing from research, a release plan, and a handoff to `librarian.py prd write` with --sources. No fabricated gaps.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "missing-inputs-upload",
+      "prompt": "Compile a PRD for the file upload service project. Use whatever's already captured in the librarian.",
+      "fixture": "upload",
+      "expected_output": "A PRD built from the solution spec, with clearly flagged gaps for the missing research (recommend researcher) and missing technical spec (recommend technical-architect). Proceeds rather than blocking. Functional requirements traced to CAP-NN.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "missing-research-checkout",
+      "prompt": "Turn the checkout redesign specs into a product requirements doc and save it to the project.",
+      "fixture": "checkout",
+      "expected_output": "A PRD compiled from solution + technical specs, with the Background/Problem section flagged as a gap (no research, recommend researcher). FRs from capabilities, NFRs from the technical spec, and a handoff to the librarian to persist as the project PRD.",
+      "files": []
+    }
+  ]
+}

@@ -133,11 +133,17 @@ def _read_meta(path: Path) -> Dict[str, str]:
     return meta
 
 
-def _read_tags(meta: Dict[str, str]) -> List[str]:
+def _read_list(meta: Dict[str, str], key: str) -> List[str]:
+    """Read a list-valued frontmatter field stored as a JSON array string."""
     try:
-        return json.loads(meta.get("tags", "[]"))
+        value = json.loads(meta.get(key, "[]"))
+        return value if isinstance(value, list) else []
     except (json.JSONDecodeError, TypeError):
         return []
+
+
+def _read_tags(meta: Dict[str, str]) -> List[str]:
+    return _read_list(meta, "tags")
 
 
 def _resolve_content(args) -> str:
@@ -382,10 +388,13 @@ def _rebuild_project_index(proj: Path) -> None:
     specs = [f for f in (proj / "specs").glob("*.md") if f.name != "index.md"] if (proj / "specs").is_dir() else []
     sprints = _iter_sprints(proj)
 
+    has_prd = (proj / "prd.md").exists()
+
     lines = ["## Contents", ""]
     lines.append(f"- **[Researches](researches/index.md)** — {len(researches)} item(s)")
     spec_names = ", ".join(sorted(f.stem for f in specs)) if specs else "none"
     lines.append(f"- **[Specs](specs/index.md)** — {spec_names}")
+    lines.append(f"- **[PRD](prd.md)** — present" if has_prd else "- **PRD** — none")
     lines.append(f"- **[Sprints](sprints/index.md)** — {len(sprints)} sprint(s)")
     if sprints:
         lines.append("")
@@ -671,6 +680,57 @@ def cmd_spec_list(args) -> None:
             items.append({"spec_type": f.stem, "title": meta.get("title", f.stem),
                           "updated": meta.get("updated", ""), "path": str(f)})
     _output({"action": "spec_list", "project": proj.name, "count": len(items), "specs": items})
+
+
+# ---------------------------------------------------------------------------
+# Commands — PRD (one per project, at the project root)
+# ---------------------------------------------------------------------------
+
+
+def cmd_prd_write(args) -> None:
+    base = _get_base_dir(args.scope)
+    proj = _resolve_project_dir(base, args.project)
+    path = proj / "prd.md"
+
+    content = _resolve_content(args)
+    # The draft is a valid standalone doc and may carry its own frontmatter.
+    # Absorb it: keep only the body so we don't stack a second block, and fall
+    # back to its fields for metadata the caller didn't pass explicitly.
+    in_meta, in_body = _parse_frontmatter(content)
+    if in_meta:
+        content = in_body
+
+    now = _now_iso()
+    old_meta = _read_meta(path) if path.exists() else {}
+    created = old_meta.get("created", in_meta.get("created", now))
+    if path.exists() and not content:
+        _, content = _parse_frontmatter(path.read_text(encoding="utf-8"))
+    title = args.title or in_meta.get("title") or old_meta.get("title") or "Product Requirements Document"
+    tags = args.tags.split(",") if args.tags else (_read_tags(old_meta) or _read_tags(in_meta))
+    if args.sources:
+        sources = args.sources.split(",")
+    else:
+        sources = _read_list(old_meta, "sources") or _read_list(in_meta, "sources")
+
+    fm = _build_frontmatter({
+        "title": title, "type": "prd", "created": created, "updated": now,
+        "tags": tags, "sources": sources, "scope": args.scope,
+    })
+    path.write_text(fm + content, encoding="utf-8")
+    _rebuild_project_index(proj)
+    _rebuild_projects_index(base)
+    _output({"action": "prd_write", "project": proj.name, "title": title, "path": str(path)})
+
+
+def cmd_prd_read(args) -> None:
+    base = _get_base_dir(args.scope)
+    proj = _resolve_project_dir(base, args.project)
+    path = proj / "prd.md"
+    if not path.exists():
+        _error(f"No PRD in project {proj.name}")
+    meta, body = _parse_frontmatter(path.read_text(encoding="utf-8"))
+    _output({"action": "prd_read", "project": proj.name, "path": str(path),
+             "meta": meta, "body": body})
 
 
 # ---------------------------------------------------------------------------
@@ -1110,6 +1170,17 @@ def main() -> None:
 
     p = g.add_parser("list", help="List specs")
     _add_project(p); _add_scope(p); p.set_defaults(func=cmd_spec_list)
+
+    # ---- prd ----
+    g = sub.add_parser("prd", help="Product Requirements Document (one per project)").add_subparsers(dest="cmd")
+
+    p = g.add_parser("write", help="Write/update the project PRD")
+    _add_content(p)
+    p.add_argument("--sources", help="Comma-separated source artifact references (provenance)")
+    _add_project(p); _add_scope(p); p.set_defaults(func=cmd_prd_write)
+
+    p = g.add_parser("read", help="Read the project PRD")
+    _add_project(p); _add_scope(p); p.set_defaults(func=cmd_prd_read)
 
     # ---- sprint ----
     g = sub.add_parser("sprint", help="Sprints").add_subparsers(dest="cmd")
