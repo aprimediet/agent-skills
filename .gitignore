@@ -2,6 +2,7 @@
 researcher-workspace/
 librarian-workspace/
 prd-workspace/
+sprint-planner-workspace/
 
 # Generated docs directories (skills create these at runtime)
 docs/

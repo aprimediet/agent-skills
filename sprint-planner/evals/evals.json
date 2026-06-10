@@ -1,0 +1,21 @@
+{
+  "skill_name": "sprint-planner",
+  "evals": [
+    {
+      "id": 0,
+      "name": "billing-multi-sprint",
+      "prompt": "Plan the sprints for the active project. It's the subscription billing work and there's a PRD in the librarian — turn it into a prioritized, estimated sprint schedule and set up the sprints, stories, and tasks.",
+      "fixture": "billing",
+      "expected_output": "User stories derived from the PRD's functional requirements (traced to FR/CAP), each with a Fibonacci point estimate and a MoSCoW priority. Stories grouped into multiple sequential sprints by priority/dependency. Tasks broken out for Sprint 1 only; later sprints left at story level. Handoff to librarian creating sprints + stories (with --points/--priority) + Sprint 1 tasks. A 13-point story flagged for splitting.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "upload-single-sprint",
+      "prompt": "Build a sprint plan for the file upload service project from its PRD, and create the sprint and tasks.",
+      "fixture": "upload",
+      "expected_output": "A small backlog of user stories from the PRD (traced to FR/CAP), estimated and prioritized, scheduled into a single sprint with tasks broken out. PRD gaps (missing technical spec / research) surfaced as risks. Handoff to librarian creating the sprint, stories with points/priority, and tasks.",
+      "files": []
+    }
+  ]
+}

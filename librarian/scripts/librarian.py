@@ -360,7 +360,13 @@ def _rebuild_sprint(sprint: Path) -> None:
         title = meta.get("title", s.name)
         status = meta.get("status", "todo")
         ntasks = len(_iter_tasks(s))
-        lines.append(f"- [{s.name} · {title}]({s.name}/index.md) — `{status}` · {ntasks} task(s)")
+        ann = []
+        if meta.get("priority"):
+            ann.append(str(meta["priority"]))
+        if meta.get("points"):
+            ann.append(f"{meta['points']} pts")
+        suffix = (" · " + " · ".join(ann)) if ann else ""
+        lines.append(f"- [{s.name} · {title}]({s.name}/index.md) — `{status}` · {ntasks} task(s){suffix}")
     if not stories:
         lines.append("_No user stories yet._")
     _replace_auto_section(sprint / "index.md", lines)
@@ -821,15 +827,38 @@ def cmd_story_create(args) -> None:
         _error(f"Sprint not found: {args.sprint}. Create it with 'sprint create'.")
     us = _norm_us(args.us_id)
     story = sprint / us
-    if (story / "index.md").exists() and not (args.title or args.description):
-        _output({"action": "story_create", "status": "already_exists",
-                 "project": proj.name, "sprint": sprint.name, "story": us, "path": str(story)})
+    extra = {}
+    if args.points is not None:
+        extra["points"] = args.points
+    if args.priority:
+        extra["priority"] = args.priority
+
+    if (story / "index.md").exists():
+        # Update provided fields in place, preserving the story body.
+        updates = {}
+        if args.title:
+            updates["title"] = args.title
+        if args.status:
+            updates["status"] = args.status
+        updates.update(extra)
+        if not updates:
+            _output({"action": "story_create", "status": "already_exists",
+                     "project": proj.name, "sprint": sprint.name, "story": us, "path": str(story)})
+            return
+        _update_frontmatter(story / "index.md", updates)
+        _rebuild_story(story)
+        _rebuild_sprint(sprint)
+        _rebuild_sprints_index(proj)
+        _rebuild_project_index(proj)
+        _output({"action": "story_create", "status": "updated", "project": proj.name,
+                 "sprint": sprint.name, "story": us, "path": str(story)})
         return
 
     now = _now_iso()
     title = args.title or us.upper()
     fm = {"title": title, "type": "user_story", "id": us,
           "status": args.status or "todo", "created": now, "updated": now}
+    fm.update(extra)
     body = (args.description or "_User story description._")
     _new_entity_index(story / "index.md", fm, f"{us.upper()} · {title}", body)
     _rebuild_story(story)
@@ -837,7 +866,8 @@ def cmd_story_create(args) -> None:
     _rebuild_sprints_index(proj)
     _rebuild_project_index(proj)
     _output({"action": "story_create", "status": "created", "project": proj.name,
-             "sprint": sprint.name, "story": us, "title": title, "path": str(story)})
+             "sprint": sprint.name, "story": us, "title": title,
+             "points": extra.get("points"), "priority": extra.get("priority"), "path": str(story)})
 
 
 def cmd_story_list(args) -> None:
@@ -1201,9 +1231,11 @@ def main() -> None:
     # ---- story ----
     g = sub.add_parser("story", help="User stories").add_subparsers(dest="cmd")
 
-    p = g.add_parser("create", help="Create a user story under a sprint")
+    p = g.add_parser("create", help="Create or update a user story under a sprint")
     p.add_argument("sprint"); p.add_argument("us_id", help="User story id (e.g. 1 or us-001)")
     p.add_argument("--title"); p.add_argument("--description"); p.add_argument("--status")
+    p.add_argument("--points", help="Estimate (e.g. Fibonacci story points: 1,2,3,5,8,13)")
+    p.add_argument("--priority", help="Priority (e.g. MoSCoW: Must/Should/Could/Won't)")
     _add_project(p); _add_scope(p); p.set_defaults(func=cmd_story_create)
 
     p = g.add_parser("list", help="List user stories in a sprint")
