@@ -1,12 +1,16 @@
 ---
 title: Yjs vs Automerge for Real-Time Collaboration
-category: researches
+type: research
 slug: yjs-vs-automerge-real-time-collaboration
-created: 2025-06-09T10:30:00Z
-updated: 2025-06-09T14:22:00Z
+created: 2026-06-09T10:30:00Z
+updated: 2026-06-09T14:22:00Z
 tags: ["crdt", "real-time", "collaboration", "yjs", "automerge"]
 scope: project
 ---
+
+<!-- Stored at: projects/<YYYY_MM_DD_slug>/researches/2026_06_09_yjs-vs-automerge-real-time-collaboration.md
+     Written via: librarian.py research write yjs-vs-automerge-real-time-collaboration --tags "crdt,real-time,..." --file draft.md -->
+
 
 # Yjs vs Automerge for Real-Time Collaboration
 

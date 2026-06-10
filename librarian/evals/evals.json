@@ -3,24 +3,35 @@
   "evals": [
     {
       "id": 0,
-      "name": "save-research",
-      "prompt": "Save this research finding: I looked into using SQLite vs PostgreSQL for our new microservice. SQLite is simpler but PostgreSQL handles concurrent writes better. Title it 'SQLite vs PostgreSQL for Microservices' and tag it 'database,comparison,microservices'.",
-      "expected_output": "Artifact written to docs/researches/sqlite-vs-postgresql-for-microservices.md with correct frontmatter, tags, and content",
-      "files": []
+      "name": "new-project-research",
+      "prompt": "I'm kicking off a new piece of work to build a realtime document collaboration feature. Before I forget, save this research finding: I compared Yjs and Automerge for CRDT sync — Yjs is faster and has a much bigger ecosystem, while Automerge has nicer built-in version-control APIs. Tag it crdt, realtime, collaboration.",
+      "expected_output": "Resolves/creates a project (asks or suggests a name), then saves a research note under projects/<YYYY_MM_DD_slug>/researches/YYYY_MM_DD_<slug>.md with type:research, the three tags, and the content. Indexes updated.",
+      "files": [],
+      "assertions": []
     },
     {
       "id": 1,
-      "name": "find-and-read",
-      "prompt": "I wrote some notes about API authentication a few days ago. Can you find them and show me what I wrote?",
-      "expected_output": "Uses fetch or search to locate the artifact, then reads and displays it",
-      "files": []
+      "name": "write-specs",
+      "prompt": "Set up a project called 'billing-system' and write its specs. The technical spec: a modular monolith on PostgreSQL, Stripe for payment processing, webhook-driven entitlement updates. The solution spec (non-technical): describe the capabilities — subscription signup, plan upgrades/downgrades, invoicing, and dunning for failed payments.",
+      "expected_output": "Creates project 2026_..._billing-system, writes specs/technical.md and specs/solution.md with the right content and spec_type frontmatter. specs/index.md lists both.",
+      "files": [],
+      "assertions": []
     },
     {
       "id": 2,
-      "name": "organize-artifacts",
-      "prompt": "I have a bunch of research notes in my docs folder. Can you list everything in the researches category and tell me what's there?",
-      "expected_output": "Uses list command with --category researches and presents the results clearly",
-      "files": []
+      "name": "sprint-story-task-tracking",
+      "prompt": "For my checkout project, set up sprint 1 with the goal 'MVP checkout'. Add a user story US-1 'Checkout flow' described as 'As a user I can pay with a card'. Under it, create two tasks: 'Build payment form' and 'Add card validation'. Mark the payment form task as in progress.",
+      "expected_output": "Creates a project, sprints/sprint-1 (goal set), us-001 with description, two task files us-001-task-001/002, first task status in-progress. Indexes roll up the statuses.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 3,
+      "name": "organize-and-find",
+      "prompt": "Inside a project for our mobile app, save two research notes — one titled 'Push Notification Providers' (compared FCM vs OneSignal vs APNs direct) tagged 'mobile,notifications', and one titled 'Offline Sync Strategies' (last-write-wins vs CRDT) tagged 'mobile,sync'. Then show me everything that's in the project so far.",
+      "expected_output": "Creates one project, writes two research notes with correct tags, then lists/searches and presents the project index showing both notes.",
+      "files": [],
+      "assertions": []
     }
   ]
 }

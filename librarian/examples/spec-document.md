@@ -1,12 +1,16 @@
 ---
 title: API Authentication Design
-category: specs
-slug: api-authentication-design
-created: 2025-06-08T09:00:00Z
-updated: 2025-06-09T11:15:00Z
+type: spec
+spec_type: api-design
+created: 2026-06-08T09:00:00Z
+updated: 2026-06-09T11:15:00Z
 tags: ["api", "auth", "jwt", "security"]
 scope: project
 ---
+
+<!-- Stored at: projects/<YYYY_MM_DD_slug>/specs/api-design.md
+     Written via: librarian.py spec write api-design --file draft.md -->
+
 
 # API Authentication Design
 

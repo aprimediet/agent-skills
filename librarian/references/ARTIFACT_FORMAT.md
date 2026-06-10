@@ -1,185 +1,127 @@
 # Artifact Format Reference
 
-Every artifact managed by the librarian skill is a markdown file with YAML frontmatter.
+Every artifact managed by the librarian skill is a markdown file with YAML frontmatter, stored inside a **project**.
 
 ## Directory structure
 
 ```
-docs/
-├── index.md                              # Auto-maintained knowledge index
-├── researches/
-│   ├── 2026_06_09__sqlite-vs-postgresql/  # Date-prefixed directory
-│   │   └── index.md                       # The artifact file
-│   └── 2026_06_10__react-vs-vue/
-│       └── index.md
-├── specs/
-│   ├── api-auth.md                        # Flat structure for non-research categories
-│   └── 2026_06_10__payment-system/        # Date-prefixed for architecture specs
-│       ├── solution.md                    # solution-architect output
-│       └── technical.md                   # technical-architect output
-├── tasks/
-│   └── sprint-12.md
-└── docs/
-    └── deployment-guide.md
+projects/                                     # project scope (cwd-relative)
+├── index.md                                  # all-projects index (auto)
+├── .librarian/current                        # active-project pointer
+└── 2026_06_10_billing-system/                # YYYY_MM_DD_<slug>
+    ├── index.md                              # project index (your prose + auto contents)
+    ├── researches/
+    │   ├── index.md                          # research index (auto)
+    │   └── 2026_06_10_authn-options.md       # YYYY_MM_DD_<slug>.md
+    ├── specs/
+    │   ├── index.md                          # specs index (auto)
+    │   ├── technical.md                      # technical spec
+    │   ├── solution.md                       # solution spec (non-technical)
+    │   ├── api-design.md                     # API design
+    │   └── design.md                         # visual design
+    └── sprints/
+        ├── index.md                          # all sprints + status (auto)
+        └── sprint-1/
+            ├── index.md                      # sprint index + user stories (auto)
+            └── us-001/
+                ├── index.md                  # story description + task statuses (auto)
+                └── us-001-task-001.md        # a task file
 ```
 
-**Researches** use date-prefixed directories (`YYYY_MM_DD__slug/index.md`) for chronological organization. All other categories use flat files (`slug.md`).
+- **Researches** are flat, date-prefixed files: `researches/YYYY_MM_DD_<slug>.md`.
+- **Specs** are fixed-name files; the type *is* the filename: `technical.md`, `solution.md`, `api-design.md`, `design.md` (custom types allowed).
+- **Sprints** nest: `sprints/sprint-N/us-XXX/us-XXX-task-XXX.md`.
 
 ## File location
 
-- **Project scope**: `{working_dir}/docs/{category}/{path}`
-- **Global scope**: `$AGENT_ROOT/docs/{category}/{path}` (or `~/.agents/docs/`)
+- **Project scope**: `{working_dir}/projects/...`
+- **Global scope**: `$AGENT_ROOT/projects/...` (or `~/.agents/projects/`)
 
-## Frontmatter format
+## Frontmatter by artifact type
+
+All artifacts share `created`/`updated` (ISO 8601) and preserve `created` across updates. Type-specific fields:
+
+| Type | Key fields |
+|------|-----------|
+| project | `title`, `type: project`, `slug`, `status`, `scope` |
+| research | `title`, `type: research`, `slug`, `tags`, `scope` |
+| spec | `title`, `type: spec`, `spec_type` (technical/solution/api-design/design/...) |
+| sprint | `title`, `type: sprint`, `name`, `status`, `goal` |
+| user_story | `title`, `type: user_story`, `id` (us-XXX), `status` |
+| task | `title`, `type: task`, `id` (us-XXX-task-XXX), `status` |
+
+Example research note:
 
 ```yaml
 ---
-title: Human-Readable Title
-category: researches
-slug: human-readable-title
-created: 2025-06-09T10:30:00Z
-updated: 2025-06-09T14:22:00Z
-tags: ["tag1", "tag2", "tag3"]
+title: Authentication Options
+type: research
+slug: authn-options
+created: 2026-06-10T10:30:00Z
+updated: 2026-06-10T14:22:00Z
+tags: ["auth", "security"]
 scope: project
 ---
 
-# Title
+# Authentication Options
 
 Content goes here...
 ```
 
-### Field definitions
+## Auto-maintained indexes
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `title` | string | Human-readable title for the artifact |
-| `category` | string | Directory category (researches, specs, tasks, docs, or custom) |
-| `slug` | string | URL-friendly identifier, lowercase with hyphens, max 60 chars |
-| `created` | string | ISO 8601 timestamp of creation |
-| `updated` | string | ISO 8601 timestamp of last update |
-| `tags` | JSON array | List of tags for search and filtering |
-| `scope` | string | `project` or `global` |
+Index files are rebuilt by the script on every write. There are two kinds:
 
-## Slug derivation
-
-Slugs are auto-generated from titles by:
-1. Converting to lowercase
-2. Replacing spaces and underscores with hyphens
-3. Removing non-alphanumeric characters (except hyphens)
-4. Collapsing consecutive hyphens
-5. Trimming leading/trailing hyphens
-6. Truncating to 60 characters
-
-Examples:
-- "React vs Vue for Enterprise Apps" → `react-vs-vue-for-enterprise-apps`
-- "API Design Specification v2" → `api-design-specification-v2`
-- "What's New in 2025?" → `whats-new-in-2025`
-
-## Knowledge index
-
-The `index.md` file at the root of the docs directory is auto-maintained. It lists all artifacts grouped by category with markdown links, dates, and tags:
+- **Container indexes** (`projects/index.md`, `researches/index.md`, `specs/index.md`, `sprints/index.md`) are fully generated — don't edit them.
+- **Entity indexes** (project `index.md`, `sprint-N/index.md`, `us-XXX/index.md`) carry your prose *above* a marker and an auto-generated section *below* it:
 
 ```markdown
-# Knowledge Index
+# US-001 · Checkout flow
 
-> Auto-generated by librarian. Do not edit manually — use `python scripts/librarian.py index --rebuild` to regenerate.
+As a user I can pay with a card.
 
-## Researches
+## Acceptance Criteria
+- Card accepted
+- Receipt emailed
 
-- [SQLite vs PostgreSQL for Microservices](researches/2026_06_09__sqlite-vs-postgresql/index.md) — 2026-06-09 `database` `comparison` `microservices`
+<!-- LIBRARIAN:AUTO:BEGIN — regenerated; edit above this line -->
 
-## Specs
+## Tasks (2)
 
-- [API Authentication Design](specs/api-auth.md) — 2026-06-09 `api` `auth`
+- [Build payment form](us-001-task-001.md) — `done`
+- [Add validation](us-001-task-002.md) — `todo`
+
+<!-- LIBRARIAN:AUTO:END -->
 ```
 
-The index is rebuilt automatically on every write, move, or delete operation. You can also rebuild it manually with `python scripts/librarian.py index --rebuild`.
+Everything above `AUTO:BEGIN` is yours and is preserved; the block between the markers is regenerated.
+
+## Slug & id derivation
+
+Slugs are lowercased, hyphenated, stripped of non-alphanumerics, collapsed, and truncated to 60 chars:
+- "Authentication Options" → `authn-options` (`authentication-options`)
+- "API Design Specification v2" → `api-design-specification-v2`
+
+IDs normalize on input: `1`, `us-1`, `us-001` all resolve to `us-001`; sprint `2`/`sprint-2` → `sprint-2`; task `1` → `...-task-001`.
+
+## Status vocabulary
+
+Free-form, but stay consistent:
+- sprints: `planned` → `active` → `done`
+- stories & tasks: `todo` → `in-progress` → `done`, plus `blocked`
 
 ## Script commands
 
 All commands output JSON. The script is at `scripts/librarian.py`.
 
-### init
+| Group | Commands |
+|-------|----------|
+| (top) | `init`, `search <query> [--all]`, `migrate [--source DIR] [--project-slug SLUG]` |
+| `project` | `create <slug>`, `list`, `use <slug>`, `show`, `current`, `status <status>` |
+| `research` | `write <slug>`, `read <slug>`, `list` |
+| `spec` | `write <type>`, `read <type>`, `list` |
+| `sprint` | `create [--name N --goal G]`, `list`, `show <sprint>`, `status <sprint> <status>` |
+| `story` | `create <sprint> <id>`, `list <sprint>`, `show <sprint> <id>`, `status <sprint> <id> <status>` |
+| `task` | `write <sprint> <story> <id>`, `read ...`, `list <sprint> <story>`, `status <sprint> <story> <id> <status>` |
 
-```bash
-python scripts/librarian.py init [--scope project|global] [--categories "cat1,cat2,..."]
-```
-
-Creates the directory structure and initial index.md. Default categories: `researches,specs,tasks,docs`.
-
-### write
-
-```bash
-python scripts/librarian.py write <category> <slug> \
-  [--title "Title"] \
-  [--content "Content"] \
-  [--file /path/to/content.md] \
-  [--tags "tag1,tag2"] \
-  [--scope project|global]
-```
-
-Creates or updates an artifact. Content can be provided via `--content`, `--file`, or stdin. If the artifact already exists, preserves the `created` date and merges tags.
-
-For `researches` category, automatically creates a date-prefixed directory (`YYYY_MM_DD__slug/index.md`).
-
-For `specs` category with `--artifact-type solution` or `--artifact-type technical`, creates a date-prefixed directory (`YYYY_MM_DD__slug/solution.md` or `YYYY_MM_DD__slug/technical.md`).
-
-### read
-
-```bash
-python scripts/librarian.py read <category> <slug> [--artifact-type solution|technical] [--scope project|global]
-```
-
-Returns the full artifact content including parsed frontmatter and body.
-
-For `specs` category with `--artifact-type`, reads the specific architecture artifact (`solution.md` or `technical.md`).
-
-### list
-
-```bash
-python scripts/librarian.py list [--category CATEGORY] [--tags "tag1,tag2"] [--scope project|global]
-```
-
-Lists artifacts, optionally filtered by category and tags.
-
-### search
-
-```bash
-python scripts/librarian.py search <query> [--category CATEGORY] [--field title|content|tags|all] [--scope project|global]
-```
-
-Full-text search. Results are scored by relevance: title matches (2.0), tag matches (1.5), slug/category matches (0.5), content matches (0.1 per occurrence, capped at 1.0).
-
-### fetch
-
-```bash
-python scripts/librarian.py fetch <partial> [--scope project|global]
-```
-
-Find artifacts by partial slug or title match. Returns up to 10 results ranked by match quality.
-
-### move
-
-```bash
-python scripts/librarian.py move <category> <slug> <new-category> [--artifact-type solution|technical] [--scope project|global]
-```
-
-Moves an artifact to a different category. Updates frontmatter (category, updated timestamp) and rebuilds the index.
-
-For `specs` category with `--artifact-type`, moves the specific architecture artifact.
-
-### delete
-
-```bash
-python scripts/librarian.py delete <category> <slug> [--artifact-type solution|technical] [--scope project|global]
-```
-
-Removes an artifact file. Cleans up empty date-prefixed directories for researches and specs architecture artifacts. Rebuilds the index.
-
-### index
-
-```bash
-python scripts/librarian.py index [--rebuild] [--scope project|global]
-```
-
-Shows the knowledge index. Use `--rebuild` to regenerate it from all artifacts.
+Common options: `--project <slug>` (override the active project), `--scope project|global`, and for writes `--title`, `--content`, `--file`, `--tags`. Content can also be piped via stdin.
