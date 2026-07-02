@@ -1,8 +1,5 @@
 # Eval workspaces — iteration artifacts, not part of the skills
-researcher-workspace/
-librarian-workspace/
-prd-workspace/
-sprint-planner-workspace/
+.workspaces/
 
 # Generated docs directories (skills create these at runtime)
 docs/
